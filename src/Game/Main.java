@@ -18,12 +18,12 @@ public class Main {
 
         //Board setup stuff
 
-        boolean isWinner = false;
-        while(!isWinner) {
+       // boolean isWinner = false;
+        //while(!isWinner) {
             summonPhase(current, one, two);
             //calculation
 
-        }
+        //}
 
 
     }

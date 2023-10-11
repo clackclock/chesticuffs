@@ -154,7 +154,6 @@ public class Board {
         };
     }
 
-
     public void addToSlots(String name, Card fromHand){
         switch(name){
             case "UBER" -> UBER.getSlots().add(fromHand);

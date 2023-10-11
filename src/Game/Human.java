@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-
-
 public class Human implements Player {
     private final Random r = new Random();
     private final cardDatabase cards = new cardDatabase();
