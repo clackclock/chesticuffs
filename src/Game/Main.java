@@ -2,7 +2,6 @@ package Game;// Press Shift twice to open the Search Everywhere dialog and type 
 // then press Enter. You can now see whitespace characters in your code.
 
 import java.util.Scanner;
-
 public class Main {
     public static void play(Player one, Player two) {
         //Scanner input = new Scanner(System.in);
@@ -25,7 +24,6 @@ public class Main {
 
         //}
 
-
     }
 
     public static void menu() {
@@ -42,7 +40,7 @@ public class Main {
         switch(act){
             case "1" -> {
                 System.out.println("Which spot on the board?");
-                System.out.println("uber, attack, coreDef, core, defence");
+                System.out.println("UBER, ATTACK, CoreDEFENCE, CORE, DEFENCE");
                 String cardPosSelect = input.nextLine();
                 System.out.println("Which card in your hand? (left to right [0-4])");
                 System.out.println(numSelectInput);
@@ -55,7 +53,7 @@ public class Main {
             }
             case "3"->{
                 System.out.println("Which spot on the board?");
-                System.out.println("uber, attack, coreDef, core, defence");
+                System.out.println("UBER, ATTACK, CoreDEFENCE, CORE, DEFENCE");
                 String cardPosSelect = input.nextLine();
                 System.out.println("Which slot's card? (number left to right)");
                 System.out.println(numSelectInput);
@@ -131,7 +129,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
 
         Player one = new Human();
         Player two = new Human();

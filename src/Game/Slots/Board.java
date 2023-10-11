@@ -9,7 +9,7 @@ import static Game.Slots.Board.position.*;
 public class Board {
     private static cardDatabase cd = new cardDatabase();
     public interface Position{
-        LinkedList<Card> slots = new LinkedList<>();
+        //LinkedList<Card> slots = new LinkedList<>();
         boolean hasOpenSlots();
         int[] getStats(int cardIndex_onBoard);
         int getAtk(int cardIndex_onBoard);
