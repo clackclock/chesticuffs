@@ -4,19 +4,20 @@ import Game.cardDatabase;
 
 import java.util.LinkedList;
 
-import static Game.Slots.Board.position.*;
+import static Game.Slots.Board.positions.*;
 
 public class Board {
     private static cardDatabase cd = new cardDatabase();
-    public interface Position{
+    public interface Position {
         //LinkedList<Card> slots = new LinkedList<>();
         boolean hasOpenSlots();
         int[] getStats(int cardIndex_onBoard);
         int getAtk(int cardIndex_onBoard);
         int getDef(int cardIndex_onBoard);
         LinkedList<Card> getSlots();
+        String printSlots_ToBoard();
     }
-    public enum position implements Position{
+    public enum positions implements Position{
         UBER{
             public final LinkedList<Card> slots = new LinkedList<>();
             final int openSlots = 3;
@@ -40,9 +41,8 @@ public class Board {
             public boolean hasOpenSlots(){
                 return slots.size() != openSlots;
             }
-            public LinkedList<Card> getSlots(){
-                return slots;
-            }
+            public LinkedList<Card> getSlots(){ return slots;}
+            public String printSlots_ToBoard(){return slots.toString();}
         },
         ATTACK{
             final LinkedList<Card> slots = new LinkedList<>();
@@ -67,8 +67,9 @@ public class Board {
                     return slots.get(cardIndex_onBoard).getAtkDef();
                 }
             }
-            public LinkedList<Card> getSlots(){
-                return slots;
+            public LinkedList<Card> getSlots(){ return slots;}
+            public String printSlots_ToBoard(){
+                return slots.toString();
             }
         },
         CoreDEFENCE{
@@ -94,8 +95,9 @@ public class Board {
                     return slots.get(cardIndex_onBoard).getCDefDef();
                 }
             }
-            public LinkedList<Card> getSlots(){
-                return slots;
+            public LinkedList<Card> getSlots(){ return slots;}
+            public String printSlots_ToBoard(){
+                return slots.toString();
             }
         },
         CORE{
@@ -121,8 +123,9 @@ public class Board {
                     return slots.get(cardIndex_onBoard).getCoreDef();
                 }
             }
-            public LinkedList<Card> getSlots(){
-                return slots;
+            public LinkedList<Card> getSlots(){ return slots;}
+            public String printSlots_ToBoard(){
+                return slots.toString();
             }
         },
         DEFENCE{
@@ -148,8 +151,9 @@ public class Board {
                     return slots.get(cardIndex_onBoard).getDefDef();
                 }
             }
-            public LinkedList<Card> getSlots(){
-                return slots;
+            public LinkedList<Card> getSlots(){ return slots;}
+            public String printSlots_ToBoard(){
+                return slots.toString();
             }
         };
     }
@@ -171,13 +175,14 @@ public class Board {
             case "CORE" -> CORE.getSlots().remove(posIndex);
             case "DEFENCE" -> DEFENCE.getSlots().remove(posIndex);
         }
+
     }
     public void printBoard(){
-        UBER.getSlots();
-        ATTACK.getSlots();
-        CoreDEFENCE.getSlots();
-        CORE.getSlots();
-        DEFENCE.getSlots();
+        System.out.print(UBER.printSlots_ToBoard());
+        System.out.print(ATTACK.printSlots_ToBoard());
+        System.out.print(CoreDEFENCE.printSlots_ToBoard());
+        System.out.print(CORE.printSlots_ToBoard());
+        System.out.print(DEFENCE.printSlots_ToBoard());
     }
 
 }
