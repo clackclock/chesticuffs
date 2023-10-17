@@ -1,13 +1,12 @@
 package Game.Slots;
 import Game.Card;
-import Game.cardDatabase;
 
 import java.util.LinkedList;
 
 import static Game.Slots.Board.positions.*;
 
 public class Board {
-    private static cardDatabase cd = new cardDatabase();
+    //private static final cardDatabase cd = new cardDatabase();
     public interface Position {
         //LinkedList<Card> slots = new LinkedList<>();
         boolean hasOpenSlots();
@@ -22,20 +21,20 @@ public class Board {
             public final LinkedList<Card> slots = new LinkedList<>();
             final int openSlots = 3;
             public int[] getStats(int cardIndex_onBoard){
-                return slots.get(cardIndex_onBoard).getUber();
+                return slots.get(cardIndex_onBoard).getValue(UBER);
             }
             public int getAtk(int cardIndex_onBoard){
                 if(slots.get(cardIndex_onBoard) == null){
                     return 0;
                 }else {
-                    return slots.get(cardIndex_onBoard).getUberAtk();
+                    return slots.get(cardIndex_onBoard).getValue(UBER)[0];
                 }
             }
             public int getDef(int cardIndex_onBoard){
                 if(slots.get(cardIndex_onBoard) == null){
                     return 0;
                 }else {
-                    return slots.get(cardIndex_onBoard).getUberDef();
+                    return slots.get(cardIndex_onBoard).getValue(UBER)[1];
                 }
             }
             public boolean hasOpenSlots(){
@@ -51,20 +50,20 @@ public class Board {
                 return slots.size() != openSlots;
             }
             public int[] getStats(int cardIndex_onBoard){
-                return slots.get(cardIndex_onBoard).getAtk();
+                return slots.get(cardIndex_onBoard).getValue(ATTACK);
             }
             public int getAtk(int cardIndex_onBoard){
                 if(slots.get(cardIndex_onBoard) == null){
                     return 0;
                 }else {
-                    return slots.get(cardIndex_onBoard).getAtkAtk();
+                    return slots.get(cardIndex_onBoard).getValue(ATTACK)[0];
                 }
             }
             public int getDef(int cardIndex_onBoard){
                 if(slots.get(cardIndex_onBoard) == null){
                     return 0;
                 }else {
-                    return slots.get(cardIndex_onBoard).getAtkDef();
+                    return slots.get(cardIndex_onBoard).getValue(ATTACK)[1];
                 }
             }
             public LinkedList<Card> getSlots(){ return slots;}
@@ -79,20 +78,20 @@ public class Board {
                 return slots.size() != openSlots;
             }
             public int[] getStats(int cardIndex_onBoard){
-                return slots.get(cardIndex_onBoard).getCDef();
+                return slots.get(cardIndex_onBoard).getValue(CoreDEFENCE);
             }
             public int getAtk(int cardIndex_onBoard){
                 if(slots.get(cardIndex_onBoard) == null){
                     return 0;
                 }else {
-                    return slots.get(cardIndex_onBoard).getCDefAtk();
+                    return slots.get(cardIndex_onBoard).getValue(CoreDEFENCE)[0];
                 }
             }
             public int getDef(int cardIndex_onBoard){
                 if(slots.get(cardIndex_onBoard) == null){
                     return 0;
                 }else {
-                    return slots.get(cardIndex_onBoard).getCDefDef();
+                    return slots.get(cardIndex_onBoard).getValue(CoreDEFENCE)[1];
                 }
             }
             public LinkedList<Card> getSlots(){ return slots;}
@@ -107,20 +106,20 @@ public class Board {
                 return slots.size() != openSlots;
             }
             public int[] getStats(int cardIndex_onBoard){
-                return slots.get(cardIndex_onBoard).getCore();
+                return slots.get(cardIndex_onBoard).getValue(CORE);
             }
             public int getAtk(int cardIndex_onBoard){
                 if(slots.get(cardIndex_onBoard) == null){
                     return 0;
                 }else {
-                    return slots.get(cardIndex_onBoard).getCoreAtk();
+                    return slots.get(cardIndex_onBoard).getValue(CORE)[0];
                 }
             }
             public int getDef(int cardIndex_onBoard){
                 if(slots.get(cardIndex_onBoard) == null){
                     return 0;
                 }else {
-                    return slots.get(cardIndex_onBoard).getCoreDef();
+                    return slots.get(cardIndex_onBoard).getValue(CORE)[1];
                 }
             }
             public LinkedList<Card> getSlots(){ return slots;}
@@ -135,27 +134,27 @@ public class Board {
                 return slots.size() != openSlots;
             }
             public int[] getStats(int cardIndex_onBoard){
-                return slots.get(cardIndex_onBoard).getDef();
+                return slots.get(cardIndex_onBoard).getValue(DEFENCE);
             }
             public int getAtk(int cardIndex_onBoard){
                 if(slots.get(cardIndex_onBoard) == null){
                     return 0;
                 }else {
-                    return slots.get(cardIndex_onBoard).getDefAtk();
+                    return slots.get(cardIndex_onBoard).getValue(DEFENCE)[0];
                 }
             }
             public int getDef(int cardIndex_onBoard){
                 if(slots.get(cardIndex_onBoard) == null){
                     return 0;
                 }else {
-                    return slots.get(cardIndex_onBoard).getDefDef();
+                    return slots.get(cardIndex_onBoard).getValue(DEFENCE)[1];
                 }
             }
             public LinkedList<Card> getSlots(){ return slots;}
             public String printSlots_ToBoard(){
                 return slots.toString();
             }
-        };
+        }
     }
 
     public void addToSlots(String name, Card fromHand){
@@ -182,7 +181,7 @@ public class Board {
         System.out.print(ATTACK.printSlots_ToBoard());
         System.out.print(CoreDEFENCE.printSlots_ToBoard());
         System.out.print(CORE.printSlots_ToBoard());
-        System.out.print(DEFENCE.printSlots_ToBoard());
+        System.out.println(DEFENCE.printSlots_ToBoard());
     }
 
 }
