@@ -53,9 +53,6 @@ public class Human implements Player {
     public void getBoard() {
         b.printBoard();
     }
-    public Board playBoard(){
-        return b;
-    }
 
     public void placeCard(String pos, int card) {
         b.addToSlots(pos,hand.get(card));

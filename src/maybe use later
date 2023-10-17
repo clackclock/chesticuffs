@@ -564,3 +564,101 @@ public class Uber implements Board.Position {
                 p.getSlots().add(cd.pack.get(0));
             }
         }
+
+//    private final int[] uberAtk;
+//    //private final int[] uberAtkDEF;
+//    private final int[] attack;
+//    //private final int[] attackDEF;
+//    private final int[] coreDef;
+//    //private final int[] coreDefDEF;
+//    private final int[] core;
+//    //private final int[] coreDEF;
+//    private final int[] defence;
+    //private final int[] defenceDEF;
+
+    //        uberAtk = uAtk;
+    //        //uberAtkDEF = uADef;
+    //        attack = atk;
+    //        //attackDEF = aDef;
+    //        coreDef = cDef;
+    //        //coreDefDEF = cDDef;
+    //        core = corn;
+    //        //coreDEF = cDef;
+    //        defence = def;
+            //defenceDEF = dAtk;
+
+
+    public int getUberAtk() {
+        return uberAtk[0];
+    }
+    public int getUberDef() {
+        return uberAtk[1];
+    }
+    public int getAtkAtk() {
+        return attack[0];
+    }
+    public int getAtkDef() {
+        return attack[1];
+    }
+    public int getCDefAtk() {
+        return coreDef[0];
+    }
+    public int getCDefDef() {
+        return coreDef[1];
+    }
+    public int getCoreAtk() {
+        return core[0];
+    }
+    public int getCoreDef() {
+        return core[1];
+    }
+
+    public int getDefAtk() {
+        return defence[0];
+    }
+
+    public int getDefDef() {
+        return defence[1];
+    }
+
+    //for board calls
+    public int[] getUber() {
+        return uberAtk;
+    }
+
+    public int[] getAtk() {
+        return attack;
+    }
+
+    public int[] getCDef() {
+        return coreDef;
+    }
+
+    public int[] getCore() {
+        return core;
+    }
+
+    public int[] getDef() {
+        return defence;
+    }
+
+    public enum cardType{
+            PLANT, WATER, FLOWER, TOOL, ANIMAL, FARM, METAL, ORE, ITEM, WOOD, ENHANCED, NEUTRAL;
+        }
+
+       public interface ICommand{
+           void execute();
+       }
+       ICommand onCardPlayedCommand;
+       ICommand limitedTimeSkillCommand;
+       public void applyAtkBuff(int buff){
+               if(onCardPlayedCommand != null){
+                   onCardPlayedCommand.execute();
+               }
+           }
+           public void applyDefBuff(int buff){
+
+           }
+        public int getModNum(int mod){
+            return mod;
+        }

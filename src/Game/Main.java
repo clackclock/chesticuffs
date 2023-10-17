@@ -79,7 +79,7 @@ public class Main {
         Scanner input = new Scanner((System.in));
         //every 4 or 5 rounds there will be a calculation, 3 is the test
         int roundCount = 1;
-        while (roundCount % 4 != 0) {
+        while (roundCount % 3 != 0) {
             System.out.println("player two");
             two.getBoard();
             System.out.println("player one");
