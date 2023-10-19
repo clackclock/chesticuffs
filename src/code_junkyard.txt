@@ -1,24 +1,24 @@
 CardInside Interface stuff
-    public int[] getUber(){
-        int[] u = new int[]{uberAtkATK,uberAtkDEF};
-        return u;
-    }
-    public int[] getAtk(){
-        int[] a = new int[]{attackATK, attackDEF};
-        return a;
-    }
-    public int[] getCDef(){
-        int[] cd = new int[]{coreDefATK, coreDefATK};
-        return cd;
-    }
-    public int[] getCore(){
-        int[] c = new int[]{coreATK, coreDEF};
-        return c;
-    }
-    public int[] getDef(){
-        int[] d = new int[]{defenceATK,defenceDEF};
-        return d;
-    }
+public int[] getUber(){
+int[] u = new int[]{uberAtkATK,uberAtkDEF};
+return u;
+}
+public int[] getAtk(){
+int[] a = new int[]{attackATK, attackDEF};
+return a;
+}
+public int[] getCDef(){
+int[] cd = new int[]{coreDefATK, coreDefATK};
+return cd;
+}
+public int[] getCore(){
+int[] c = new int[]{coreATK, coreDEF};
+return c;
+}
+public int[] getDef(){
+int[] d = new int[]{defenceATK,defenceDEF};
+return d;
+}
 public int[] getUber();
 public int[] getAtk();
 public int[] getCDef();
@@ -27,6 +27,7 @@ public int[] getDef();
 
         public int activeStats(Board pos);
         public String activeType();
+
 public void coreSkill(){
 }
 public void skill(){
@@ -36,19 +37,18 @@ Board
 public class Board {
 
 //play method stuff
-//        while(attackPhase){
-//            System.exit(130);
-//        }
+// while(attackPhase){
+// System.exit(130);
+// }
 
 package Game;
 
 import java.util.ArrayList;
 
 public class CardSlots {
-    private final String name;
-    private final int openSlots;
-    public ArrayList<Card> slot = new ArrayList<>();
-
+private final String name;
+private final int openSlots;
+public ArrayList<Card> slot = new ArrayList<>();
 
     public CardSlots(String Name, int oSlots) {
         name = Name;
@@ -87,15 +87,16 @@ public class CardSlots {
     public String toString() {
         return slot.toString();
     }
+
 }
 package Game.Slots;
 import Game.Card;
 
 public interface CardSlots {
-    int[] getStats(Card in);
-    int getAtk(int n);
-    int getDef(int n);
-    int showOpenSlots();
+int[] getStats(Card in);
+int getAtk(int n);
+int getDef(int n);
+int showOpenSlots();
 }
 
     public void makeBoard() {
@@ -235,7 +236,7 @@ public interface CardSlots {
 package Game;
 
 public interface CardInsides {
-    int getUberAtk();
+int getUberAtk();
 
     int getUberDef();
 
@@ -272,7 +273,7 @@ public interface CardInsides {
 
     //void specialAttack();
 
- if (act.equals("1")) {
+if (act.equals("1")) {
 
         }
         if (act.equals("2")) {
@@ -334,22 +335,21 @@ if (pos.equals("uber")) {
                 }
 
 public void addToSlots(int posIndex, Card fromHand){
-            slots.add(posIndex, fromHand);
-        }
-        public void removeFromSlots(int posIndex){
-            slots.remove(posIndex);
-        }
-        public boolean hasOpenSlots(){
-            return slots.size() != openSlots;
-        }
-        public int getOS(){
-            if(slots.size() != openSlots) {
-                return slots.size();
-            }else {
-                return openSlots;
-            }
-        }
-
+slots.add(posIndex, fromHand);
+}
+public void removeFromSlots(int posIndex){
+slots.remove(posIndex);
+}
+public boolean hasOpenSlots(){
+return slots.size() != openSlots;
+}
+public int getOS(){
+if(slots.size() != openSlots) {
+return slots.size();
+}else {
+return openSlots;
+}
+}
 
     private final Uber u = new Uber();
     private final Attack a = new Attack();
@@ -368,7 +368,7 @@ public void addToSlots(int posIndex, Card fromHand){
                 }
                 u.slots.add(here);
             }
-            case "atk" ->{
+            case "atk" -> {
                 if(!a.hasOpenSlots()){
                     System.err.println("All attack spaces are full");
                 }
@@ -500,6 +500,7 @@ public void addToSlots(int posIndex, Card fromHand){
 
         return ub + at + cod + c.getAtk() + de;
     }
+
 package Game.Slots;
 import Game.Card;
 import Game.cardDatabase;
@@ -507,7 +508,7 @@ import Game.cardDatabase;
 import java.util.LinkedList;
 
 public class Uber implements Board.Position {
-    private final int openSlots = 3;
+private final int openSlots = 3;
 
     public LinkedList<Card> slots = new LinkedList<>();
     public cardDatabase cd = new cardDatabase();
@@ -553,28 +554,28 @@ public class Uber implements Board.Position {
         return slots.toString();
     }
 
-//List<Board> board = List.of(new Board(UBER),new Board(ATTACK), new Board(CoreDEFENCE), new Board(CORE),new Board(DEFENCE));
-
+//List<Board> board = List.of(new Board(UBER),new Board(ATTACK), new Board(CoreDEFENCE), new Board(CORE),new Board(
+DEFENCE));
 
 }
 
- Position p;
-        for(int i = 0; i < p.getSlots().size(); i++ ) {
-            if (p.getSlots().get(i) == null) {
-                p.getSlots().add(cd.pack.get(0));
-            }
-        }
+Position p;
+for(int i = 0; i < p.getSlots().size(); i++ ) {
+if (p.getSlots().get(i) == null) {
+p.getSlots().add(cd.pack.get(0));
+}
+}
 
-//    private final int[] uberAtk;
-//    //private final int[] uberAtkDEF;
-//    private final int[] attack;
-//    //private final int[] attackDEF;
-//    private final int[] coreDef;
-//    //private final int[] coreDefDEF;
-//    private final int[] core;
-//    //private final int[] coreDEF;
-//    private final int[] defence;
-    //private final int[] defenceDEF;
+// private final int[] uberAtk;
+// //private final int[] uberAtkDEF;
+// private final int[] attack;
+// //private final int[] attackDEF;
+// private final int[] coreDef;
+// //private final int[] coreDefDEF;
+// private final int[] core;
+// //private final int[] coreDEF;
+// private final int[] defence;
+//private final int[] defenceDEF;
 
     //        uberAtk = uAtk;
     //        //uberAtkDEF = uADef;
@@ -662,3 +663,36 @@ public class Uber implements Board.Position {
         public int getModNum(int mod){
             return mod;
         }
+        public void atkTypeMod(String typeName){
+                    Position p = (Position) p.getSlots();
+                    for (Card inBoard: p.getSlots()) {
+                        if(p.getSlots().get(inBoard).activeTypeOne().equals(typeName) ){
+                            pos.card.attackStats  = stats + mod
+                        }
+                    }
+                }
+
+        System.out.print(UBER.printSlots_ToBoard());
+        System.out.print(ATTACK.printSlots_ToBoard());
+        System.out.print(CoreDEFENCE.printSlots_ToBoard());
+        System.out.print(CORE.printSlots_ToBoard());
+        System.out.println(DEFENCE.printSlots_ToBoard());
+
+    public enum Modifier{
+        atkMod(0){
+            Card test;
+            void atk(Position pos){
+                test.getValue(pos)[0] = test.getValue(pos)[0]  + atkMod.mod;
+            }
+        }, noSkill(0);
+        private int mod;
+        Modifier(int modNum){
+            modNum = mod;
+        }
+
+        public int adjustMod(int newMod){
+            mod = newMod;
+            return mod;
+        }
+
+    }

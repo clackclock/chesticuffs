@@ -5,24 +5,17 @@ import java.util.HashMap;
 import Game.Slots.Board.*;
 
 public class Card {
-    public enum Modifier{
-        atkMod(0), defMod(0), noSkill(0);
-        private int mod;
-        Modifier(int modNum){
-            modNum = mod;
-        }
-
-
-    }
-
     private final String cardName;
     private final int id;
 
     private final String typeONE;
     private final String typeTWO;
+
+    private final int atkMod;
+    private final int defMod;
     private final HashMap<Position, int[]> positionMap = new HashMap<>();
 
-    public Card(int ID, String name, int[] uAtk, int[] atk, int[] cDef, int[] corn, int[] def, String prime, String secondary) {
+    public Card(int ID, String name, int[] uAtk, int[] atk, int[] cDef, int[] corn, int[] def, String prime, String secondary, int modA, int modD) {
         cardName = name;
         id = ID;
 
@@ -34,6 +27,9 @@ public class Card {
 
         typeONE = prime;
         typeTWO = secondary;
+
+        atkMod = modA;
+        defMod = modD;
     }
 
     //for individual number stat calls *edit for type calls
@@ -49,7 +45,7 @@ public class Card {
     }
 
     public String toString() {
-        return id + " " + cardName + typeONE + " " + typeTWO;
+        return id + " " + cardName + " " + typeONE + " " + typeTWO;
 
     }
 }
