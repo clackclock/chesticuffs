@@ -1,7 +1,7 @@
 package Game;
 
 import Game.Slots.Board;
-//import static Game.Slots.Board.position.*;
+import static Game.Slots.Board.Board_Positions.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -51,7 +51,9 @@ public class Human implements Player {
     }
 
     public void getBoard() {
-        b.printBoard();
+        //b.printBoard();
+        //System.out.println("Uber:" + UBER.getSlots().toString() + ", Attack:" + ATTACK.getSlots().toString() + ", Core-Def:" + CoreDEFENCE.getSlots().toString() + ", Core:" + CORE.getSlots().toString() + ", Defence:" + DEFENCE.getSlots().toString());
+
     }
 
     public void placeCard(String pos, int card) {

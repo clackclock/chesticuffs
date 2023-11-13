@@ -3,49 +3,47 @@ package Game;
 import java.util.HashMap;
 
 import Game.Slots.Board.*;
+import static Game.Slots.Board.Board_Positions.*;
 
 public class Card {
+    public enum Card_Type{
+        PLANT, WATER, TOOL, FLOWER, FARM, ANIMAL, METAL, ORE, ITEMS, WOOD, LUCKY, NEUTRAL;
+    }
     private final String cardName;
     private final int id;
 
-    private final String typeONE;
-    private final String typeTWO;
+    private final Card_Type typeONE;
+    private final Card_Type typeTWO;
 
-    private final int atkMod;
-    private final int defMod;
-    private final HashMap<Position, int[]> positionMap = new HashMap<>();
+    private final HashMap<Board_Positions, int[]> positionMap = new HashMap<>();
 
-    public Card(int ID, String name, int[] uAtk, int[] atk, int[] cDef, int[] corn, int[] def, String prime, String secondary, int modA, int modD) {
+    public Card(int ID, String name, int[] uAtk, int[] atk, int[] cDef, int[] corn, int[] def, Card_Type prime, Card_Type secondary) {
         cardName = name;
         id = ID;
 
-        positionMap.put(positions.UBER, uAtk);
-        positionMap.put(positions.ATTACK, atk);
-        positionMap.put(positions.CoreDEFENCE, cDef);
-        positionMap.put(positions.CORE, corn);
-        positionMap.put(positions.DEFENCE, def);
+        positionMap.put(UBER, uAtk);
+        positionMap.put(ATTACK, atk);
+        positionMap.put(CoreDEFENCE, cDef);
+        positionMap.put(CORE, corn);
+        positionMap.put(DEFENCE, def);
 
         typeONE = prime;
         typeTWO = secondary;
 
-        atkMod = modA;
-        defMod = modD;
     }
 
     //for individual number stat calls *edit for type calls
-    public int[] getValue(Position boardPos){
+    public int[] getValue(Board_Positions boardPos){
         return positionMap.get(boardPos);
     }
 
-    public String activeTypeOne() {
-        return typeONE;
-    }
-    public String activeTypeTwo() {
+    public Card_Type activeTypeOne() { return typeONE; }
+    public Card_Type activeTypeTwo() {
         return typeTWO;
     }
 
     public String toString() {
-        return id + " " + cardName + " " + typeONE + " " + typeTWO;
+        return id + " " + cardName + " " + typeONE + " " + typeTWO + " ";
 
     }
 }

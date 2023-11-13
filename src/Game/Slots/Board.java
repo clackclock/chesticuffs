@@ -2,216 +2,81 @@ package Game.Slots;
 
 import Game.Card;
 
-import java.util.LinkedList;
+import java.util.Scanner;
 
-import static Game.Slots.Board.positions.*;
+import static Game.Slots.Board.Board_Positions.*;
 
 public class Board {
 
-    //private static final cardDatabase cd = new cardDatabase();
-
-    //Positions[][] grid = new Positions[][]
-    public interface Position {
-        //LinkedList<Card> slots = new LinkedList<>();
-        boolean hasOpenSlots();
-
-        int[] getStats(int cardIndex_onBoard);
-
-        int getAtk(int cardIndex_onBoard);
-
-        int getDef(int cardIndex_onBoard);
-
-        LinkedList<Card> getSlots();
+    public interface boardPosition_Action {
+        Board_Positions currentPlace();
+        int[] getStats();
+        int getAtk();
+        int getDef();
+        Card getSlot();
     }
-    public enum positions implements Position {
-        UBER {
-            public final LinkedList<Card> slots = new LinkedList<>();
-            final int openSlots = 3;
 
-            public int[] getStats(int cardIndex_onBoard) {
-                return slots.get(cardIndex_onBoard).getValue(UBER);
-            }
-
-            public int getAtk(int cardIndex_onBoard) {
-                if (slots.get(cardIndex_onBoard) == null) {
-                    return 0;
-                } else {
-                    return slots.get(cardIndex_onBoard).getValue(UBER)[0];
-                }
-            }
-
-            public int getDef(int cardIndex_onBoard) {
-                if (slots.get(cardIndex_onBoard) == null) {
-                    return 0;
-                } else {
-                    return slots.get(cardIndex_onBoard).getValue(UBER)[1];
-                }
-            }
-
-            public boolean hasOpenSlots() {
-                return slots.size() != openSlots;
-            }
-
-            public LinkedList<Card> getSlots() {
-                return slots;
-            }
-//            public String printSlots_ToBoard(){return slots.toString();}
-        },
-        ATTACK {
-            final LinkedList<Card> slots = new LinkedList<>();
-            final int openSlots = 2;
-
-            public boolean hasOpenSlots() {
-                return slots.size() != openSlots;
-            }
-
-            public int[] getStats(int cardIndex_onBoard) {
-                return slots.get(cardIndex_onBoard).getValue(ATTACK);
-            }
-
-            public int getAtk(int cardIndex_onBoard) {
-                if (slots.get(cardIndex_onBoard) == null) {
-                    return 0;
-                } else {
-                    return slots.get(cardIndex_onBoard).getValue(ATTACK)[0];
-                }
-            }
-
-            public int getDef(int cardIndex_onBoard) {
-                if (slots.get(cardIndex_onBoard) == null) {
-                    return 0;
-                } else {
-                    return slots.get(cardIndex_onBoard).getValue(ATTACK)[1];
-                }
-            }
-
-            public LinkedList<Card> getSlots() {
-                return slots;
-            }
-//            public String printSlots_ToBoard(){return slots.toString();}
-        },
-        CoreDEFENCE {
-            final LinkedList<Card> slots = new LinkedList<>();
-            final int openSlots = 3;
-
-            public boolean hasOpenSlots() {
-                return slots.size() != openSlots;
-            }
-
-            public int[] getStats(int cardIndex_onBoard) {
-                return slots.get(cardIndex_onBoard).getValue(CoreDEFENCE);
-            }
-
-            public int getAtk(int cardIndex_onBoard) {
-                if (slots.get(cardIndex_onBoard) == null) {
-                    return 0;
-                } else {
-                    return slots.get(cardIndex_onBoard).getValue(CoreDEFENCE)[0];
-                }
-            }
-
-            public int getDef(int cardIndex_onBoard) {
-                if (slots.get(cardIndex_onBoard) == null) {
-                    return 0;
-                } else {
-                    return slots.get(cardIndex_onBoard).getValue(CoreDEFENCE)[1];
-                }
-            }
-
-            public LinkedList<Card> getSlots() {
-                return slots;
-            }
-//            public String printSlots_ToBoard(){ return slots.toString();}
-        },
-        CORE {
-            final LinkedList<Card> slots = new LinkedList<>();
-            final int openSlots = 1;
-
-            public boolean hasOpenSlots() {
-                return slots.size() != openSlots;
-            }
-
-            public int[] getStats(int cardIndex_onBoard) {
-                return slots.get(cardIndex_onBoard).getValue(CORE);
-            }
-
-            public int getAtk(int cardIndex_onBoard) {
-                if (slots.get(cardIndex_onBoard) == null) {
-                    return 0;
-                } else {
-                    return slots.get(cardIndex_onBoard).getValue(CORE)[0];
-                }
-            }
-
-            public int getDef(int cardIndex_onBoard) {
-                if (slots.get(cardIndex_onBoard) == null) {
-                    return 0;
-                } else {
-                    return slots.get(cardIndex_onBoard).getValue(CORE)[1];
-                }
-            }
-
-            public LinkedList<Card> getSlots() {
-                return slots;
-            }
-//            public String printSlots_ToBoard(){ return slots.toString();}
-        },
-        DEFENCE {
-            final LinkedList<Card> slots = new LinkedList<>();
-            final int openSlots = 3;
-
-            public boolean hasOpenSlots() {
-                return slots.size() != openSlots;
-            }
-
-            public int[] getStats(int cardIndex_onBoard) {
-                return slots.get(cardIndex_onBoard).getValue(DEFENCE);
-            }
-
-            public int getAtk(int cardIndex_onBoard) {
-                if (slots.get(cardIndex_onBoard) == null) {
-                    return 0;
-                } else {
-                    return slots.get(cardIndex_onBoard).getValue(DEFENCE)[0];
-                }
-            }
-
-            public int getDef(int cardIndex_onBoard) {
-                if (slots.get(cardIndex_onBoard) == null) {
-                    return 0;
-                } else {
-                    return slots.get(cardIndex_onBoard).getValue(DEFENCE)[1];
-                }
-            }
-
-            public LinkedList<Card> getSlots() {
-                return slots;
-            }
-//            public String printSlots_ToBoard(){ return slots.toString();}
+    public enum Board_Positions { //implements boardPosition_Action
+        UBER(3), ATTACK(2), CoreDEFENCE(3), CORE(1),DEFENCE(3);
+        private int os;
+        Board_Positions(int openSlots) {
+            openSlots = os;
         }
+        public int getOSNum(){
+            return os;
+        }
+    }
+
+    Positions[][] board_Grid;
+    public Board(){
+        board_Grid = new Positions[3][4];
     }
 
     public void addToSlots(String name, Card fromHand) {
         switch (name) {
-            case "UBER" -> UBER.getSlots().add(fromHand);
-            case "ATTACK" -> ATTACK.getSlots().add(fromHand);
-            case "CoreDEFENCE" -> CoreDEFENCE.getSlots().add(fromHand);
-            case "CORE" -> CORE.getSlots().add(fromHand);
-            case "DEFENCE" -> DEFENCE.getSlots().add(fromHand);
+            case "UBER" -> {
+                for(int i = 0; i < UBER.getOSNum(); i++){ //for each uber position on the grid
+                    if(board_Grid[i][0] == null){ //if there are less than uber open slot amount of uber positions
+                        board_Grid[i][0] = new Positions(UBER, fromHand);
+                        break;
+                    }
+                }
+            }
+            case "ATTACK" -> {
+                if(board_Grid[0][1] == null ){
+                    board_Grid[0][1] = new Positions(ATTACK, fromHand);
+                }
+                if(board_Grid[2][1] == null){
+                    board_Grid[2][1] = new Positions(ATTACK, fromHand);
+                }
+
+            }
+//            case "CoreDEFENCE" -> {Positions cd = new Positions(CoreDEFENCE, fromHand);}
+//            case "CORE" -> CORE.getSlots().add(fromHand);
+            case "DEFENCE" -> {
+                for(int i = 0; i < DEFENCE.getOSNum(); i++){
+                    if(board_Grid[i][4] == null){
+                        board_Grid[i][4] = new Positions(DEFENCE, fromHand);
+                        break;
+                    }
+                }
+            }
         }
     }
 
     public void removeFromSlots(String name, int posIndex) {
         switch (name) {
-            case "UBER" -> UBER.getSlots().remove(posIndex);
-            case "ATTACK" -> ATTACK.getSlots().remove(posIndex);
-            case "CoreDEFENCE" -> CoreDEFENCE.getSlots().remove(posIndex);
-            case "CORE" -> CORE.getSlots().remove(posIndex);
-            case "DEFENCE" -> DEFENCE.getSlots().remove(posIndex);
+            case "UBER" -> board_Grid[posIndex][0].remove();
+            case "ATTACK" -> board_Grid[posIndex][1].remove(); //only 0 and 2 are valid
+            case "CoreDEFENCE" -> {
+                Scanner input = new Scanner(System.in);
+                System.out.println("Which row? 1 or 2");
+                int rowSelect = input.nextInt();
+                board_Grid[posIndex][rowSelect].remove(); // only 0 and 2 are valid for row 2 and 1 is valid row 1
+            }
+            case "CORE" -> board_Grid[1][2].remove(); // only 1 is valid
+            case "DEFENCE" -> board_Grid[posIndex][3].remove();
         }
-
-    }
-    public void printBoard() {
 
     }
 

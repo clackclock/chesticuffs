@@ -696,3 +696,53 @@ p.getSlots().add(cd.pack.get(0));
         }
 
     }
+    private Card in;
+
+    public Positions(positions type, Card inPlay){
+        in = inPlay;
+
+    }
+    public boolean hasOpenSlots() {
+                    return slots.size() != openSlots;
+                }
+
+       public void printBoard() {
+
+       }
+       //LinkedList<Card> slots = new LinkedList<>();
+       //boolean hasOpenSlots();
+
+                     public int[] getStats(int cardIndex_onBoard) {
+                       return slots.get(cardIndex_onBoard).getValue(DEFENCE);
+                     }
+
+                   public int getAtk(int cardIndex_onBoard) {
+                       if (slots.get(cardIndex_onBoard) == null) {
+                           return 0;
+                       } else {
+                           return slots.get(cardIndex_onBoard).getValue(DEFENCE)[0];
+                       }
+                   }
+
+                   public int getDef(int cardIndex_onBoard) {
+                       if (slots.get(cardIndex_onBoard) == null) {
+                           return 0;
+                       } else {
+                           return slots.get(cardIndex_onBoard).getValue(DEFENCE)[1];
+                       }
+                   }
+          public LinkedList<Card> getSlots() {
+                return slots;
+            }
+          public String printSlots_ToBoard(){ return slots.toString();}
+
+//            case "ATTACK" -> {Positions a = new Positions(ATTACK,fromHand);}
+//            case "CoreDEFENCE" -> {Positions cd = new Positions(CoreDEFENCE, fromHand);}
+//            case "CORE" -> CORE.getSlots().add(fromHand);
+//            case "DEFENCE" -> DEFENCE.getSlots().add(fromHand);
+
+//            case "UBER" -> UBER.getSlots().remove(posIndex);
+//            case "ATTACK" -> ATTACK.getSlots().remove(posIndex);
+//            case "CoreDEFENCE" -> CoreDEFENCE.getSlots().remove(posIndex);
+//            case "CORE" -> CORE.getSlots().remove(posIndex);
+//            case "DEFENCE" -> DEFENCE.getSlots().remove(posIndex);
