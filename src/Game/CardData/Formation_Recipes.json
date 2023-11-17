@@ -1,0 +1,31 @@
+{
+  "recipe_List":[
+    {
+      "description":
+      {
+        "identifier": "format:Plain_Tree"
+      },
+      "ingredients":
+      [
+        {
+          "card": "Plank",
+          "typeCheck": "PLANT",
+          "amount": "2"
+        },
+        {
+          "card": "null",
+          "typeCheck": "PLANT",
+          "amount": "5"
+        }
+      ],
+      "result":
+      {
+        "Formation": "format:Plain_Tree"
+      }
+
+    }
+  ]
+
+
+
+}

@@ -41,6 +41,9 @@ public class Card {
     public Card_Type activeTypeTwo() {
         return typeTWO;
     }
+    public int getId(){
+        return id;
+    }
 
     public String toString() {
         return id + " " + cardName + " " + typeONE + " " + typeTWO + " ";

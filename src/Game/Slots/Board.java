@@ -29,36 +29,40 @@ public class Board {
 
     Positions[][] board_Grid;
     public Board(){
-        board_Grid = new Positions[3][4];
+        board_Grid = new Positions[4][3]; //4 rows 3 col
     }
 
     public void addToSlots(String name, Card fromHand) {
+        System.out.println("Which slot in this position? (0-2)");
+        Scanner input = new Scanner(System.in);
+        int colChoice = input.nextInt();
         switch (name) {
             case "UBER" -> {
-                for(int i = 0; i < UBER.getOSNum(); i++){ //for each uber position on the grid
-                    if(board_Grid[i][0] == null){ //if there are less than uber open slot amount of uber positions
-                        board_Grid[i][0] = new Positions(UBER, fromHand);
-                        break;
-                    }
+                //for each uber position on the grid //if there are less than uber open slot amount of uber positions
+                if(board_Grid[0][colChoice] == null){
+                    board_Grid[0][colChoice] = new Positions(UBER, fromHand);
                 }
             }
             case "ATTACK" -> {
-                if(board_Grid[0][1] == null ){
-                    board_Grid[0][1] = new Positions(ATTACK, fromHand);
+                if(board_Grid[1][colChoice] == null ){ // only col 0 & 2
+                    board_Grid[1][colChoice] = new Positions(ATTACK, fromHand);
                 }
-                if(board_Grid[2][1] == null){
-                    board_Grid[2][1] = new Positions(ATTACK, fromHand);
-                }
-
             }
-//            case "CoreDEFENCE" -> {Positions cd = new Positions(CoreDEFENCE, fromHand);}
-//            case "CORE" -> CORE.getSlots().add(fromHand);
+            case "CoreDEFENCE" -> {
+                System.out.println("Which Row? (1 or 2)");
+                int rowChoice = input.nextInt();
+                if(board_Grid[rowChoice][colChoice] == null) { // only 1,1 2,0 2,2
+                    board_Grid[rowChoice][colChoice] = new Positions(CoreDEFENCE, fromHand);
+                }
+            }
+            case "CORE" -> {
+                if(board_Grid[2][1] == null){
+                    board_Grid[2][1] = new Positions(CORE, fromHand);
+                }
+            }
             case "DEFENCE" -> {
-                for(int i = 0; i < DEFENCE.getOSNum(); i++){
-                    if(board_Grid[i][4] == null){
-                        board_Grid[i][4] = new Positions(DEFENCE, fromHand);
-                        break;
-                    }
+                if(board_Grid[3][colChoice] == null){
+                    board_Grid[3][colChoice] = new Positions(DEFENCE, fromHand);
                 }
             }
         }
@@ -78,6 +82,9 @@ public class Board {
             case "DEFENCE" -> board_Grid[posIndex][3].remove();
         }
 
+    }
+    public Positions[][] getGrid(){
+        return board_Grid;
     }
 
 }

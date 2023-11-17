@@ -7,7 +7,8 @@ public interface Player {
     ArrayList<Card> getDeck();
     ArrayList<Card> getHand();
     //Board playBoard();
-    void getBoard();
+    Board getBoard();
+    Positions[][] getGrid();
     void makeDeck();
     void makeHand();
     void placeCard(String posName, int cardPosNum);

@@ -1,0 +1,48 @@
+{
+  "name": "List of Skills for Cards",
+  "type_based_cards": [
+    {
+      "name": "Blank",
+      "cardID": "-1",
+      "typeCheck": "NEUTRAL",
+      "modValueAtk": "0",
+      "modValueDef": "0"
+    }
+  ],
+  "type-position_based_cards":[
+    {
+      "name": "Apple_Buff",
+      "cardID": "6",
+      "typeCheck": "PLANT",
+      "posCheck": "CORE",
+      "modValueAtk": "0",
+      "modValueDef": "1"
+    },
+    {
+      "name": "Corned_Flower",
+      "cardID": "10",
+      "typeCheck": "FLOWER",
+      "posCheck": "CORE",
+      "modValueAtk": "1",
+      "modValueDef": "0"
+    },
+    {
+      "name": "Mutton_Mitts",
+      "cardID": "7",
+      "typeCheck": "ANIMAL",
+      "posCheck": "CORE",
+      "modValueAtk": "2",
+      "modValueDef": "0"
+    }
+  ],
+  "card_based_cards": [
+    {
+      "name": "Hay_Bailed",
+      "cardID": "8",
+      "cardIDCheck": "31",
+      "modValueAtk": "1",
+      "modValueDef": "1"
+    }
+  ]
+
+}

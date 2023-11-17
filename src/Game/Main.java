@@ -1,6 +1,8 @@
 package Game;// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 
+import Game.Slots.Calculation;
+
 import java.util.Scanner;
 public class Main {
     public static void play(Player one, Player two) {
@@ -21,6 +23,7 @@ public class Main {
         //while(!isWinner) {
             summonPhase(current, one, two);
             //calculation
+            Calculation c = new Calculation(one, two);
 
         //}
 

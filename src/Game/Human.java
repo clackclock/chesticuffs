@@ -1,6 +1,8 @@
 package Game;
 
 import Game.Slots.Board;
+import Game.Slots.Positions;
+
 import static Game.Slots.Board.Board_Positions.*;
 
 import java.util.ArrayList;
@@ -50,11 +52,12 @@ public class Human implements Player {
         return hand;
     }
 
-    public void getBoard() {
+    public Board getBoard() {
         //b.printBoard();
         //System.out.println("Uber:" + UBER.getSlots().toString() + ", Attack:" + ATTACK.getSlots().toString() + ", Core-Def:" + CoreDEFENCE.getSlots().toString() + ", Core:" + CORE.getSlots().toString() + ", Defence:" + DEFENCE.getSlots().toString());
-
+        return b;
     }
+    public Positions[][] getGrid(){ return b.getGrid(); }
 
     public void placeCard(String pos, int card) {
         b.addToSlots(pos,hand.get(card));

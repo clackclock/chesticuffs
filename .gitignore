@@ -2,6 +2,7 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+**/src/Game/code_junkyard.txt
 
 ### Eclipse ###
 .apt_generated
