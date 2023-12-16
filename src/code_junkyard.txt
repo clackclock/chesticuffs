@@ -747,3 +747,39 @@ public String printSlots_ToBoard(){ return slots.toString();}
 //            case "CoreDEFENCE" -> CoreDEFENCE.getSlots().remove(posIndex);
 //            case "CORE" -> CORE.getSlots().remove(posIndex);
 //            case "DEFENCE" -> DEFENCE.getSlots().remove(posIndex);
+
+Calculation
+//        String jString = "{_comment:type_based_cards,name:Blank,cardID:-1,typeCheck:NEUTRAL,modValueAtk:0,modValueDef:0}";
+//        JSONObject jsonMODObject = new JSONObject(jString);
+//        String t = jsonMODObject.getString("name");
+//        int id = jsonMODObject.getInt("cardID");
+//        System.out.println(t + id);
+
+public static Player opposite(Player loser, Player one, Player two) { //for winner thing
+  if (loser == one) {
+    System.out.println("Winner Player two");
+    return two;
+
+  } else if(loser == two){
+      System.out.println("Winner Player one");
+      return one;
+  }
+  return loser;
+}
+from board position enum
+public int getOSNum(){ return os; }
+    //if openSlotsNum = number of cards in slots return false else true
+    //public boolean hasOpenSlots() { return slot.size() != 0; } //onTable.getOSNum()
+    public enum Card_Type{
+        PLANT, WATER, TOOL, FLOWER, FARM, ANIMAL, METAL, ORE, ITEMS, WOOD, LUCKY, NEUTRAL;
+    }
+public String activeTypes(){ return cardTypeONE + cardTypeTWO;}
+    public interface boardPosition_Action {
+        Board_Positions currentPlace();
+        int[] getStats();
+        int getAtk();
+        int getDef();
+        Card getSlot();
+        void remove();
+        boolean isEmpty();
+    }

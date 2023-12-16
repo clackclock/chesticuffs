@@ -2,7 +2,7 @@ package Game.Slots;
 import Game.*;
 import Game.Slots.Board.*;
 
-public class Positions implements boardPosition_Action{
+public class Positions{
     private Card fromHand;
     private static Board_Positions onTable;
 
@@ -14,8 +14,7 @@ public class Positions implements boardPosition_Action{
     public Board_Positions currentPlace(){
         return onTable;
     }
-    //if openSlotsNum = number of cards in slots return false else true
-    //public boolean hasOpenSlots() { return slot.size() != 0; } //onTable.getOSNum()
+
     public int[] getStats() {  return fromHand.getValue(onTable); }
 
     public int getAtk() { return fromHand.getValue(onTable)[0]; }
@@ -27,4 +26,6 @@ public class Positions implements boardPosition_Action{
     }
 
     public void remove(){fromHand = null;}
+
+    public boolean isEmpty() { return fromHand == null; }
 }

@@ -7,27 +7,12 @@ import java.util.Scanner;
 import static Game.Slots.Board.Board_Positions.*;
 
 public class Board {
-
-    public interface boardPosition_Action {
-        Board_Positions currentPlace();
-        int[] getStats();
-        int getAtk();
-        int getDef();
-        Card getSlot();
-    }
-
     public enum Board_Positions { //implements boardPosition_Action
         UBER(3), ATTACK(2), CoreDEFENCE(3), CORE(1),DEFENCE(3);
-        private int os;
-        Board_Positions(int openSlots) {
-            openSlots = os;
-        }
-        public int getOSNum(){
-            return os;
-        }
+        Board_Positions(int openSlots){}
     }
 
-    Positions[][] board_Grid;
+    private final Positions[][] board_Grid;
     public Board(){
         board_Grid = new Positions[4][3]; //4 rows 3 col
     }
@@ -78,13 +63,25 @@ public class Board {
                 int rowSelect = input.nextInt();
                 board_Grid[posIndex][rowSelect].remove(); // only 0 and 2 are valid for row 2 and 1 is valid row 1
             }
-            case "CORE" -> board_Grid[1][2].remove(); // only 1 is valid
+            case "CORE" -> board_Grid[2][1].remove(); // only 1 is valid
             case "DEFENCE" -> board_Grid[posIndex][3].remove();
         }
 
     }
     public Positions[][] getGrid(){
         return board_Grid;
+    }
+
+    public boolean isBoardEmpty(){
+        int tally = 0;
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 3; j++){
+                if(board_Grid[i][j] == null){
+                    tally++;
+                }
+            }
+        }
+        return tally == board_Grid.length;
     }
 
 }

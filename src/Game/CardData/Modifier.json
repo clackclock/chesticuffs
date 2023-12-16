@@ -1,47 +1,56 @@
 {
-  "name": "List of Skills for Cards",
-  "type_based_cards": [
+  "title": "List of Skills for Cards",
+  "version": 0.1,
+
+  "skills": [
     {
+      "_comment": "type_based_cards",
+
       "name": "Blank",
-      "cardID": "-1",
+      "cardID": -1,
+      "skillType": "type",
       "typeCheck": "NEUTRAL",
-      "modValueAtk": "0",
-      "modValueDef": "0"
-    }
-  ],
-  "type-position_based_cards":[
+      "modValueAtk": 0,
+      "modValueDef": 0
+    },
     {
-      "name": "Apple_Buff",
-      "cardID": "6",
+      "_comment": "type-position_based_cards",
+
+      "name": "Apple",
+      "cardID": 6,
+      "skillType": "type-position",
       "typeCheck": "PLANT",
       "posCheck": "CORE",
-      "modValueAtk": "0",
-      "modValueDef": "1"
+      "modValueAtk": 0,
+      "modValueDef": 1
     },
     {
-      "name": "Corned_Flower",
-      "cardID": "10",
+      "name": "Cornflower",
+      "cardID": 10,
+      "skillType": "type-position",
       "typeCheck": "FLOWER",
       "posCheck": "CORE",
-      "modValueAtk": "1",
-      "modValueDef": "0"
+      "modValueAtk": 1,
+      "modValueDef": 0
     },
     {
-      "name": "Mutton_Mitts",
-      "cardID": "7",
+      "name": "Mutton",
+      "cardID": 7,
+      "skillType": "type-position",
       "typeCheck": "ANIMAL",
       "posCheck": "CORE",
-      "modValueAtk": "2",
-      "modValueDef": "0"
-    }
-  ],
-  "card_based_cards": [
+      "modValueAtk": 2,
+      "modValueDef": 0
+    },
     {
-      "name": "Hay_Bailed",
-      "cardID": "8",
-      "cardIDCheck": "31",
-      "modValueAtk": "1",
-      "modValueDef": "1"
+      "_comment": "card_based_cards",
+
+      "name": "HayBale",
+      "cardID": 8,
+      "skillType": "card",
+      "cardIDCheck": 31,
+      "modValueAtk": 1,
+      "modValueDef": 1
     }
   ]
 

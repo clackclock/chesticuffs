@@ -3,9 +3,10 @@ package Game;// Press Shift twice to open the Search Everywhere dialog and type 
 
 import Game.Slots.Calculation;
 
+import java.io.IOException;
 import java.util.Scanner;
 public class Main {
-    public static void play(Player one, Player two) {
+    public static void play(Player one, Player two) throws IOException {
         //Scanner input = new Scanner(System.in);
         one.makeDeck(); //making card groups for player one
         one.makeHand();
@@ -19,13 +20,22 @@ public class Main {
 
         //Board setup stuff
 
-       // boolean isWinner = false;
-        //while(!isWinner) {
+        boolean isWinner = false;
+        while(!isWinner) {
             summonPhase(current, one, two);
             //calculation
-            Calculation c = new Calculation(one, two);
+            Calculation p1 = new Calculation(one.getBoard(), two.getBoard());
+            Calculation p2 = new Calculation( two.getBoard(), one.getBoard());
 
-        //}
+            if(p1.calculate()){
+                System.out.println("Player 1 Wins");
+                isWinner = p1.calculate();
+            }else if(p2.calculate()){
+                System.out.println("Player 2 Wins");
+                isWinner = p2.calculate();
+            }
+
+        }
 
     }
 
@@ -119,19 +129,7 @@ public class Main {
         return current;
     }
 
-    public static Player opposite(Player loser, Player one, Player two) { //for winner thing
-        if (loser == one) {
-            System.out.println("Player two");
-            return two;
-
-        } else if(loser == two){
-            System.out.println("Player one");
-            return one;
-        }
-        return loser;
-    }
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Player one = new Human();
         Player two = new Human();
