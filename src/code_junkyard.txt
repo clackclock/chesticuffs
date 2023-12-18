@@ -783,3 +783,79 @@ public String activeTypes(){ return cardTypeONE + cardTypeTWO;}
         void remove();
         boolean isEmpty();
     }
+//b.printBoard();
+//System.out.println("Uber:" + UBER.getSlots().toString() + ", Attack:" + ATTACK.getSlots().toString() + ", Core-Def:" + CoreDEFENCE.getSlots().toString() + ", Core:" + CORE.getSlots().toString() + ", Defence:" + DEFENCE.getSlots().toString());
+
+package Game;
+
+import java.util.ArrayList;
+
+public class Pot {
+    private int numItemsInPot = 0;
+    private double multiplier = 1;
+    private final ArrayList<Card> pot = new ArrayList<>();
+
+    public void get(Player current, int cardIndex) {
+        pot.add(current.getHand().get(cardIndex));
+        numItemsInPot++;
+        multiplier = Math.abs(multiplier + 0.5);
+        current.getHand().remove(cardIndex);
+    }
+
+    public void getHandAmt(Player current,int cardIndex) {
+        for (int k = 0; k < current.getHand().size(); k++) {
+            if (current.getHand().get(k) == current.getHand().get(cardIndex)) {
+                pot.add(current.getHand().get(cardIndex));
+                current.getHand().remove(cardIndex);
+                numItemsInPot++;
+                multiplier = Math.abs(multiplier + 0.5);
+            }
+        }
+    }
+
+    public void getAll(Player current, int cardIndex) {
+        for (int i = 0; i < current.getDeck().size() - 1; i++) {
+            if (current.getDeck().get(i) == current.getHand().get(cardIndex)) {
+                pot.add(current.getDeck().get(cardIndex));
+                current.getDeck().remove(cardIndex);
+                numItemsInPot++;
+                multiplier = Math.abs(multiplier + 0.5);
+            }
+        }
+        for (int k = 0; k < current.getHand().size(); k++) {
+            if (current.getHand().get(k) == current.getHand().get(cardIndex)) {
+                pot.add(current.getHand().get(cardIndex));
+                current.getHand().remove(cardIndex);
+                numItemsInPot++;
+                multiplier = Math.abs(multiplier + 0.5);
+            }
+        }
+    }
+
+    public void seePot(){
+        System.out.println(pot);
+    }
+
+    public long problems() {
+        return Math.abs(Math.round(numItemsInPot * multiplier));
+    }
+}
+
+public void gamble(Player current, int whichCard, String options) {
+    switch(options){
+      case "one" -> p.get(current, whichCard);
+      case "two" -> p.getHandAmt(current, whichCard);
+      case "all" -> p.getAll(current, whichCard);
+    }
+}
+public Pot getPot(){
+        p.seePot();
+        return p;
+}
+case "4" ->{
+  System.out.println("which card in your hand? (number left to right)");
+  System.out.println(numSelectInput);
+  System.out.println("how many? one) 1 two) everything in hand all) every version in deck and hand");
+  String test = input.nextLine();
+  current.gamble(current, numSelectInput, test);
+}

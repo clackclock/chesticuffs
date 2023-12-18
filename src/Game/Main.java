@@ -1,13 +1,12 @@
 package Game;// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
-
 import Game.Slots.Calculation;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 public class Main {
     public static void play(Player one, Player two) throws IOException {
-        //Scanner input = new Scanner(System.in);
         one.makeDeck(); //making card groups for player one
         one.makeHand();
 
@@ -18,14 +17,13 @@ public class Main {
         current = one;
         System.out.println("Current Player one");
 
-        //Board setup stuff
-
         boolean isWinner = false;
         while(!isWinner) {
             summonPhase(current, one, two);
+
             //calculation
-            Calculation p1 = new Calculation(one.getBoard(), two.getBoard());
-            Calculation p2 = new Calculation( two.getBoard(), one.getBoard());
+            Calculation p1 = new Calculation(one, two);
+            Calculation p2 = new Calculation( two, one);
 
             if(p1.calculate()){
                 System.out.println("Player 1 Wins");
@@ -72,13 +70,6 @@ public class Main {
                 System.out.println(numSelectInput);
                 current.removePlacedCard(cardPosSelect, numSelectInput);
             }
-            case "4" ->{
-                System.out.println("which card in your hand? (number left to right)");
-                System.out.println(numSelectInput);
-                System.out.println("how many? one) 1 two) everything in hand all) every version in deck and hand");
-                String test = input.nextLine();
-                current.gamble(current, numSelectInput, test);
-            }
             default -> {
                 System.out.println("Invalid choice");
                 System.exit(1);
@@ -94,9 +85,9 @@ public class Main {
         int roundCount = 1;
         while (roundCount % 3 != 0) {
             System.out.println("player two");
-            two.getBoard();
+            System.out.println(Arrays.deepToString(two.getGrid()));
             System.out.println("player one");
-            one.getBoard();
+            System.out.println(Arrays.deepToString(one.getGrid()));
             //every round pick up a card
             current.pickUpCard();
             //place cards in optimal position phase #chess
@@ -130,7 +121,6 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-
         Player one = new Human();
         Player two = new Human();
 

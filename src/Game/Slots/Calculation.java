@@ -3,9 +3,11 @@ package Game.Slots;
 import java.io.FileReader;
 import java.io.IOException;
 
+import Game.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import Game.Player;
 import static Game.Slots.Board.Board_Positions.*;
 
 public class Calculation {
@@ -14,17 +16,19 @@ public class Calculation {
     private int uTotalATK, aTotalATK, cdTotalATK, dTotalATK; // only need one set bc it'll switch outside then start this again
     private int uTotalDEF, aTotalDEF, cdTotalDEF, dTotalDEF;
 
-    public Calculation(Board first, Board second) throws IOException {
+    public Calculation(Player first, Player second) throws IOException {
+        Board one = first.getBoard();
+        Board two = second.getBoard();
 
         //get the core stats for later
         int coreATKMod1, coreDEFMod2;
-        if(first.getGrid()[2][1] == null){
+        if(one.getGrid()[2][1] == null){
             coreATKMod1 = 0;
-        }else { coreATKMod1 = first.getGrid()[2][1].getAtk(); }
+        }else { coreATKMod1 = one.getGrid()[2][1].getAtk(); }
 
-        if(second.getGrid()[2][1] == null) {
+        if(two.getGrid()[2][1] == null) {
             coreDEFMod2 = 0;
-        } else{ coreDEFMod2 = second.getGrid()[2][1].getDef(); }
+        } else{ coreDEFMod2 = two.getGrid()[2][1].getDef(); }
 
         int overflow;
 
@@ -42,8 +46,8 @@ public class Calculation {
             //go through skillList, if the id matches card on board get mod numbers according to things (card type, whatever)
             boolean done = false;
             Board current, other;
-            current = first;
-            other = second;
+            current = one;
+            other = two;
             int l = 0;
             while (!done) {
                 for (int j = 0; j < skillList.length(); j++) {
@@ -67,14 +71,14 @@ public class Calculation {
                     }
 
                 }
-                current = switchBoard(current, first, second);
-                if (current == first) {
-                    other = second;
-                } else if (current == second) {
-                    other = first;
+                current = switchBoard(current, one, two);
+                if (current == one) {
+                    other = two;
+                } else if (current == two) {
+                    other = one;
                 }
 
-                if (current == second && l > 0) {
+                if (current == two && l > 0) {
                     done = true;
                 }
                 l++;
@@ -288,8 +292,8 @@ public class Calculation {
     }
 
     public static void main(String[] args) throws IOException {
-        Board b = new Board();
-        Board bb = new Board();
+        Player b = new Human();
+        Player bb = new Human();
 
         Calculation c = new Calculation(b, bb);
         c.calculate();

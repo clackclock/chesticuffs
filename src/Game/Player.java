@@ -15,6 +15,5 @@ public interface Player {
     void pickUpCard();
     void discardHandCard(int c);
     void removePlacedCard(String slotName, int slotNum); //from the board
-    void gamble(Player current, int handSlot, String raiseAmt);
 
 }

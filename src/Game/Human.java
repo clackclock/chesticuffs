@@ -12,14 +12,10 @@ import java.util.Scanner;
 public class Human implements Player {
     private final Random r = new Random();
     private final cardDatabase cards = new cardDatabase();
-    private final Pot p = new Pot();
     private final ArrayList<Card> deck = new ArrayList<>();
     private final ArrayList<Card> hand = new ArrayList<>();
 
-    //board test
     private final Board b = new Board();
-
-    //end Board
 
     public Human() {
         new Scanner(System.in);
@@ -52,11 +48,7 @@ public class Human implements Player {
         return hand;
     }
 
-    public Board getBoard() {
-        //b.printBoard();
-        //System.out.println("Uber:" + UBER.getSlots().toString() + ", Attack:" + ATTACK.getSlots().toString() + ", Core-Def:" + CoreDEFENCE.getSlots().toString() + ", Core:" + CORE.getSlots().toString() + ", Defence:" + DEFENCE.getSlots().toString());
-        return b;
-    }
+    public Board getBoard() { return b; }
     public Positions[][] getGrid(){ return b.getGrid(); }
 
     public void placeCard(String pos, int card) {
@@ -86,12 +78,4 @@ public class Human implements Player {
         b.removeFromSlots(pos, slotNum);
     }
 
-    public void gamble(Player current, int c, String index) {
-        switch(index){
-            case "one" -> p.get(current, c);
-            case "two" -> p.getHandAmt(current, c);
-            case "all" -> p.getAll(current, c);
-        }
-
-    }
 }
