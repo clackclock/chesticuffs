@@ -25,27 +25,29 @@ public class Human implements Player {
         cards.cardData();
         int deckSize = 30;
         for (int i = 0; i < deckSize; i++) {
-            int shuffle = r.nextInt(1, cards.pack.size());
+            int shuffle = r.nextInt(1, cards.pack.size() - 1);
             deck.add(cards.pack.get(shuffle));
         }
     }
-
-    public ArrayList<Card> getDeck() {
-        return deck;
-    }
+    public ArrayList<Card> getDeck() { return deck; }
 
     public void makeHand() {
         cards.cardData();
         int handSize = 5;
         for (int i = 0; i < handSize; i++) {
-            int shuffle = r.nextInt(1, cards.pack.size());
+            int shuffle = r.nextInt(0, deck.size() - 1);
             hand.add(deck.get(shuffle));
             //deck.remove(shuffle);
         }
     }
-
-    public ArrayList<Card> getHand() {
-        return hand;
+    public ArrayList<Card> getHand() { return hand; }
+    public boolean hasItem(){
+        for(Card i: hand){
+            if(i.activeTypeOne().equals("ITEM")){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Board getBoard() { return b; }
@@ -55,7 +57,6 @@ public class Human implements Player {
         b.addToSlots(pos,hand.get(card));
         hand.remove(card);
     }
-
     public void pickUpCard() {
         Card up;
         int shuffle = r.nextInt(0, deck.size());
@@ -73,9 +74,21 @@ public class Human implements Player {
         deck.add(hand.get(c));
         hand.remove(c);
     }
+    public void removePlacedCard(String pos, int slotNum) { b.removeFromSlots(pos, slotNum); }
 
-    public void removePlacedCard(String pos, int slotNum) {
-        b.removeFromSlots(pos, slotNum);
+    public Card selectOtherPlayerCard(Player other, int row, int col){
+        Card selectedCard = other.getGrid()[row][col].getSlot();
+        if(other.getGrid()[row][col].isEmpty() && selectedCard.isItem()) {
+            System.exit(1);
+        }
+        return selectedCard;
+    }
+    public Card checkCard(int row, int col){
+        Card thisCard = getGrid()[row][col].getSlot();
+        if(getGrid()[row][col].isEmpty() && thisCard.isItem()){
+            System.exit(1);
+        }
+        return thisCard;
     }
 
 }

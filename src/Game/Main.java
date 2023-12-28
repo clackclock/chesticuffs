@@ -41,11 +41,13 @@ public class Main {
         System.out.println("1) Place a card on the board");
         System.out.println("2) Discard from hand");
         System.out.println("3) Remove from board position");
-        System.out.println("4) Add card to the pot");
+        System.out.println("4) Use an Item");
     }
 
-    public static void actionMenu(int numSelectInput, Player current) {
+    public static void actionMenu(Player current, Player other) {
         Scanner input = new Scanner(System.in);
+        menu();
+        System.out.print("choose: ");
         String act = input.nextLine();
 
         switch(act){
@@ -54,12 +56,12 @@ public class Main {
                 System.out.println("UBER, ATTACK, CoreDEFENCE, CORE, DEFENCE");
                 String cardPosSelect = input.nextLine();
                 System.out.println("Which card in your hand? (left to right [0-4])");
-                System.out.println(numSelectInput);
+                int numSelectInput = input.nextInt();
                 current.placeCard(cardPosSelect, numSelectInput);
             }
             case "2" ->{
                 System.out.println("which card in your hand? (number left to right)");
-                System.out.println(numSelectInput);
+                int numSelectInput = input.nextInt();
                 current.discardHandCard(numSelectInput);
             }
             case "3"->{
@@ -67,8 +69,39 @@ public class Main {
                 System.out.println("UBER, ATTACK, CoreDEFENCE, CORE, DEFENCE");
                 String cardPosSelect = input.nextLine();
                 System.out.println("Which slot's card? (number left to right)");
-                System.out.println(numSelectInput);
+                int numSelectInput = input.nextInt();
                 current.removePlacedCard(cardPosSelect, numSelectInput);
+            }
+            case "4" ->{
+                if(current.hasItem()){
+                    ItemSkills useItem;
+                    System.out.println("Which Item do you want to use?");
+                    int numSelectInput = input.nextInt();
+                    String cardType = current.getHand().get(numSelectInput).activeTypeOne();
+                    if(cardType.equals("ITEM")){
+                        Card currentCard = current.getHand().get(numSelectInput);
+                        currentCard.useAsItem();
+                        System.out.println("Use on your cards or your opponent? (mine/yours)");
+                        String choice = input.nextLine();
+                        switch(choice){
+                            case "mine" -> {
+                                System.out.println("Which row (0-3)? col (0-2)?");
+                                int row = input.nextInt();
+                                int col = input.nextInt();
+                                useItem = new ItemSkills(currentCard, current.checkCard(row, col));
+                                useItem.isUsed();
+                            }
+                            case "yours" -> {
+                                System.out.println("Which row (0-3)? col (0-2)?");
+                                int row = input.nextInt();
+                                int col = input.nextInt();
+                                useItem = new ItemSkills(currentCard, current.selectOtherPlayerCard(other, row, col));
+                                useItem.isUsed();
+                            }
+                        }
+                        current.discardHandCard(numSelectInput);
+                    }else{ System.out.println("Literally No"); System.exit(1);}
+                }
             }
             default -> {
                 System.out.println("Invalid choice");
@@ -79,8 +112,6 @@ public class Main {
     }
 
     public static void summonPhase(Player current, Player one, Player two) {
-        int numSelectInput;
-        Scanner input = new Scanner((System.in));
         //every 4 or 5 rounds there will be a calculation, 3 is the test
         int roundCount = 1;
         while (roundCount % 3 != 0) {
@@ -88,15 +119,16 @@ public class Main {
             System.out.println(Arrays.deepToString(two.getGrid()));
             System.out.println("player one");
             System.out.println(Arrays.deepToString(one.getGrid()));
+
             //every round pick up a card
             current.pickUpCard();
+            Player other = two;
+            if(current == two){ other = one;}
+
             //place cards in optimal position phase #chess
             System.out.println(current.getHand());
-            menu();
-            System.out.print("Which card are you acting with?: ");
-            numSelectInput = input.nextInt();
-            System.out.print("choose: ");
-            actionMenu(numSelectInput, current);
+            actionMenu(current, other);
+
             //switching players
             current = switchPlayer(current, one, two);
             roundCount++;

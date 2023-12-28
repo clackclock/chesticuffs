@@ -27,5 +27,5 @@ public class Positions{
 
     public void remove(){fromHand = null;}
 
-    public boolean isEmpty() { return fromHand == null; }
+    public boolean isEmpty() { return fromHand == null; } //if empty return true else false
 }

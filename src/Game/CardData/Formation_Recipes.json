@@ -1,31 +1,55 @@
 {
+  "title": "Item Recipe Book",
+  "version": 0.1,
+
   "recipe_List":[
     {
-      "description":
-      {
-        "identifier": "format:Plain_Tree"
-      },
       "ingredients":
       [
         {
+          "cardCheck": true,
           "card": "Plank",
-          "typeCheck": "PLANT",
-          "amount": "2"
+          "typeCheck": true,
+          "type": "PLANT",
+          "position": [
+            {
+              "posName": "CoreDEFENCE"
+            },
+            {
+              "posName": "ATTACK"
+            }
+          ]
         },
         {
+          "cardCheck": false,
           "card": "null",
-          "typeCheck": "PLANT",
-          "amount": "5"
+          "typeCheck": true,
+          "type": "PLANT",
+          "position": [
+            {
+              "posName": "UBER"
+            },
+            {
+              "posName": "ATTACK"
+            },
+            {
+              "posName": "CoreDEFENCE"
+            },
+            {
+              "posName": "CORE"
+            }
+
+          ]
         }
       ],
       "result":
       {
-        "Formation": "format:Plain_Tree"
+        "ItemForm": "format:Plain_Tree",
+        "formID": "17"
       }
 
     }
+
   ]
-
-
 
 }

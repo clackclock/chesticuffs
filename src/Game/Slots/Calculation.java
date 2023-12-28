@@ -55,7 +55,7 @@ public class Calculation {
                     int tmpI = tmp.getInt("cardID");
                     for (int k = 0; k < current.getGrid().length; k++) {
                         if(current.isBoardEmpty()) {
-                            if (tmpI == current.getGrid()[j][k].getSlot().getId()) {
+                            if (tmpI == current.getGrid()[j][k].getSlot().getId() && current.getGrid()[j][k].getSlot().isItem()) {
                                 //check the skill type
                                 checkSkillsATK(tmp, tmp.getString("skillType"), current); // attacker then defence
                             }
@@ -63,7 +63,7 @@ public class Calculation {
                     }
                     for (int k = 0; k < other.getGrid().length; k++) {
                         if(other.isBoardEmpty()) {
-                            if (tmpI == other.getGrid()[j][k].getSlot().getId()) {
+                            if (tmpI == other.getGrid()[j][k].getSlot().getId() && other.getGrid()[j][k].getSlot().isItem()) {
                                 //check the skill type
                                 checkSkillsDEF(tmp, tmp.getString("skillType"), other);
                             }
@@ -136,7 +136,7 @@ public class Calculation {
                 String typeC = o.getString("typeCheck");
                 for(int n = 0; n < 4; n++) {
                     for (int i = 0; i < 3; i++) {
-                        if(!attacker.getGrid()[n][i].isEmpty()) {
+                        if(attacker.getGrid()[n][i].isEmpty()) {
                             if (attacker.getGrid()[0][i].getSlot().activeTypeOne().equals(typeC) && attacker.getGrid()[0][i].currentPlace() == UBER || attacker.getGrid()[0][i].getSlot().activeTypeTwo().equals(typeC) && attacker.getGrid()[0][i].currentPlace() == UBER) {
                                 int tno = o.getInt("modValueAtk");
                                 uTotalATK = uTotalATK + tno;
@@ -162,7 +162,7 @@ public class Calculation {
                 String posC = o.getString("posCheck");
                 for(int n = 0; n < 4; n++) {
                     for (int i = 0; i < 3; i++) {
-                        if(!attacker.getGrid()[n][i].isEmpty()) {
+                        if(attacker.getGrid()[n][i].isEmpty()) {
                             if (attacker.getGrid()[0][i].getSlot().activeTypeOne().equals(typeC) && String.valueOf(attacker.getGrid()[0][i].currentPlace()).contentEquals(posC) && attacker.getGrid()[0][i].currentPlace() == UBER || attacker.getGrid()[0][i].getSlot().activeTypeTwo().equals(typeC) && String.valueOf(attacker.getGrid()[0][i].currentPlace()).contentEquals(posC) && attacker.getGrid()[0][i].currentPlace() == UBER) {
                                 int tno = o.getInt("modValueAtk");
                                 uTotalATK = uTotalATK + tno;
@@ -187,7 +187,7 @@ public class Calculation {
                 int cID = o.getInt("cardID");
                 for(int i = 0; i < 4; i++){
                     for(int j = 0; j < 3; j++){
-                        if(!attacker.getGrid()[i][j].isEmpty()) {
+                        if(attacker.getGrid()[i][j].isEmpty()) {
                             if (attacker.getGrid()[i][j].getSlot().getId() == cID && attacker.getGrid()[i][j].currentPlace() == UBER) {
                                 int tno = o.getInt("modValueAtk");
                                 uTotalATK = uTotalATK + tno;
@@ -216,7 +216,7 @@ public class Calculation {
                 String typeC = o.getString("typeCheck");
                 for(int n = 0; n < 4; n++) {
                     for (int i = 0; i < 3; i++) {
-                        if(!defender.getGrid()[n][i].isEmpty()) {
+                        if(defender.getGrid()[n][i].isEmpty()) {
                             if (defender.getGrid()[0][i].getSlot().activeTypeOne().equals(typeC) && defender.getGrid()[0][i].currentPlace() == UBER || defender.getGrid()[0][i].getSlot().activeTypeTwo().equals(typeC) && defender.getGrid()[0][i].currentPlace() == UBER) {
                                 int tno = o.getInt("modValueDef");
                                 uTotalDEF = uTotalDEF + tno;
@@ -242,7 +242,7 @@ public class Calculation {
                 String posC = o.getString("posCheck");
                 for(int n = 0; n < 4; n++) {
                     for (int i = 0; i < 3; i++) {
-                        if(!defender.getGrid()[n][i].isEmpty()) {
+                        if(defender.getGrid()[n][i].isEmpty()) {
                             if (defender.getGrid()[0][i].getSlot().activeTypeOne().equals(typeC) && String.valueOf(defender.getGrid()[0][i].currentPlace()).contentEquals(posC) && defender.getGrid()[0][i].currentPlace() == UBER || defender.getGrid()[0][i].getSlot().activeTypeTwo().equals(typeC) && String.valueOf(defender.getGrid()[0][i].currentPlace()).contentEquals(posC) && defender.getGrid()[0][i].currentPlace() == UBER) {
                                 int tno = o.getInt("modValueDef");
                                 uTotalDEF = uTotalDEF + tno;
@@ -267,7 +267,7 @@ public class Calculation {
                 int cID = o.getInt("cardID");
                 for(int i = 0; i < 4; i++){
                     for(int j = 0; j < 3; j++){
-                        if(!defender.getGrid()[i][j].isEmpty()) {
+                        if(defender.getGrid()[i][j].isEmpty()) {
                             if (defender.getGrid()[i][j].getSlot().getId() == cID && defender.getGrid()[i][j].currentPlace() == UBER) {
                                 int tno = o.getInt("modValueDef");
                                 uTotalDEF = uTotalDEF + tno;
