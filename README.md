@@ -1,11 +1,11 @@
 <img align = "left" height = "64" src = "./chest.png">
 
-## Motivation
+# Motivation
 _Basically my scuffed version of Chest-icuffs from the Tommyinnit video with Wilbur, Charlie, and Phil_
 
 [The scene of the game in question](https://www.youtube.com/watch?v=GuLj80WyEF0)
 
-## Research
+# Research
 _I'm mostly basing it off of videos and rules I've found from other people who've tried to make the game on Reddit and YouTube_
 
 [YouTube video describing the game as a mod](https://www.youtube.com/watch?v=I2D_FEbNa-g&pp=ygULY2hlc3RpY3VmZnM%3D)
