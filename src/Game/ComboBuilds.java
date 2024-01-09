@@ -5,6 +5,7 @@ public class ComboBuilds {
     private final int id;
     private final int[] coreMod;
     private final String mainType;
+    private boolean isBuildUsed = false;
 
     public ComboBuilds(int ID, String iName, int[] core, String type){
         id = ID;
@@ -17,4 +18,7 @@ public class ComboBuilds {
     public String getItemName(){ return itemName;}
     public String activeType() { return mainType; }
     public int getId(){ return id; }
+    public void useBuild(){ isBuildUsed = true; }
+    public boolean isBuildUsed(){ return isBuildUsed; }
+
 }

@@ -55,7 +55,7 @@ public class Calculation {
                     int tmpI = tmp.getInt("cardID");
                     for (int k = 0; k < current.getGrid().length; k++) {
                         if(current.isBoardEmpty()) {
-                            if (tmpI == current.getGrid()[j][k].getSlot().getId() && current.getGrid()[j][k].getSlot().isItem()) {
+                            if (tmpI == current.getGrid()[j][k].getSlot().getId() && !current.getGrid()[j][k].getSlot().isItem()) {
                                 //check the skill type
                                 checkSkillsATK(tmp, tmp.getString("skillType"), current); // attacker then defence
                             }
@@ -63,7 +63,7 @@ public class Calculation {
                     }
                     for (int k = 0; k < other.getGrid().length; k++) {
                         if(other.isBoardEmpty()) {
-                            if (tmpI == other.getGrid()[j][k].getSlot().getId() && other.getGrid()[j][k].getSlot().isItem()) {
+                            if (tmpI == other.getGrid()[j][k].getSlot().getId() && !other.getGrid()[j][k].getSlot().isItem()) {
                                 //check the skill type
                                 checkSkillsDEF(tmp, tmp.getString("skillType"), other);
                             }

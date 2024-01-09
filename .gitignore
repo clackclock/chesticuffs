@@ -3,6 +3,7 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 **/src/Game/code_junkyard.txt
+**/src/Game/CardData/Evoltuions.json
 
 ### Eclipse ###
 .apt_generated

@@ -9,33 +9,43 @@
         {
           "cardCheck": true,
           "card": "Plank",
+          "cardID": 21,
           "typeCheck": true,
           "type": "PLANT",
           "position": [
             {
+              "additionalPoints": false,
               "posName": "CoreDEFENCE"
             },
             {
+              "additionalPoints": false,
               "posName": "ATTACK"
             }
           ]
         },
         {
           "cardCheck": false,
-          "card": "null",
           "typeCheck": true,
           "type": "PLANT",
           "position": [
             {
+              "additionalPoints": false,
               "posName": "UBER"
             },
             {
+              "additionalPoints": false,
+              "posName": "UBER"
+            },
+            {
+              "additionalPoints": false,
               "posName": "ATTACK"
             },
             {
+              "additionalPoints": false,
               "posName": "CoreDEFENCE"
             },
             {
+              "additionalPoints": false,
               "posName": "CORE"
             }
 

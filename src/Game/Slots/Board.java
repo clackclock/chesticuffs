@@ -1,18 +1,24 @@
 package Game.Slots;
 
 import Game.Card;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 import static Game.Slots.Board.Board_Positions.*;
 
 public class Board {
     public enum Board_Positions { //implements boardPosition_Action
-        UBER(3), ATTACK(2), CoreDEFENCE(3), CORE(1),DEFENCE(3);
-        Board_Positions(int openSlots){}
+        //3,2,3,1,3
+        UBER(), ATTACK(), CoreDEFENCE(), CORE(),DEFENCE()
+//        Board_Positions(int openSlots){}
     }
 
     private final Positions[][] board_Grid;
+    private boolean isThereBuild = false;
     public Board(){
         board_Grid = new Positions[4][3]; //4 rows 3 col
     }
@@ -83,5 +89,75 @@ public class Board {
         }
         return tally == board_Grid.length;
     }
+    public void removeMetalOre(){
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 3; j++){
+                Card metalOre = board_Grid[i][j].getSlot();
+                if(metalOre.activeTypeOne().equals("METAL") || metalOre.activeTypeOne().equals("ORE")){
+                    board_Grid[i][j].remove();
+                }
+            }
+        }
+    }
+    public void boardHasBuild(){ isThereBuild = true; }
+    public boolean hasBuild(){ return isThereBuild; }
 
+    public boolean whichBuilds(Board playerBoard) throws IOException {
+        try(FileReader modReader = new FileReader("C:\\Users\\sensa\\IdeaProjects\\testGame\\src\\Game\\CardData\\Formation_Recipes.json")) {
+            StringBuilder recipeString = new StringBuilder(" ");
+            int i;
+            while ((i = modReader.read()) != -1) {
+                //System.out.print((char)i);
+                recipeString.append((char) i);
+            }
+            JSONObject jsonMODObject = new JSONObject(recipeString.toString());
+            JSONArray cookBook = (JSONArray) jsonMODObject.get("recipe_List");
+
+            for(int j = 0; j < cookBook.length(); j++ ){
+                JSONObject tmpRecipe = cookBook.getJSONObject(j);
+                JSONArray recipeIngredients = tmpRecipe.getJSONArray("ingredients");
+
+                for(int k = 0; k < recipeIngredients.length(); k++){
+                    JSONObject tmpIngredients = recipeIngredients.getJSONObject(k);
+                    boolean needCard = tmpIngredients.getBoolean("cardCheck");
+                    boolean needType = tmpIngredients.getBoolean("typeCheck");
+                    JSONArray getPos = tmpIngredients.getJSONArray("position");
+
+                    if(needCard && needType){
+                        int tmpID = tmpIngredients.getInt("cardID");
+                        String tmpType = tmpIngredients.getString("type");
+
+                        for(int l = 0; l < getPos.length(); l++){
+                            JSONObject tmpPos = getPos.getJSONObject(l);
+
+                            boolean needMorePoints = tmpPos.getBoolean("additionalPoints");
+                            if(!needMorePoints){
+                                String pName = tmpPos.getString("posName");
+                                //switch to the corresponding row for the posName to check the types
+//                                playerBoard.board_Grid[][].currentPlace();
+                            }
+                        }
+                    }
+                    if(!needCard && needType){
+                        String tmpType = tmpIngredients.getString("type");
+
+                    }else if(needCard && !needType){
+                        int tmpID = tmpIngredients.getInt("cardID");
+                    }
+
+
+                }
+
+            }
+
+
+        } catch (IOException ex){
+            throw new IOException("Something Has Failed");
+
+        } finally {
+            System.out.println("The results are as seen above... tread lightly");
+        }
+
+        return playerBoard.hasBuild();
+    }
 }

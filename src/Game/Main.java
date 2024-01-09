@@ -33,6 +33,9 @@ public class Main {
                 isWinner = p2.calculate();
             }
 
+            //at the end remove all temp. buff cards
+            one.getBoard().removeMetalOre();
+            two.getBoard().removeMetalOre();
         }
 
     }
@@ -44,7 +47,7 @@ public class Main {
         System.out.println("4) Use an Item");
     }
 
-    public static void actionMenu(Player current, Player other) {
+    public static void actionMenu(Player current, Player other) throws IOException {
         Scanner input = new Scanner(System.in);
         menu();
         System.out.print("choose: ");
@@ -77,6 +80,7 @@ public class Main {
                     ItemSkills useItem;
                     System.out.println("Which Item do you want to use?");
                     int numSelectInput = input.nextInt();
+                    input.nextLine(); // input int String bug happened I think
                     String cardType = current.getHand().get(numSelectInput).activeTypeOne();
                     if(cardType.equals("ITEM")){
                         Card currentCard = current.getHand().get(numSelectInput);
@@ -100,9 +104,46 @@ public class Main {
                             }
                         }
                         current.discardHandCard(numSelectInput);
+                    }else if(cardType.equals("METAL") || cardType.equals("ORE")) {
+                        Card currentCard = current.getHand().get(numSelectInput);
+                        currentCard.useAsItem();
+                        System.out.println("Use on your cards or your opponent? (mine/yours)");
+                        String choice = input.nextLine();
+                        switch (choice) {
+                            case "mine" -> {
+                                System.out.println("Which row (0-3)? col (0-2)?");
+                                int row = input.nextInt();
+                                int col = input.nextInt();
+                                input.next();
+                                useItem = new ItemSkills(currentCard, current.checkCard(row, col));
+                                useItem.isUsed();
+                                System.out.println("Where do you want to temp. place it?");
+                                System.out.println("UBER, ATTACK, CoreDEFENCE, CORE, DEFENCE");
+                                String cardPosSelect = input.nextLine();
+                                current.placeCard(cardPosSelect, numSelectInput);
+                            }
+                            case "yours" -> {
+                                System.out.println("Which row (0-3)? col (0-2)?");
+                                int row = input.nextInt();
+                                int col = input.nextInt();
+                                input.next();
+                                useItem = new ItemSkills(currentCard, current.selectOtherPlayerCard(other, row, col));
+                                useItem.isUsed();
+                                System.out.println("Where do you want to temp. place it?");
+                                System.out.println("UBER, ATTACK, CoreDEFENCE, CORE, DEFENCE");
+                                String cardPosSelect = input.nextLine();
+                                current.placeCard(cardPosSelect, numSelectInput);
+                            }
+                        }
                     }else{ System.out.println("Literally No"); System.exit(1);}
                 }
             }
+            case "5" -> {
+                if(current.getBoard().hasBuild()){
+                    System.out.println(current.getBoard().whichBuilds(current.getBoard()));
+                }
+
+            } //if true get which then choose to use
             default -> {
                 System.out.println("Invalid choice");
                 System.exit(1);
@@ -111,7 +152,7 @@ public class Main {
 
     }
 
-    public static void summonPhase(Player current, Player one, Player two) {
+    public static void summonPhase(Player current, Player one, Player two) throws IOException {
         //every 4 or 5 rounds there will be a calculation, 3 is the test
         int roundCount = 1;
         while (roundCount % 3 != 0) {

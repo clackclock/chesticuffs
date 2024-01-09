@@ -35,7 +35,7 @@ public class Card {
     public String activeTypeOne() { return cardTypeONE; }
     public String activeTypeTwo() { return cardTypeTWO; }
     public void useAsItem(){ item = true; } // if item is true use item mods in calculation
-    public boolean isItem(){ return !item; }
+    public boolean isItem(){ return item; }
 
     public int getId(){ return id; }
     public String toString() {

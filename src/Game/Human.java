@@ -85,6 +85,10 @@ public class Human implements Player {
     }
     public Card checkCard(int row, int col){
         Card thisCard = getGrid()[row][col].getSlot();
+        if(thisCard == null){
+            System.out.println("This is null");
+            System.exit(1);
+        }
         if(getGrid()[row][col].isEmpty() && thisCard.isItem()){
             System.exit(1);
         }
