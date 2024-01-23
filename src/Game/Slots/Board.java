@@ -1,6 +1,8 @@
 package Game.Slots;
 
 import Game.Card;
+import Game.cardDatabase;
+import Game.ComboBuild;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,10 +20,15 @@ public class Board {
     }
 
     private final Positions[][] board_Grid;
+    private ComboBuild currentBuild;
     private boolean isThereBuild = false;
     public Board(){
         board_Grid = new Positions[4][3]; //4 rows 3 col
     }
+
+    public void addBuild(ComboBuild x){ currentBuild = x; isThereBuild = true; }
+    public void removeBuild(){currentBuild = null; isThereBuild = false; }
+    public ComboBuild getCurrentBuild(){ return currentBuild; }
 
     public void addToSlots(String name, Card fromHand) {
         System.out.println("Which slot in this position? (0-2)");
@@ -58,7 +65,6 @@ public class Board {
             }
         }
     }
-
     public void removeFromSlots(String name, int posIndex) {
         switch (name) {
             case "UBER" -> board_Grid[posIndex][0].remove();
@@ -74,6 +80,7 @@ public class Board {
         }
 
     }
+
     public Positions[][] getGrid(){
         return board_Grid;
     }
@@ -99,10 +106,14 @@ public class Board {
             }
         }
     }
-    public void boardHasBuild(){ isThereBuild = true; }
+
     public boolean hasBuild(){ return isThereBuild; }
 
-    public boolean whichBuilds(Board playerBoard) throws IOException {
+    public ComboBuild showValidBuilds(Board playerBoard) throws IOException {
+        if(playerBoard.hasBuild()){
+            return playerBoard.getCurrentBuild();
+        }
+
         try(FileReader modReader = new FileReader("C:\\Users\\sensa\\IdeaProjects\\testGame\\src\\Game\\CardData\\Formation_Recipes.json")) {
             StringBuilder recipeString = new StringBuilder(" ");
             int i;
@@ -112,6 +123,8 @@ public class Board {
             }
             JSONObject jsonMODObject = new JSONObject(recipeString.toString());
             JSONArray cookBook = (JSONArray) jsonMODObject.get("recipe_List");
+
+            int checkResults = 0;
 
             for(int j = 0; j < cookBook.length(); j++ ){
                 JSONObject tmpRecipe = cookBook.getJSONObject(j);
@@ -123,8 +136,7 @@ public class Board {
                     boolean needType = tmpIngredients.getBoolean("typeCheck");
                     JSONArray getPos = tmpIngredients.getJSONArray("position");
 
-                    if(needCard && needType){
-                        int tmpID = tmpIngredients.getInt("cardID");
+                    if(!needCard && needType){
                         String tmpType = tmpIngredients.getString("type");
 
                         for(int l = 0; l < getPos.length(); l++){
@@ -134,22 +146,124 @@ public class Board {
                             if(!needMorePoints){
                                 String pName = tmpPos.getString("posName");
                                 //switch to the corresponding row for the posName to check the types
-//                                playerBoard.board_Grid[][].currentPlace();
+                                switch(pName) {
+                                    default -> System.exit(1);
+                                    case "UBER" -> {
+                                        for (int p = 0; p < 3; p++) {
+                                            if (playerBoard.getGrid()[0][p].getSlot().activeTypeOne().equals(tmpType)) {
+                                                checkResults++; // log the correct the go check others
+                                            }
+                                        }
+                                    }
+                                    case "ATTACK" -> {
+                                        if (playerBoard.getGrid()[1][0].getSlot().activeTypeOne().equals(tmpType) || playerBoard.getGrid()[1][2].getSlot().activeTypeOne().equals(tmpType)) {
+                                            checkResults++; // log the correct the go check others
+                                        }
+                                    }
+                                    case "CoreDEFENCE" -> {
+                                        if (playerBoard.getGrid()[1][1].getSlot().activeTypeOne().equals(tmpType) || playerBoard.getGrid()[2][0].getSlot().activeTypeOne().equals(tmpType) || playerBoard.getGrid()[2][2].getSlot().activeTypeOne().equals(tmpType)) {
+                                            checkResults++; // log the correct the go check others
+                                        }
+                                    }
+                                    case "CORE" -> {
+                                        if (playerBoard.getGrid()[2][1].getSlot().activeTypeOne().equals(tmpType)) {
+                                            checkResults++;
+                                        }
+                                    }
+                                    case "DEFENCE" -> {
+                                        for (int p = 0; p < 3; p++) {
+                                            if (playerBoard.getGrid()[3][p].getSlot().activeTypeOne().equals(tmpType)) {
+                                                checkResults++; // log the correct the go check others
+                                            }
+                                        }
+                                    }
+//
+                                }
+
+                            }
+                            //points just add to the card ig
+
+                        }
+                        //check all positions the check results
+                        JSONObject getResult = tmpRecipe.getJSONObject("result");
+                        int r = getResult.getInt("passNum");
+                        if(checkResults == r){
+                            int buildID = tmpRecipe.getInt("formID");
+                            cardDatabase fd = new cardDatabase();
+                            for(ComboBuild x: fd.formPack){
+                                if(x.getId() == buildID){
+                                    System.out.println(x.getItemName());
+                                    return x;
+                                }
                             }
                         }
-                    }
-                    if(!needCard && needType){
-                        String tmpType = tmpIngredients.getString("type");
 
                     }else if(needCard && !needType){
                         int tmpID = tmpIngredients.getInt("cardID");
+
+                        for(int l = 0; l < getPos.length(); l++){
+                            JSONObject tmpPos = getPos.getJSONObject(l);
+
+                            boolean needMorePoints = tmpPos.getBoolean("additionalPoints");
+                            if(!needMorePoints){
+                                String pName = tmpPos.getString("posName");
+                                //switch to the corresponding row for the posName to check the types
+                                switch(pName) {
+                                    default -> System.exit(1);
+                                    case "UBER" -> {
+                                        for (int p = 0; p < 3; p++) {
+                                            if (playerBoard.getGrid()[0][p].getSlot().getId() == tmpID) {
+                                                checkResults++; // log the correct the go check others
+                                            }
+                                        }
+                                    }
+                                    case "ATTACK" -> {
+                                        if (playerBoard.getGrid()[1][0].getSlot().getId() == tmpID || playerBoard.getGrid()[1][2].getSlot().getId() == tmpID) {
+                                            checkResults++; // log the correct the go check others
+                                        }
+                                    }
+                                    case "CoreDEFENCE" -> {
+                                        if (playerBoard.getGrid()[1][1].getSlot().getId() == tmpID || playerBoard.getGrid()[2][0].getSlot().getId() == tmpID || playerBoard.getGrid()[2][2].getSlot().getId() == tmpID) {
+                                            checkResults++; // log the correct the go check others
+                                        }
+                                    }
+                                    case "CORE" -> {
+                                        if (playerBoard.getGrid()[2][1].getSlot().getId() == tmpID) {
+                                            checkResults++;
+                                        }
+                                    }
+                                    case "DEFENCE" -> {
+                                        for (int p = 0; p < 3; p++) {
+                                            if (playerBoard.getGrid()[3][p].getSlot().getId() == tmpID) {
+                                                checkResults++; // log the correct the go check others
+                                            }
+                                        }
+                                    }
+//                                playerBoard.board_Grid[][].currentPlace();
+                                }
+                            }
+                            //points just add to the card ig
+
+                        }
+                        //check all positions the check results
+                        JSONObject getResult = tmpRecipe.getJSONObject("result");
+                        int r = getResult.getInt("passNum");
+                        if(checkResults == r){
+                            int buildID = tmpRecipe.getInt("formID");
+                            cardDatabase fd = new cardDatabase();
+                            for(ComboBuild x: fd.formPack){
+                                if(x.getId() == buildID){
+                                    System.out.println(x.getItemName());
+                                    return x;
+                                }
+                            }
+                        }
                     }
 
 
                 }
 
             }
-
 
         } catch (IOException ex){
             throw new IOException("Something Has Failed");
@@ -158,6 +272,7 @@ public class Board {
             System.out.println("The results are as seen above... tread lightly");
         }
 
-        return playerBoard.hasBuild();
+        //return playerBoard.hasBuild();
+        return currentBuild;
     }
 }

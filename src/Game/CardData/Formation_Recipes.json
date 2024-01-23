@@ -10,8 +10,7 @@
           "cardCheck": true,
           "card": "Plank",
           "cardID": 21,
-          "typeCheck": true,
-          "type": "PLANT",
+          "typeCheck": false,
           "position": [
             {
               "additionalPoints": false,
@@ -55,6 +54,7 @@
       "result":
       {
         "ItemForm": "format:Plain_Tree",
+        "passNum": 7,
         "formID": "17"
       }
 

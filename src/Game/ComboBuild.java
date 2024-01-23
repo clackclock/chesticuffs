@@ -1,13 +1,13 @@
 package Game;
 
-public class ComboBuilds {
+public class ComboBuild {
     private final String itemName;
     private final int id;
     private final int[] coreMod;
     private final String mainType;
     private boolean isBuildUsed = false;
 
-    public ComboBuilds(int ID, String iName, int[] core, String type){
+    public ComboBuild(int ID, String iName, int[] core, String type){
         id = ID;
         itemName = iName;
         coreMod = core;

@@ -45,6 +45,7 @@ public class Main {
         System.out.println("2) Discard from hand");
         System.out.println("3) Remove from board position");
         System.out.println("4) Use an Item");
+        System.out.println("Activate Build Stats");
     }
 
     public static void actionMenu(Player current, Player other) throws IOException {
@@ -139,15 +140,24 @@ public class Main {
                 }
             }
             case "5" -> {
-                if(current.getBoard().hasBuild()){
-                    System.out.println(current.getBoard().whichBuilds(current.getBoard()));
+                if(current.getBoard().hasBuild()) {
+                    System.out.println("Do you want to remove Build effects? (y/n)");
+                    String useBuild = input.nextLine();
+                    if(useBuild.equals("y")){ current.getBoard().removeBuild();}
+
+                } else {
+                    ComboBuild availableBuild = current.getBoard().showValidBuilds(current.getBoard());
+                    System.out.println("Use build? (y/n)");
+                    String useBuild = input.nextLine();
+                    if (useBuild.equals("y")) {
+                        availableBuild.useBuild();
+                        current.getBoard().addBuild(availableBuild);
+                    }
                 }
 
             } //if true get which then choose to use
-            default -> {
-                System.out.println("Invalid choice");
-                System.exit(1);
-            }
+            default -> System.out.println("Invalid choice");
+
         }
 
     }

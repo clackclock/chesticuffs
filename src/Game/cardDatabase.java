@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class cardDatabase {
     public ArrayList<Card> pack = new ArrayList<>();
-    public ArrayList<ComboBuilds> formPack = new ArrayList<>();
+    public ArrayList<ComboBuild> formPack = new ArrayList<>();
 
     public void cardData() {
         pack.add(new Card(-1,"Blank", new int[]{0, 0}, new int[]{0, 0}, new int[]{0, 0}, new int[]{0, 0}, new int[]{0, 0}, "NEUTRAL", "NEUTRAL"));
@@ -47,12 +47,12 @@ public class cardDatabase {
 
     }
     public void formData(){
-        formPack.add(new ComboBuilds(17,"Tree", new int[]{2,	4},	"PLANT"));
-        formPack.add(new ComboBuilds(18,"Flower_Bush", new int[]{2,2},"FLOWER"));
-        formPack.add(new ComboBuilds(26,"Item_Frame", new int[]{2,2},"TOOL"));
-        formPack.add(new ComboBuilds(27,"Stairs", new int[]{1,1},"TOOL"));
-        formPack.add(new ComboBuilds(34,"Ocean_Monument",new int[]{3,3},"WATER"));
-        formPack.add(new ComboBuilds(42,"Apple_Pie", new int[]{5,5},"NEUTRAL"));
+        formPack.add(new ComboBuild(17,"Tree", new int[]{2,	4},	"PLANT"));
+        formPack.add(new ComboBuild(18,"Flower_Bush", new int[]{2,2},"FLOWER"));
+        formPack.add(new ComboBuild(26,"Item_Frame", new int[]{2,2},"TOOL"));
+        formPack.add(new ComboBuild(27,"Stairs", new int[]{1,1},"TOOL"));
+        formPack.add(new ComboBuild(34,"Ocean_Monument",new int[]{3,3},"WATER"));
+        formPack.add(new ComboBuild(42,"Apple_Pie", new int[]{5,5},"NEUTRAL"));
     }
 
 }
