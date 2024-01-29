@@ -1,6 +1,13 @@
 <img align = "left" height = "64" src = "./chest.png">
 
 # Motivation
+
+## About
+
+A combination of trading card games like "Magic: The Gathering" with "Minecraft" items + design and chess's play style that encourages logical and strategic thinking.
+
+## Inspiration
+
 _Basically my scuffed version of Chest-icuffs from the Tommyinnit video with Wilbur, Charlie, and Phil_
 
 [The scene of the game in question](https://www.youtube.com/watch?v=GuLj80WyEF0)
