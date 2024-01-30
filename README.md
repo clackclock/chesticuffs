@@ -10,7 +10,7 @@ A combination of trading card games like "Magic: The Gathering" with "Minecraft"
 
 _Basically my scuffed version of Chest-icuffs from the Tommyinnit video with Wilbur, Charlie, and Phil_
 
-[The scene of the game in question](https://www.youtube.com/watch?v=GuLj80WyEF0)
+[The scene of the game in question](https://www.youtube.com/watch?v=p8024_-Gfxo)
 
 # Research
 _I'm mostly basing it off of videos and rules I've found from other people who've tried to make the game on Reddit and YouTube_
