@@ -864,3 +864,25 @@ case "4" ->{
   {
     "identifier": "format:Plain_Tree"
   },
+
+Map<Integer, List<String>> cardIDPositionMap;
+Map<String, List<String>> typeToPositionMap;
+List<String> positions;
+for(int j = 0; j < cookBook.length(); j++ ) {
+    JSONObject tmpRecipe = cookBook.getJSONObject(j);
+    JSONArray recipeIngredients = tmpRecipe.getJSONArray("ingredients");
+    for(int k = 0; k < recipeIngredients.length(); k++){
+        JSONObject tmpIngredients = recipeIngredients.getJSONObject(k);
+        boolean needCard = tmpIngredients.getBoolean("cardCheck");
+        boolean needType = tmpIngredients.getBoolean("typeCheck");
+        JSONArray getPos = tmpIngredients.getJSONArray("position");
+
+        if(!needCard && needType) {
+          String tmpType = tmpIngredients.getString("type");
+
+          for (int l = 0; l < getPos.length(); l++) {
+              JSONObject tmpPos = getPos.getJSONObject(l);
+          }
+       }
+   }
+}

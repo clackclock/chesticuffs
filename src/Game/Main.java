@@ -45,7 +45,8 @@ public class Main {
         System.out.println("2) Discard from hand");
         System.out.println("3) Remove from board position");
         System.out.println("4) Use an Item");
-        System.out.println("Activate Build Stats");
+        System.out.println("5) Activate Build Stats");
+        System.out.println("6) Evolve Card");
     }
 
     public static void actionMenu(Player current, Player other) throws IOException {
@@ -141,18 +142,24 @@ public class Main {
             }
             case "5" -> {
                 if(current.getBoard().hasBuild()) {
+                    System.out.println(current.getBoard().getCurrentBuild().getItemName());
                     System.out.println("Do you want to remove Build effects? (y/n)");
                     String useBuild = input.nextLine();
                     if(useBuild.equals("y")){ current.getBoard().removeBuild();}
 
                 } else {
-                    ComboBuild availableBuild = current.getBoard().showValidBuilds(current.getBoard());
-                    System.out.println("Use build? (y/n)");
-                    String useBuild = input.nextLine();
-                    if (useBuild.equals("y")) {
+                    //ComboBuild availableBuild = current.getBoard().showValidBuilds(current.getBoard());
+                    current.getBoard().showValidBuilds(current.getBoard());
+                    System.out.println("use build? (y/n)");
+                    String b = input.nextLine();
+                    if(b.equals("y")) {
+                        System.out.println("which build? (0,1,2...)");
+                        int useBuild = input.nextInt();
+                        ComboBuild availableBuild = current.getBoard().getPossibleBuilds().get(useBuild);
                         availableBuild.useBuild();
                         current.getBoard().addBuild(availableBuild);
                     }
+
                 }
 
             } //if true get which then choose to use
@@ -163,6 +170,7 @@ public class Main {
     }
 
     public static void summonPhase(Player current, Player one, Player two) throws IOException {
+        Scanner input = new Scanner(System.in);
         //every 4 or 5 rounds there will be a calculation, 3 is the test
         int roundCount = 1;
         while (roundCount % 3 != 0) {
@@ -176,10 +184,17 @@ public class Main {
             Player other = two;
             if(current == two){ other = one;}
 
-            //place cards in optimal position phase #chess
-            System.out.println(current.getHand());
-            actionMenu(current, other);
-
+            boolean endTurn = false;
+            while(!endTurn) {
+                //place cards in optimal position phase #chess
+                System.out.println(current.getHand());
+                actionMenu(current, other);
+                System.out.println("End your turn? (y/n)");
+                String answer = input.nextLine();
+                if(answer.equals("y")){
+                    endTurn = true;
+                }
+            }
             //switching players
             current = switchPlayer(current, one, two);
             roundCount++;

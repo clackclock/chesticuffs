@@ -4,7 +4,7 @@ import Game.Slots.Board.*;
 
 public class Positions{
     private Card fromHand;
-    private static Board_Positions onTable;
+    private final Board_Positions onTable;
 
     public Positions(Board_Positions type, Card inPlay){
         fromHand = inPlay;
