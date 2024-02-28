@@ -115,8 +115,8 @@ public class Calculation {
     public boolean calculate(){ //if true game ends if false game continues
         return uTotalATK > uTotalDEF && aTotalATK > aTotalDEF && cdTotalATK > cdTotalDEF && dTotalATK > dTotalDEF;
     }
-
-    private static Board switchBoard(Board current, Board one, Board two) {
+//move everything here then trash the rest
+    private Board switchBoard(Board current, Board one, Board two) {
         if (current == one) {
             current = two;
             System.out.println("Player two");

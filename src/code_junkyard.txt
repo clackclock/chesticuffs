@@ -886,3 +886,41 @@ for(int j = 0; j < cookBook.length(); j++ ) {
        }
    }
 }
+ "skills": [
+    {
+      "_comment": "type_based_cards",
+
+      "card": {"name": "Blank", "cardID": -1, "skillType": "type", "typeCheck": "NEUTRAL", "modValueAtk": 0, "modValueDef": 0}
+    },
+    {
+      "_comment": "type-position_based_cards",
+
+      "card": {"name": "Apple", "cardID": 6, "skillType": "type-position", "typeCheck": "PLANT", "posCheck": "CORE", "modValueAtk": 0, "modValueDef": 1}
+    },
+    {
+      "card": {"name": "Cornflower", "cardID": 10, "skillType": "type-position", "typeCheck": "FLOWER", "posCheck": "CORE", "modValueAtk": 1, "modValueDef": 0}
+    },
+    {
+      "card": {
+        "name": "Mutton",
+        "cardID": 7,
+        "skillType": "type-position",
+        "typeCheck": "ANIMAL",
+        "posCheck": "CORE",
+        "modValueAtk": 2,
+        "modValueDef": 0
+      }
+    },
+    {
+      "_comment": "card_based_cards",
+
+      "name": "HayBale",
+      "cardID": 8,
+      "skillType": "card",
+      "cardIDCheck": 31,
+      "modValueAtk": 1,
+      "modValueDef": 1
+    }
+  ]
+
+}

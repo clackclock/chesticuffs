@@ -39,6 +39,10 @@ public class Board {
     public int[] getCoreBlock(){ return coreBlock; }
     public int[] getDefRow(){return defRow; }
 
+    public void calculateUber(Board enemy){
+        //if board row is greater remove cards from other board vice versa
+    }
+
     private final ArrayList<ComboBuild> possibleBuilds = new ArrayList<>();
     public ArrayList<ComboBuild> getPossibleBuilds(){ return possibleBuilds; }
     public void addBuild(ComboBuild x){ currentBuild = x; isThereBuild = true; }
@@ -172,7 +176,6 @@ public class Board {
     }
 
     public boolean hasBuild(){ return isThereBuild; }
-
     public void showValidBuilds(Board playerBoard) throws IOException {
         int checkResults = 0;
 
@@ -397,6 +400,10 @@ public class Board {
 
         //return playerBoard.hasBuild();
     }
+
     //evolutions can scan the board check for the card then check the number if it's not there or there is not enough space move on
+    public void evolve(){
+        //check the card to evolve id# and if the number needed appears if so add the number of cards to hand
+    }
     //move mods here
 }
