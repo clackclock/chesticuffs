@@ -924,3 +924,21 @@ for(int j = 0; j < cookBook.length(); j++ ) {
   ]
 
 }
+Calculation p1 = new Calculation(one, two);
+Calculation p2 = new Calculation( two, one);
+
+            if(p1.calculate()){
+                System.out.println("Player 1 Wins");
+                isWinner = p1.calculate();
+            }else if(p2.calculate()){
+                System.out.println("Player 2 Wins");
+                isWinner = p2.calculate();
+            }
+int tally = 0;
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 3; j++){
+                if(board_Grid[i][j].isEmpty()){
+                    tally++;
+                }
+            }
+        }

@@ -22,15 +22,14 @@ public class Main {
             summonPhase(current, one, two);
 
             //calculation
-            Calculation p1 = new Calculation(one, two);
-            Calculation p2 = new Calculation( two, one);
+            one.getBoard().calculate(two.getBoard());
 
-            if(p1.calculate()){
-                System.out.println("Player 1 Wins");
-                isWinner = p1.calculate();
-            }else if(p2.calculate()){
+            if(one.getBoard().isBoardEmpty()){
                 System.out.println("Player 2 Wins");
-                isWinner = p2.calculate();
+                isWinner = true;
+            }else if (two.getBoard().isBoardEmpty()){
+                System.out.println("Player 1 Wins");
+                isWinner = true;
             }
 
             //at the end remove all temp. buff cards
