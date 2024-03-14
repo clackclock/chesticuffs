@@ -130,6 +130,51 @@ public class Board {
                         }
 
                     }
+                    case "position" -> {
+                        int mAtk = cList.getInt("modValueAtk");
+                        int mDef = cList.getInt("modValueDef");
+
+                        String pC = cList.getString("posCheck");
+
+                        for (int k = 0; k < 3; k++) {
+                            if (cID == board_Grid[0][k].getSlot().getId() && String.valueOf(board_Grid[0][k].currentPlace()).contentEquals(pC)) {
+                                uberRow[0] = uberRow[0] + mAtk;
+                                uberRow[1] = uberRow[1] + mDef;
+                            }
+                            if (cID == board_Grid[1][0].getSlot().getId() && String.valueOf(board_Grid[1][0].currentPlace()).contentEquals(pC)|| cID == board_Grid[1][2].getSlot().getId() && String.valueOf(board_Grid[1][2].currentPlace()).contentEquals(pC)) {
+                                atkRow[0] = atkRow[0] + mAtk;
+                                atkRow[1] = atkRow[1] + mDef;
+                            }
+                            if (cID == board_Grid[1][1].getSlot().getId() && String.valueOf(board_Grid[1][1].currentPlace()).contentEquals(pC) || cID == board_Grid[2][0].getSlot().getId() && String.valueOf(board_Grid[2][0].currentPlace()).contentEquals(pC)|| cID == board_Grid[2][2].getSlot().getId() && String.valueOf(board_Grid[2][2].currentPlace()).contentEquals(pC)) {
+                                cDefRow[0] = cDefRow[0] + mAtk;
+                                cDefRow[1] = cDefRow[1] + mDef;
+                            }
+                            if (cID == board_Grid[3][k].getSlot().getId() && String.valueOf(board_Grid[3][k].currentPlace()).contentEquals(pC)) {
+                                defRow[0] = defRow[0] + mAtk;
+                                defRow[1] = defRow[1] + mDef;
+                            }
+
+                        }
+
+                        for (int k = 0; k < 3; k++) {
+                            if (cID == enemy.getGrid()[0][k].getSlot().getId() && String.valueOf(enemy.getGrid()[0][k].currentPlace()).contentEquals(pC)) {
+                                enemy.getUberRow()[0] = enemy.getUberRow()[0] + mAtk;
+                                enemy.getUberRow()[1] = enemy.getUberRow()[1] + mDef;
+                            }
+                            if (cID == enemy.getGrid()[1][0].getSlot().getId() && String.valueOf(enemy.getGrid()[1][0].currentPlace()).contentEquals(pC) || cID == enemy.getGrid()[1][2].getSlot().getId() && String.valueOf(enemy.getGrid()[1][2].currentPlace()).contentEquals(pC)) {
+                                enemy.getAtkRow()[0] = enemy.getAtkRow()[0] + mAtk;
+                                enemy.getAtkRow()[1] = enemy.getAtkRow()[1] + mDef;
+                            }
+                            if (cID == enemy.getGrid()[1][1].getSlot().getId() && String.valueOf(enemy.getGrid()[1][1].currentPlace()).contentEquals(pC) || cID == enemy.getGrid()[2][0].getSlot().getId() && String.valueOf(enemy.getGrid()[2][0].currentPlace()).contentEquals(pC) || cID == enemy.getGrid()[2][2].getSlot().getId() && String.valueOf(enemy.getGrid()[2][2].currentPlace()).contentEquals(pC)) {
+                                enemy.getCDefRow()[0] = enemy.getCDefRow()[0] + mAtk;
+                                enemy.getCDefRow()[1] = enemy.getCDefRow()[1] + mDef;
+                            }
+                            if (cID == enemy.getGrid()[3][k].getSlot().getId() && String.valueOf(enemy.getGrid()[3][k].currentPlace()).contentEquals(pC)) {
+                                enemy.getDefRow()[0] = enemy.getDefRow()[0] + mAtk;
+                                enemy.getDefRow()[1] = enemy.getDefRow()[1] + mDef;
+                            }
+                        }
+                    }
                     case "type-position" -> {
                         String typeC = cList.getString("typeCheck");
                         String posC = cList.getString("posCheck");
@@ -268,7 +313,50 @@ public class Board {
             throw new IOException("Something Has Failed");
         }
         //add core
-        
+        for(int r = 0; r < 2; r++){ //0 is atk && 1 is def, so it sorts itself out
+            uberRow[r] = uberRow[r] + coreBlock[r]; //atk
+            enemy.getUberRow()[r] = enemy.getUberRow()[r] + enemy.getCoreBlock()[r];
+            atkRow[r] = atkRow[r] + coreBlock[r];
+            enemy.getAtkRow()[r] = enemy.getAtkRow()[r] + enemy.getCoreBlock()[r];
+            cDefRow[r] = cDefRow[r] + coreBlock[r];
+            enemy.getCDefRow()[r] = enemy.getCDefRow()[r] + enemy.getCoreBlock()[r];
+            defRow[r] = defRow[r] + coreBlock[r];
+            enemy.getDefRow()[r] = enemy.getDefRow()[r] + enemy.getCoreBlock()[r];
+        }
+
+        int overflowP1, overflowP2;
+        overflowP2 = uberRow[1] - enemy.getUberRow()[0]; // uber gets no overflow
+        overflowP1 = enemy.getUberRow()[1] - uberRow[0]; //p1 remainder from subtracting atk from enemy def
+        int tmp1, tmp2; // the overflow goes once, so it needs to reset after
+
+        if(overflowP1 > 0){
+            atkRow[0] = atkRow[0] + overflowP1;
+        }
+        tmp1 = overflowP1;
+        if(overflowP2 > 0){
+            enemy.getAtkRow()[0] = enemy.getAtkRow()[0] + overflowP2;
+        }
+        tmp2 = overflowP2;
+
+        overflowP2 = atkRow[1] - (enemy.getAtkRow()[0] - tmp2);
+        overflowP1 = enemy.getAtkRow()[1] - (atkRow[0] - tmp1) ;
+        if(overflowP1 > 0){
+            cDefRow[0] = cDefRow[0] + overflowP1;
+        }
+        tmp1 = overflowP1;
+        if(overflowP2 > 0){
+            enemy.getCDefRow()[0] = enemy.getCDefRow()[0] + overflowP2;
+        }
+        tmp2 = overflowP2;
+
+        overflowP2 = cDefRow[1] - (enemy.getCDefRow()[0] - tmp2);
+        overflowP1 = enemy.getCDefRow()[1] - (cDefRow[0] - tmp1);
+        if(overflowP1 > 0){
+            defRow[0] = defRow[0] + overflowP1;
+        }
+        if(overflowP2 > 0){
+            enemy.getDefRow()[0] = enemy.getDefRow()[0] + overflowP2;
+        }
 
         //if board row is greater remove cards from other board vice versa
         //enemy lose action = take away cards
@@ -279,6 +367,45 @@ public class Board {
         } else if(uberRow[0] < enemy.getUberRow()[1] && uberRow[1] < enemy.getUberRow()[0]){
             for(int i = 0; i < 3; i++) {
                 board_Grid[0][i].remove();
+            }
+        }
+        if(atkRow[0] > enemy.getAtkRow()[1] && atkRow[1] > enemy.getAtkRow()[0]){
+            for(int i = 0; i < 3; i++) {
+                if(enemy.getGrid()[1][i].currentPlace() == ATTACK){
+                    enemy.getGrid()[1][i].remove();
+                }
+            }
+        } else if(uberRow[0] < enemy.getUberRow()[1] && uberRow[1] < enemy.getUberRow()[0]){
+            for(int i = 0; i < 3; i++) {
+                if(board_Grid[1][i].currentPlace() == ATTACK){
+                    board_Grid[1][i].remove();
+                }
+            }
+        }
+        if(cDefRow[0] > enemy.getCDefRow()[1] && cDefRow[1] > enemy.getCDefRow()[0]){
+            for(int i = 1; i < 3; i++) {
+                for(int j = 0; j < 3; j++) {
+                    if (enemy.getGrid()[i][j].currentPlace() == CoreDEFENCE) {
+                        enemy.getGrid()[i][j].remove();
+                    }
+                }
+            }
+        } else if(cDefRow[0] < enemy.getCDefRow()[1] && cDefRow[1] < enemy.getCDefRow()[0]){
+            for(int i = 1; i < 3; i++) {
+                for(int j = 0; j < 3; j++) {
+                    if (board_Grid[i][j].currentPlace() == CoreDEFENCE) {
+                        board_Grid[i][j].remove();
+                    }
+                }
+            }
+        }
+        if(defRow[0] > enemy.getDefRow()[1] && defRow[1] > enemy.getDefRow()[0]){
+            for(int i = 0; i < 3; i++) {
+                enemy.getGrid()[3][i].remove();
+            }
+        } else if(defRow[0] < enemy.getDefRow()[1] && defRow[1] < enemy.getDefRow()[0]){
+            for(int i = 0; i < 3; i++) {
+                board_Grid[3][i].remove();
             }
         }
     }
@@ -644,5 +771,5 @@ public class Board {
     public void evolve(){
         //check the card to evolve id# and if the number needed appears if so add the number of cards to hand
     }
-    //move mods here
+
 }
