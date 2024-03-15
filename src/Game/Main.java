@@ -161,6 +161,11 @@ public class Main {
                 }
 
             } //if true get which then choose to use
+            case "6" -> {
+                System.out.println("What is the ID of the card you want to evolve?");
+                int id = input.nextInt();
+                current.getBoard().evolve(current, id);
+            }
             default -> System.out.println("Invalid choice");
 
         }

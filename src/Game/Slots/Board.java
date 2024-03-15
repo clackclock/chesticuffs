@@ -1,6 +1,7 @@
 package Game.Slots;
 
 import Game.Card;
+import Game.Player;
 import Game.cardDatabase;
 import Game.ComboBuild;
 import org.json.JSONArray;
@@ -768,7 +769,60 @@ public class Board {
     }
 
     //evolutions can scan the board check for the card then check the number if it's not there or there is not enough space move on
-    public void evolve(){
+    public void evolve(Player cc, int cID) throws IOException{
+        try(FileReader modReader = new FileReader("C:\\Users\\sensa\\IdeaProjects\\testGame\\src\\Game\\CardData\\Evolutions.json")) {
+            StringBuilder modString = new StringBuilder(" ");
+            int i;
+            while ((i = modReader.read()) != -1) {
+                modString.append((char) i);
+            }
+            JSONObject jsonMODObject = new JSONObject(modString.toString());
+            JSONArray eList = (JSONArray) jsonMODObject.get("evolve");
+
+            for(int l = 0; l < eList.length(); l++){
+                JSONObject c = eList.getJSONObject(i);
+                int oCard = c.getInt("itemIDToEvolve");
+                int checkNum = c.getInt("requiredNumOfItem");
+
+                int newCard = c.getInt("finalItemID");
+                int newCardNum = c.getInt("numAddToBoard");
+
+                int tally = 0;
+                if(cID == oCard) {
+                    for (int n = 0; n < 4; n++) {
+                        for (int o = 0; o < 3; o++) {
+                            if(board_Grid[n][o].getSlot().getId() == oCard){
+                                tally++;
+                            }
+                        }
+                    }
+                    if(tally == checkNum){
+                        for (int n = 0; n < 4; n++) {
+                            for (int o = 0; o < 3; o++) {
+                                if(board_Grid[n][o].getSlot().getId() == oCard){
+                                    board_Grid[n][o].remove();
+                                }
+                            }
+                        }
+                    }
+
+                    //get the card from database, when u find card save it, then put as many as you need in hand so u can place
+                    cardDatabase v = new cardDatabase();
+                    for (int j = 0; j < v.pack.size(); j++) {
+                        if(v.pack.get(j).getId() == newCard){
+                            Card nn = v.pack.get(j);
+                            for(int p = 0; p < newCardNum; p++){
+                                cc.getHand().add(nn);
+                            }
+                        }
+                    }
+
+                }
+            }
+
+        } catch (IOException ex){
+            throw new IOException("Something Has Failed");
+        }
         //check the card to evolve id# and if the number needed appears if so add the number of cards to hand
     }
 
