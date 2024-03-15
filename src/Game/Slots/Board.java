@@ -813,6 +813,7 @@ public class Board {
                             Card nn = v.pack.get(j);
                             for(int p = 0; p < newCardNum; p++){
                                 cc.getHand().add(nn);
+
                             }
                         }
                     }
