@@ -28,20 +28,10 @@ public class Board {
         board_Grid = new Positions[4][3]; //4 rows 3 col
 
         uberRow = new int[2];
-        uberRow[0] = board_Grid[0][0].getAtk() + board_Grid[0][1].getAtk() + board_Grid[0][2].getAtk();
-        uberRow[1] = board_Grid[0][0].getDef() + board_Grid[0][1].getDef() + board_Grid[0][2].getDef();
         atkRow = new int[2];
-        atkRow[0] = board_Grid[1][0].getAtk() + board_Grid[1][2].getAtk();
-        atkRow[1] = board_Grid[1][0].getDef() + board_Grid[1][2].getDef();
         cDefRow = new int[2];
-        cDefRow[0] = board_Grid[1][1].getAtk() + board_Grid[2][0].getAtk() + board_Grid[2][2].getAtk();
-        cDefRow[1] = board_Grid[1][1].getDef() + board_Grid[2][0].getDef() + board_Grid[2][2].getDef();
         coreBlock = new int[2];
-        coreBlock[0] = board_Grid[2][1].getAtk();
-        coreBlock[1] = board_Grid[2][1].getDef();
         defRow = new int[2];
-        defRow[0] = board_Grid[3][0].getAtk() + board_Grid[3][1].getAtk() + board_Grid[3][2].getAtk();
-        defRow[1] = board_Grid[3][0].getDef() + board_Grid[3][1].getDef() + board_Grid[3][2].getDef();
     }
 
     public int[] getUberRow(){ return uberRow; }
@@ -51,6 +41,27 @@ public class Board {
     public int[] getDefRow(){return defRow; }
 
     public void calculate(Board enemy) throws IOException{
+        uberRow[0] = board_Grid[0][0].getAtk() + board_Grid[0][1].getAtk() + board_Grid[0][2].getAtk();
+        uberRow[1] = board_Grid[0][0].getDef() + board_Grid[0][1].getDef() + board_Grid[0][2].getDef();
+        enemy.getUberRow()[0] = enemy.getGrid()[0][0].getAtk() + enemy.getGrid()[0][1].getAtk() + enemy.getGrid()[0][2].getAtk();
+        enemy.getUberRow()[1] = enemy.getGrid()[0][0].getDef() + enemy.getGrid()[0][1].getDef() + enemy.getGrid()[0][2].getDef();
+        atkRow[0] = board_Grid[1][0].getAtk() + board_Grid[1][2].getAtk();
+        atkRow[1] = board_Grid[1][0].getDef() + board_Grid[1][2].getDef();
+        enemy.getAtkRow()[0] = enemy.getGrid()[1][0].getAtk() + enemy.getGrid()[1][2].getAtk();
+        enemy.getAtkRow()[1] = enemy.getGrid()[1][0].getDef() + enemy.getGrid()[1][2].getDef();
+        cDefRow[0] = board_Grid[1][1].getAtk() + board_Grid[2][0].getAtk() + board_Grid[2][2].getAtk();
+        cDefRow[1] = board_Grid[1][1].getDef() + board_Grid[2][0].getDef() + board_Grid[2][2].getDef();
+        enemy.getCDefRow()[0] = enemy.getGrid()[1][1].getAtk() + enemy.getGrid()[2][0].getAtk() + enemy.getGrid()[2][2].getAtk();
+        enemy.getCDefRow()[1] = enemy.getGrid()[1][1].getDef() + enemy.getGrid()[2][0].getDef() + enemy.getGrid()[2][2].getDef();
+        coreBlock[0] = board_Grid[2][1].getAtk();
+        coreBlock[1] = board_Grid[2][1].getDef();
+        enemy.getCoreBlock()[0] = enemy.getGrid()[2][1].getAtk();
+        enemy.getCoreBlock()[1] = enemy.getGrid()[2][1].getDef();
+        defRow[0] = board_Grid[3][0].getAtk() + board_Grid[3][1].getAtk() + board_Grid[3][2].getAtk();
+        defRow[1] = board_Grid[3][0].getDef() + board_Grid[3][1].getDef() + board_Grid[3][2].getDef();
+        enemy.getDefRow()[0] = enemy.getGrid()[3][0].getAtk() + enemy.getGrid()[3][1].getAtk() + enemy.getGrid()[3][2].getAtk();
+        enemy.getDefRow()[1] = enemy.getGrid()[3][0].getDef() + enemy.getGrid()[3][1].getDef() + enemy.getGrid()[3][2].getDef();
+
         try(FileReader modReader = new FileReader("C:\\Users\\sensa\\IdeaProjects\\testGame\\src\\Game\\CardData\\Modifier.json")) {
             StringBuilder modString = new StringBuilder(" ");
             int i;

@@ -166,6 +166,7 @@ public class Main {
                 int id = input.nextInt();
                 current.getBoard().evolve(current, id);
             }
+
             default -> System.out.println("Invalid choice");
 
         }
