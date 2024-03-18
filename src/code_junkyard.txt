@@ -1243,3 +1243,24 @@ public class Calculation {
         c.calculate();
     }
 }
+
+uberRow[0] = board_Grid[0][0].getAtk() + board_Grid[0][1].getAtk() + board_Grid[0][2].getAtk();
+uberRow[1] = board_Grid[0][0].getDef() + board_Grid[0][1].getDef() + board_Grid[0][2].getDef();
+        enemy.getUberRow()[0] = enemy.getGrid()[0][0].getAtk() + enemy.getGrid()[0][1].getAtk() + enemy.getGrid()[0][2].getAtk();
+        enemy.getUberRow()[1] = enemy.getGrid()[0][0].getDef() + enemy.getGrid()[0][1].getDef() + enemy.getGrid()[0][2].getDef();
+        atkRow[0] = board_Grid[1][0].getAtk() + board_Grid[1][2].getAtk();
+        atkRow[1] = board_Grid[1][0].getDef() + board_Grid[1][2].getDef();
+        enemy.getAtkRow()[0] = enemy.getGrid()[1][0].getAtk() + enemy.getGrid()[1][2].getAtk();
+        enemy.getAtkRow()[1] = enemy.getGrid()[1][0].getDef() + enemy.getGrid()[1][2].getDef();
+        cDefRow[0] = board_Grid[1][1].getAtk() + board_Grid[2][0].getAtk() + board_Grid[2][2].getAtk();
+        cDefRow[1] = board_Grid[1][1].getDef() + board_Grid[2][0].getDef() + board_Grid[2][2].getDef();
+        enemy.getCDefRow()[0] = enemy.getGrid()[1][1].getAtk() + enemy.getGrid()[2][0].getAtk() + enemy.getGrid()[2][2].getAtk();
+        enemy.getCDefRow()[1] = enemy.getGrid()[1][1].getDef() + enemy.getGrid()[2][0].getDef() + enemy.getGrid()[2][2].getDef();
+        coreBlock[0] = board_Grid[2][1].getAtk();
+        coreBlock[1] = board_Grid[2][1].getDef();
+        enemy.getCoreBlock()[0] = enemy.getGrid()[2][1].getAtk();
+        enemy.getCoreBlock()[1] = enemy.getGrid()[2][1].getDef();
+        defRow[0] = board_Grid[3][0].getAtk() + board_Grid[3][1].getAtk() + board_Grid[3][2].getAtk();
+        defRow[1] = board_Grid[3][0].getDef() + board_Grid[3][1].getDef() + board_Grid[3][2].getDef();
+        enemy.getDefRow()[0] = enemy.getGrid()[3][0].getAtk() + enemy.getGrid()[3][1].getAtk() + enemy.getGrid()[3][2].getAtk();
+        enemy.getDefRow()[1] = enemy.getGrid()[3][0].getDef() + enemy.getGrid()[3][1].getDef() + enemy.getGrid()[3][2].getDef();

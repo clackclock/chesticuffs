@@ -41,26 +41,90 @@ public class Board {
     public int[] getDefRow(){return defRow; }
 
     public void calculate(Board enemy) throws IOException{
-        uberRow[0] = board_Grid[0][0].getAtk() + board_Grid[0][1].getAtk() + board_Grid[0][2].getAtk();
-        uberRow[1] = board_Grid[0][0].getDef() + board_Grid[0][1].getDef() + board_Grid[0][2].getDef();
-        enemy.getUberRow()[0] = enemy.getGrid()[0][0].getAtk() + enemy.getGrid()[0][1].getAtk() + enemy.getGrid()[0][2].getAtk();
-        enemy.getUberRow()[1] = enemy.getGrid()[0][0].getDef() + enemy.getGrid()[0][1].getDef() + enemy.getGrid()[0][2].getDef();
-        atkRow[0] = board_Grid[1][0].getAtk() + board_Grid[1][2].getAtk();
-        atkRow[1] = board_Grid[1][0].getDef() + board_Grid[1][2].getDef();
-        enemy.getAtkRow()[0] = enemy.getGrid()[1][0].getAtk() + enemy.getGrid()[1][2].getAtk();
-        enemy.getAtkRow()[1] = enemy.getGrid()[1][0].getDef() + enemy.getGrid()[1][2].getDef();
-        cDefRow[0] = board_Grid[1][1].getAtk() + board_Grid[2][0].getAtk() + board_Grid[2][2].getAtk();
-        cDefRow[1] = board_Grid[1][1].getDef() + board_Grid[2][0].getDef() + board_Grid[2][2].getDef();
-        enemy.getCDefRow()[0] = enemy.getGrid()[1][1].getAtk() + enemy.getGrid()[2][0].getAtk() + enemy.getGrid()[2][2].getAtk();
-        enemy.getCDefRow()[1] = enemy.getGrid()[1][1].getDef() + enemy.getGrid()[2][0].getDef() + enemy.getGrid()[2][2].getDef();
-        coreBlock[0] = board_Grid[2][1].getAtk();
-        coreBlock[1] = board_Grid[2][1].getDef();
-        enemy.getCoreBlock()[0] = enemy.getGrid()[2][1].getAtk();
-        enemy.getCoreBlock()[1] = enemy.getGrid()[2][1].getDef();
-        defRow[0] = board_Grid[3][0].getAtk() + board_Grid[3][1].getAtk() + board_Grid[3][2].getAtk();
-        defRow[1] = board_Grid[3][0].getDef() + board_Grid[3][1].getDef() + board_Grid[3][2].getDef();
-        enemy.getDefRow()[0] = enemy.getGrid()[3][0].getAtk() + enemy.getGrid()[3][1].getAtk() + enemy.getGrid()[3][2].getAtk();
-        enemy.getDefRow()[1] = enemy.getGrid()[3][0].getDef() + enemy.getGrid()[3][1].getDef() + enemy.getGrid()[3][2].getDef();
+        for(int f = 0; f < 2; f++){
+            for(int r = 0; r < 3; r++){
+                if(!board_Grid[0][r].isEmpty()){
+                    if(f == 0) {
+                        uberRow[f] = uberRow[f] + board_Grid[0][r].getAtk();
+                    } else{
+                        uberRow[f] = uberRow[f] + board_Grid[0][r].getDef();
+                    }
+                }
+                if(!enemy.getGrid()[0][r].isEmpty()){
+                    if(f == 0) {
+                        enemy.getUberRow()[f] = enemy.getUberRow()[f] + enemy.getGrid()[0][r].getAtk();
+                    } else{
+                        enemy.getUberRow()[f] = enemy.getUberRow()[f] + enemy.getGrid()[0][r].getDef();
+                    }
+                }
+
+                if(!board_Grid[3][r].isEmpty()){
+                    if(f == 0) {
+                        defRow[f] = defRow[f] + board_Grid[3][r].getAtk();
+                    } else{
+                        defRow[f] = defRow[f] + board_Grid[3][r].getDef();
+                    }
+                }
+                if(!enemy.getGrid()[3][r].isEmpty()){
+                    if(f == 0) {
+                        enemy.getDefRow()[f] = enemy.getDefRow()[f] + enemy.getGrid()[3][r].getAtk();
+                    } else{
+                        enemy.getDefRow()[f] = enemy.getDefRow()[f] + enemy.getGrid()[3][r].getDef();
+                    }
+                }
+
+            }
+        }
+        if(!board_Grid[1][0].isEmpty()){
+            atkRow[0] = atkRow[0] + board_Grid[1][0].getAtk();
+            atkRow[1] = atkRow[1] +board_Grid[1][0].getDef();
+        }
+        if(!board_Grid[1][2].isEmpty()){
+            atkRow[0] = atkRow[0] + board_Grid[1][2].getAtk();
+            atkRow[1] = atkRow[1] + board_Grid[1][2].getDef();
+        }
+        if(!enemy.getGrid()[1][0].isEmpty()){
+            enemy.getAtkRow()[0] = enemy.getGrid()[1][0].getAtk() + enemy.getAtkRow()[0];
+            enemy.getAtkRow()[1] = enemy.getGrid()[1][0].getDef() + enemy.getAtkRow()[1];
+        }
+        if(!enemy.getGrid()[1][2].isEmpty()){
+            enemy.getAtkRow()[0] = enemy.getAtkRow()[0] + enemy.getGrid()[1][2].getAtk();
+            enemy.getAtkRow()[1] = enemy.getAtkRow()[1] + enemy.getGrid()[1][2].getDef();
+        }
+
+        if(!board_Grid[1][1].isEmpty()) {
+            cDefRow[0] = board_Grid[1][1].getAtk() + cDefRow[0];
+            cDefRow[1] = board_Grid[1][1].getDef() + cDefRow[1];
+        }
+        if(!board_Grid[2][0].isEmpty()){
+            cDefRow[0] = board_Grid[2][0].getAtk() + cDefRow[0];
+            cDefRow[1] = board_Grid[2][0].getDef() + cDefRow[1];
+        }
+        if(!board_Grid[2][2].isEmpty()){
+            cDefRow[0] = cDefRow[0] + board_Grid[2][2].getAtk();
+            cDefRow[1] = cDefRow[1] + board_Grid[2][2].getDef();
+        }
+        if(!enemy.getGrid()[1][1].isEmpty()) {
+            enemy.getCDefRow()[0] = enemy.getGrid()[1][1].getAtk() + enemy.getCDefRow()[0];
+            enemy.getCDefRow()[1] = enemy.getGrid()[1][1].getDef() + enemy.getCDefRow()[1];
+        }
+        if(!enemy.getGrid()[2][0].isEmpty()){
+            enemy.getCDefRow()[0] = enemy.getGrid()[2][0].getAtk() + enemy.getCDefRow()[0];
+            enemy.getCDefRow()[1] = enemy.getGrid()[2][0].getDef() + enemy.getCDefRow()[1];
+        }
+        if(!enemy.getGrid()[2][2].isEmpty()){
+            enemy.getCDefRow()[0] = enemy.getCDefRow()[0] + enemy.getGrid()[2][2].getAtk();
+            enemy.getCDefRow()[1] = enemy.getCDefRow()[1] + enemy.getGrid()[2][2].getDef();
+        }
+
+        if(!board_Grid[2][1].isEmpty()){
+            coreBlock[0] = board_Grid[2][1].getAtk();
+            coreBlock[1] = board_Grid[2][1].getDef();
+        }
+        if(!enemy.getGrid()[2][1].isEmpty()) {
+            enemy.getCoreBlock()[0] = enemy.getGrid()[2][1].getAtk();
+            enemy.getCoreBlock()[1] = enemy.getGrid()[2][1].getDef();
+        }
 
         try(FileReader modReader = new FileReader("C:\\Users\\sensa\\IdeaProjects\\testGame\\src\\Game\\CardData\\Modifier.json")) {
             StringBuilder modString = new StringBuilder(" ");
