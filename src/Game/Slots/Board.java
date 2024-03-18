@@ -879,18 +879,20 @@ public class Board {
                                 }
                             }
                         }
-                    }
 
-                    //get the card from database, when u find card save it, then put as many as you need in hand so u can place
-                    cardDatabase v = new cardDatabase();
-                    for (int j = 0; j < v.pack.size(); j++) {
-                        if(v.pack.get(j).getId() == newCard){
-                            Card nn = v.pack.get(j);
-                            for(int p = 0; p < newCardNum; p++){
-                                cc.getHand().add(nn);
+                        //get the card from database, when u find card save it, then put as many as you need in hand so u can place
+                        cardDatabase v = new cardDatabase();
+                        for (int j = 0; j < v.pack.size(); j++) {
+                            if(v.pack.get(j).getId() == newCard){
+                                Card nn = v.pack.get(j);
+                                for(int p = 0; p < newCardNum; p++){
+                                    cc.getHand().add(nn);
 
+                                }
                             }
                         }
+                    } else{
+                        System.out.println("Not enough");
                     }
 
                 }
