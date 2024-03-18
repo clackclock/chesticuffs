@@ -43,14 +43,14 @@ public class Board {
     public void calculate(Board enemy) throws IOException{
         for(int f = 0; f < 2; f++){
             for(int r = 0; r < 3; r++){
-                if(!board_Grid[0][r].isEmpty()){
+                if(board_Grid[0][r] != null){
                     if(f == 0) {
                         uberRow[f] = uberRow[f] + board_Grid[0][r].getAtk();
                     } else{
                         uberRow[f] = uberRow[f] + board_Grid[0][r].getDef();
                     }
                 }
-                if(!enemy.getGrid()[0][r].isEmpty()){
+                if(enemy.getGrid()[0][r] != null){
                     if(f == 0) {
                         enemy.getUberRow()[f] = enemy.getUberRow()[f] + enemy.getGrid()[0][r].getAtk();
                     } else{
@@ -58,14 +58,14 @@ public class Board {
                     }
                 }
 
-                if(!board_Grid[3][r].isEmpty()){
+                if(board_Grid[3][r] != null){
                     if(f == 0) {
                         defRow[f] = defRow[f] + board_Grid[3][r].getAtk();
                     } else{
                         defRow[f] = defRow[f] + board_Grid[3][r].getDef();
                     }
                 }
-                if(!enemy.getGrid()[3][r].isEmpty()){
+                if(enemy.getGrid()[3][r] != null){
                     if(f == 0) {
                         enemy.getDefRow()[f] = enemy.getDefRow()[f] + enemy.getGrid()[3][r].getAtk();
                     } else{
@@ -75,53 +75,53 @@ public class Board {
 
             }
         }
-        if(!board_Grid[1][0].isEmpty()){
+        if(board_Grid[1][0] != null){
             atkRow[0] = atkRow[0] + board_Grid[1][0].getAtk();
             atkRow[1] = atkRow[1] +board_Grid[1][0].getDef();
         }
-        if(!board_Grid[1][2].isEmpty()){
+        if(board_Grid[1][2] != null){
             atkRow[0] = atkRow[0] + board_Grid[1][2].getAtk();
             atkRow[1] = atkRow[1] + board_Grid[1][2].getDef();
         }
-        if(!enemy.getGrid()[1][0].isEmpty()){
+        if(enemy.getGrid()[1][0] != null){
             enemy.getAtkRow()[0] = enemy.getGrid()[1][0].getAtk() + enemy.getAtkRow()[0];
             enemy.getAtkRow()[1] = enemy.getGrid()[1][0].getDef() + enemy.getAtkRow()[1];
         }
-        if(!enemy.getGrid()[1][2].isEmpty()){
+        if(enemy.getGrid()[1][2] != null){
             enemy.getAtkRow()[0] = enemy.getAtkRow()[0] + enemy.getGrid()[1][2].getAtk();
             enemy.getAtkRow()[1] = enemy.getAtkRow()[1] + enemy.getGrid()[1][2].getDef();
         }
 
-        if(!board_Grid[1][1].isEmpty()) {
+        if(board_Grid[1][1] != null) {
             cDefRow[0] = board_Grid[1][1].getAtk() + cDefRow[0];
             cDefRow[1] = board_Grid[1][1].getDef() + cDefRow[1];
         }
-        if(!board_Grid[2][0].isEmpty()){
+        if(board_Grid[2][0] != null){
             cDefRow[0] = board_Grid[2][0].getAtk() + cDefRow[0];
             cDefRow[1] = board_Grid[2][0].getDef() + cDefRow[1];
         }
-        if(!board_Grid[2][2].isEmpty()){
+        if(board_Grid[2][2] != null){
             cDefRow[0] = cDefRow[0] + board_Grid[2][2].getAtk();
             cDefRow[1] = cDefRow[1] + board_Grid[2][2].getDef();
         }
-        if(!enemy.getGrid()[1][1].isEmpty()) {
+        if(enemy.getGrid()[1][1] != null) {
             enemy.getCDefRow()[0] = enemy.getGrid()[1][1].getAtk() + enemy.getCDefRow()[0];
             enemy.getCDefRow()[1] = enemy.getGrid()[1][1].getDef() + enemy.getCDefRow()[1];
         }
-        if(!enemy.getGrid()[2][0].isEmpty()){
+        if(enemy.getGrid()[2][0] != null){
             enemy.getCDefRow()[0] = enemy.getGrid()[2][0].getAtk() + enemy.getCDefRow()[0];
             enemy.getCDefRow()[1] = enemy.getGrid()[2][0].getDef() + enemy.getCDefRow()[1];
         }
-        if(!enemy.getGrid()[2][2].isEmpty()){
+        if(enemy.getGrid()[2][2] != null){
             enemy.getCDefRow()[0] = enemy.getCDefRow()[0] + enemy.getGrid()[2][2].getAtk();
             enemy.getCDefRow()[1] = enemy.getCDefRow()[1] + enemy.getGrid()[2][2].getDef();
         }
 
-        if(!board_Grid[2][1].isEmpty()){
+        if(board_Grid[2][1] != null){
             coreBlock[0] = board_Grid[2][1].getAtk();
             coreBlock[1] = board_Grid[2][1].getDef();
         }
-        if(!enemy.getGrid()[2][1].isEmpty()) {
+        if(enemy.getGrid()[2][1] != null) {
             enemy.getCoreBlock()[0] = enemy.getGrid()[2][1].getAtk();
             enemy.getCoreBlock()[1] = enemy.getGrid()[2][1].getDef();
         }
@@ -134,7 +134,8 @@ public class Board {
                 modString.append((char) i);
             }
             JSONObject jsonMODObject = new JSONObject(modString.toString());
-            JSONArray skillList = (JSONArray) jsonMODObject.get("cards");
+            JSONObject dList = jsonMODObject.getJSONObject("deck");
+            JSONArray skillList = (JSONArray) dList.get("cards");
 
             for (int j = 0; j < skillList.length(); j++) {
                 JSONObject cList = skillList.getJSONObject(j);
@@ -153,12 +154,15 @@ public class Board {
 
                         for(int l = 0; l < 4; l++){
                             for (int o = 0; o < 3; o++) {
-                                if (board_Grid[l][o].getSlot().activeTypeOne().equals(tC) || board_Grid[j][l].getSlot().activeTypeTwo().equals(tC)) {
-                                    tik++;
+                                if(board_Grid[l][o] != null) {
+                                    if (board_Grid[l][o].getSlot().activeTypeOne().equals(tC) || board_Grid[j][l].getSlot().activeTypeTwo().equals(tC)) {
+                                        tik++;
+                                    }
                                 }
                             }
                         }
-                        for (int k = 0; k < tik; k++) {
+                        for (int k = 0; k < 3; k++) {
+                            assert board_Grid[0][k] != null;
                             if (cID == board_Grid[0][k].getSlot().getId()) {
                                 uberRow[0] = uberRow[0] + mAtk;
                                 uberRow[1] = uberRow[1] + mDef;
@@ -171,6 +175,7 @@ public class Board {
                                 cDefRow[0] = cDefRow[0] + mAtk;
                                 cDefRow[1] = cDefRow[1] + mDef;
                             }
+                            assert board_Grid[3][k] != null;
                             if (cID == board_Grid[3][k].getSlot().getId()) {
                                 defRow[0] = defRow[0] + mAtk;
                                 defRow[1] = defRow[1] + mDef;
