@@ -1264,3 +1264,9 @@ uberRow[1] = board_Grid[0][0].getDef() + board_Grid[0][1].getDef() + board_Grid[
         defRow[1] = board_Grid[3][0].getDef() + board_Grid[3][1].getDef() + board_Grid[3][2].getDef();
         enemy.getDefRow()[0] = enemy.getGrid()[3][0].getAtk() + enemy.getGrid()[3][1].getAtk() + enemy.getGrid()[3][2].getAtk();
         enemy.getDefRow()[1] = enemy.getGrid()[3][0].getDef() + enemy.getGrid()[3][1].getDef() + enemy.getGrid()[3][2].getDef();
+
+uberRow = new int[2];
+atkRow = new int[2];
+cDefRow = new int[2];
+coreBlock = new int[2];
+defRow = new int[2];
