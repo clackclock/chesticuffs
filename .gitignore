@@ -2,8 +2,9 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-**/src/Game/code_junkyard.txt
-**/src/Game/CardData/Evoltuions.json
+**/src/code_junkyard.txt
+**/images
+**/Chesticuffs_v2_test
 
 ### Eclipse ###
 .apt_generated
