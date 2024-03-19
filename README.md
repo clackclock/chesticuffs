@@ -1,4 +1,4 @@
-<img align = "left" height = "64" src = "./chest.png">
+<img align = "left" height = "64" src = "./chesticuffs_logoW.png">
 
 # Motivation
 
