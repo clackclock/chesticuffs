@@ -1,0 +1,88 @@
+using System;
+
+
+namespace ChestCCTest{
+    class Program{
+        static void Main(string[] args){
+            //name of the window
+            Console.Title = "ChestTest";
+            //text color = technoFit (you have no choice)
+            Console.ForegroundColor = ConsoleColor.Red;
+            //control window size with an error lel
+            Console.WindowHeight = 30;
+            Console.WindowWidth = 120;
+
+            //test text
+            double numbs;
+            double numbs01;
+
+            Console.WriteLine("Welcome");
+            Console.WriteLine("name?");
+            string userName = Console.ReadLine();  
+            Console.WriteLine("Enter the Problems " + userName + "?");
+            Console.Write("How Many times?: ");
+
+            //convert string type command into smthg that can read whatever var type
+            numbs = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Are you sure?: ");
+
+            numbs01 = Convert.ToDouble(Console.ReadLine());
+
+            double result = numbs + numbs01;
+
+            Console.WriteLine("Soooo... this many times?: " + result);
+            if(result >= 10){
+                Console.WriteLine("Wow, a Drama Eater. It's been years since the last");
+
+            }
+
+
+            //wait for input b4 closing
+            Console.ReadKey();
+        }
+    }
+    
+}
+
+
+
+using System;
+
+
+namespace ChestCCTest{
+    class chestPlace{
+        public string name;
+        private static int NumberOfPlaces;
+        public float Sprite;
+        public chestPlace(string _name){
+            name = _name;
+            NumberOfPlaces = 3;
+
+        }
+        public void placeItem(){
+            if(NumberOfPlaces != 0){
+                NumberOfPlaces--;
+                Console.WriteLine(name +" Placed __");
+            }else if (NumberOfPlaces == 0){
+                Console.WriteLine("No more");
+            }
+        }
+    }
+    class Program{
+        static void Main(string[] args){
+            chestPlace yellowPiece = new chestPlace("YellowPiece");
+            
+            Console.WriteLine("Welcome Place cards");
+
+            yellowPiece.placeItem();
+            yellowPiece.placeItem();
+            yellowPiece.placeItem();
+            yellowPiece.placeItem();
+
+            Console.ReadKey();
+        }
+    }
+    
+}
+
