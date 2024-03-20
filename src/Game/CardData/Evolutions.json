@@ -1,10 +1,11 @@
 {
   "title": "Basically Crafting",
-  "version": 0.2,
+  "version": 0.3,
 
   "evolve": [
-    {"name" : "Sapling_to_Plank", "itemIDToEvolve": 11, "requiredNumOfItem": 3, "finalItemID": 21, "numAddToBoard": 2}
-
+    {"name" : "Sapling_to_Plank", "itemIDToEvolve": 11, "requiredNumOfItem": 3, "finalItemID": 21, "numAddToBoard": 2},
+    {"name" :  "wheat_to_hayBale", "itemIDToEvolve":  31, "requiredNumOfItem": 3, "finalItemID": 8, "numAddToBoard": 1},
+    {"name" :  "gSeeds_to_Gourd", "itemIDToEvolve":  4, "requiredNumOfItem": 2, "finalItemID": 5, "numAddToBoard": 1}
   ]
 
 }
