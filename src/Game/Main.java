@@ -78,7 +78,7 @@ public class Main {
             case "4" ->{
                 if(current.hasItem()){
                     ItemSkills useItem;
-                    System.out.println("Which Item do you want to use?");
+                    System.out.println("Which Item do you want to use? (0-4)");
                     int numSelectInput = input.nextInt();
                     input.nextLine(); // input int String bug happened I think
                     String cardType = current.getHand().get(numSelectInput).activeTypeOne();
@@ -175,9 +175,9 @@ public class Main {
 
     public static void summonPhase(Player current, Player one, Player two) throws IOException {
         Scanner input = new Scanner(System.in);
-        //every 4 or 5 rounds there will be a calculation, 3 is the test
+        //every 8 or 10 rounds there will be a calculation, 3 or 6 is the test
         int roundCount = 1;
-        while (roundCount % 3 != 0) {
+        while (roundCount % 6 != 0) {
             System.out.println("player two");
             System.out.println(Arrays.deepToString(two.getGrid()));
             System.out.println("player one");

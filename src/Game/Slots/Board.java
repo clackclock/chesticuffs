@@ -568,13 +568,13 @@ public class Board {
                 getUberRow()[0] = getUberRow()[0] - board_Grid[0][posIndex].getAtk();
                 getUberRow()[1] = getUberRow()[1] - board_Grid[0][posIndex].getDef();
 
-                board_Grid[0][posIndex].remove();
+                board_Grid[0][posIndex] = null;
             }
             case "ATTACK" -> {
                 getAtkRow()[0] = getAtkRow()[0] - board_Grid[1][posIndex].getAtk();
                 getAtkRow()[1] = getAtkRow()[1] - board_Grid[1][posIndex].getDef();
 
-                board_Grid[1][posIndex].remove();
+                board_Grid[1][posIndex] = null;
             } //only 0 and 2 are valid
             case "CoreDEFENCE" -> {
                 Scanner input = new Scanner(System.in);
@@ -584,19 +584,19 @@ public class Board {
                 getCDefRow()[0] = getCDefRow()[0] - board_Grid[posIndex][rowSelect].getAtk();
                 getCDefRow()[1] = getCDefRow()[1] - board_Grid[posIndex][rowSelect].getDef();
 
-                board_Grid[posIndex][rowSelect].remove(); // only 0 and 2 are valid for row 2 and 1 is valid row 1
+                board_Grid[posIndex][rowSelect] = null; // only 0 and 2 are valid for row 2 and 1 is valid row 1
             }
             case "CORE" ->{
                 getCoreBlock()[0] = getCoreBlock()[0] - board_Grid[2][1].getAtk();
                 getCoreBlock()[1] = getCoreBlock()[1] - board_Grid[2][1].getDef();
 
-                board_Grid[2][1].remove();
+                board_Grid[2][1] = null;
             }// only 1 is valid
             case "DEFENCE" ->{
                 getDefRow()[0] = getDefRow()[0] - board_Grid[3][posIndex].getAtk();
                 getDefRow()[1] = getDefRow()[1] - board_Grid[3][posIndex].getDef();
 
-                board_Grid[3][posIndex].remove();
+                board_Grid[3][posIndex] = null;
             }
         }
 
