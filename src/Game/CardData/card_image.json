@@ -1,0 +1,32 @@
+{
+  "title": "cardID to images file",
+  "version": 0.1,
+
+  "cardList": [
+    {"cID" : 0, "imageID": "images/0_Front.jpg"},{"cID" : 1, "imageID":"images/13_Front.jpg"},
+    {"cID" : 2, "imageID": "images/23_Front.jpg"},{"cID" : 3, "imageID": "images/19_Front.jpg"},
+    {"cID" : 4, "imageID": "images/2_Front.jpg"},{"cID" : 5, "imageID": "images/0_Front.jpg"},
+    {"cID" : 6, "imageID": "images/0_Front.jpg"},{"cID" : 7, "imageID": "images/0_Front.jpg"},
+    {"cID" : 8, "imageID": "images/0_Front.jpg"},{"cID" : 9, "imageID": "images/0_Front.jpg"},
+    {"cID" : 10, "imageID": "images/0_Front.jpg"},{"cID" : 11, "imageID": "images/0_Front.jpg"},
+    {"cID" : 12, "imageID": "images/0_Front.jpg"},{"cID" : 13, "imageID": "images/0_Front.jpg"},
+    {"cID" : 14, "imageID": "images/0_Front.jpg"},{"cID" : 15, "imageID": "images/0_Front.jpg"},
+    {"cID" : 16, "imageID": "images/0_Front.jpg"},{"cID" : 17, "imageID": "images/0_Front.jpg"},
+    {"cID" : 18, "imageID": "images/0_Front.jpg"},{"cID" : 19, "imageID": "images/0_Front.jpg"},
+    {"cID" : 20, "imageID": "images/0_Front.jpg"},{"cID" : 21, "imageID": "images/0_Front.jpg"},
+    {"cID" : 22, "imageID": "images/0_Front.jpg"},{"cID" : 23, "imageID": "images/0_Front.jpg"},
+    {"cID" : 24, "imageID": "images/0_Front.jpg"},{"cID" : 25, "imageID": "images/0_Front.jpg"},
+    {"cID" : 26, "imageID": "images/0_Front.jpg"},{"cID" : 27, "imageID": "images/0_Front.jpg"},
+    {"cID" : 28, "imageID": "images/0_Front.jpg"},{"cID" : 29, "imageID": "images/0_Front.jpg"},
+    {"cID" : 30, "imageID": "images/0_Front.jpg"},{"cID" : 31, "imageID": "images/0_Front.jpg"},
+    {"cID" : 32, "imageID": "images/0_Front.jpg"},{"cID" : 33, "imageID": "images/0_Front.jpg"},
+    {"cID" : 34, "imageID": "images/0_Front.jpg"},{"cID" : 35, "imageID": "images/0_Front.jpg"},
+    {"cID" : 36, "imageID": "images/0_Front.jpg"},{"cID" : 37, "imageID": "images/0_Front.jpg"},
+    {"cID" : 38, "imageID": "images/0_Front.jpg"},{"cID" : 39, "imageID": "images/0_Front.jpg"},
+    {"cID" : 40, "imageID": "images/0_Front.jpg"},{"cID" : 41, "imageID": "images/0_Front.jpg"},
+    {"cID" : 42, "imageID": "images/0_Front.jpg"}
+
+
+  ]
+
+}
