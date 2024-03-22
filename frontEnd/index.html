@@ -23,10 +23,20 @@
     header{
         margin: 0%;
         padding: 0%;
-
+        flex-wrap: wrap;
+        flex-direction: row;
         justify-content: middle;
     }
     header, img{
+        display: flex;
+        justify-content: start;
+        align-items: start;
+
+        height: 62px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    header a{
         display: flex;
         justify-content: start;
         align-items: start;
@@ -57,8 +67,8 @@
         outline-width: 5px;
         outline-offset: 0;
 
-
-        margin: 10px;
+        color: white;
+        margin: 8px;
         padding: 5px
     }
     .mainPanel img{
@@ -70,6 +80,7 @@
         align-items: center;
         flex-wrap: wrap;
         flex-direction: row;
+        margin: 5px;
     }
     .consoleHolder{
         display: flex;
@@ -77,6 +88,29 @@
         align-items: middle;
         flex-wrap: wrap;
         flex-direction: column;
+    }
+    .hand{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        /* flex-wrap: wrap; */
+        flex-direction: row;
+
+        width: 260px;
+        overflow-x: auto;
+
+        background-color: rgb(125, 255, 0, 0.5);
+        outline-color: #a9a9a9;
+        outline-style: double;
+        outline-width: 5px;
+        outline-offset: 0;
+
+        margin: 5px;
+    }
+    .hand img{
+        padding: 3px;
+
+        height: 250px;
     }
 
     .sideDock{
@@ -139,17 +173,19 @@
         border-radius: 5px;
         border: 3px double #aa9064;
     }
-
+    button{
+        margin: 5px;
+    }
     .button {
           display: inline-block;
-          padding: 15px 25px;
-          font-size: 24px;
+          padding: 10px 20px;
+          font-size: 18px;
           cursor: pointer;
           text-align: center;
           text-decoration: none;
           outline: none;
           color: #fff;
-          background-color: #04AA6D;
+          background-color: #aa9064;
           border: none;
           border-radius: 15px;
           box-shadow: 0 9px #999;
@@ -171,7 +207,7 @@
 
 </script>
 <body>
-    <header><a href= "https://clackclock.github.io/imagine_looking_for_this/tickTock_clock/index.html"><img alt = "logo" src = "../images/chesticuffs_logo.png"></a> CHEST-I-CUFF TESTING...</header>
+    <header><a href= "https://clackclock.github.io/imagine_looking_for_this/tickTock_clock/index.html"><img alt = "logo" src = "../images/chesticuffs_logo.png"><img alt = "logo" src = "../images/chesticuffs_logoW.png"></a> CHEST-I-CUFF TESTING...</header>
 
     <hr />
 
@@ -194,7 +230,7 @@
         </div>
         <div class = "mainPanel">
             <div id = "otherPlayer">
-                <img alt = "board" src = "../images/chest_Tray2.png">
+                <a><img alt = "board" src = "../images/chest_Tray2.png">Player2</a>
                 <div class = "consoleHolder">
                     <button class = "button"> Evolve </button>
                     <button class = "button"> Activate Combo</button>
@@ -202,10 +238,17 @@
                     <button class = "button"> Discard [Hand] </button>
                     <button class = "button"> Discard [Board] </button>
                 </div>
-                hand, atk/def
+                <div class = "hand">
+                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+                </div>
+
             </div>
             <div id = "mainPlayer">
-                <img alt = "boardO" src = "../images/chest_Tray2.png">
+                <a><img alt = "boardO" src = "../images/chest_Tray2.png"> Player1</a>
                 <div class = "consoleHolder">
                     <button class = "button"> Evolve </button>
                     <button class = "button"> Activate Combo</button>
@@ -213,7 +256,13 @@
                     <button class = "button"> Discard [Hand] </button>
                     <button class = "button"> Discard [Board] </button>
                 </div>
-                hand, atk/def
+                <div class = "hand">
+                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+                </div>
             </div>
         </div>
     </main>
@@ -221,7 +270,7 @@
     <hr />
 </body>
 <footer>
-    <p> ©prof.CluckCluck 2024 </p>
+<!--    <p> ©prof.CluckCluck 2024 </p>-->
     <p> SOMEONE SHOULD PUT YOU IN A BOX FLOATING DOWN THE RIVER GRANDMA! </p>
 </footer>
 </html>
