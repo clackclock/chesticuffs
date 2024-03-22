@@ -7,6 +7,7 @@
       "ingredients":
       [
         {
+          "getCard" : false,
           "cardCheck": true,
           "card": "Plank",
           "cardID": 21,
@@ -23,6 +24,7 @@
           ]
         },
         {
+          "getCard" : false,
           "cardCheck": false,
           "typeCheck": true,
           "type": "PLANT",
@@ -58,8 +60,38 @@
         "formID": "17"
       }
 
+    },
+    {
+      "ingredients": [
+        {
+          "getCard" : true,
+          "cardCheck": false,
+          "typeCheck": false,
+          "position": [
+            {
+              "additionalPoints": true,
+              "ePoints": 3,
+              "posName": "ATTACK"
+            },
+            {
+              "additionalPoints": false,
+              "posName": "CORE"
+            },
+            {
+              "additionalPoints": true,
+              "ePoints": 1,
+              "posName": "DEFENCE"
+            }
+          ]
+        }
+      ],
+      "result":
+      {
+        "ItemForm": "format:Stairs",
+        "passNum": 3,
+        "formID": "27"
+      }
+
     }
-
   ]
-
 }

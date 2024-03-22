@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chest-i-cuffs</title>
+
+    <link rel ="icon" href = "../images/chesticuffs_logoW.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<style>
+    body{
+        /* https://timelessmoon.getarchive.net/amp/media/wood-desk-wallpaper-backgrounds-textures-bea895 */
+        background-image: url("https://cdn12.picryl.com/photo/2016/12/31/wood-desk-wallpaper-backgrounds-textures-bea895-1024.jpg");
+
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color:  #03045e;
+        /*         color: #caf0f8; */
+        margin: 10px;
+        cursor: crosshair;
+    }
+    header{
+        margin: 0%;
+        padding: 0%;
+
+        justify-content: middle;
+    }
+    header, img{
+        display: flex;
+        justify-content: start;
+        align-items: start;
+
+        height: 62px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    main{
+        display: flex;
+        justify-content: start;
+        align-items: start;
+
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .mainPanel{
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(0, 0, 0, 0.5);
+        outline-color: #a9a9a9;
+        outline-style: ridge;
+        outline-width: 5px;
+        outline-offset: 0;
+
+
+        margin: 10px;
+        padding: 5px
+    }
+    .mainPanel img{
+        height: 325px;
+    }
+    #mainPlayer, #otherPlayer{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .consoleHolder{
+        display: flex;
+        justify-content: start;
+        align-items: middle;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .sideDock{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .zoomPanel{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        /* flex-wrap: wrap; */
+        flex-direction: column;
+
+        height: 500px;
+        overflow-y: auto;
+
+        background-color: rgb(255, 125, 0, 0.5);
+        outline-color: #a9a9a9;
+        outline-style: double;
+        outline-width: 5px;
+        outline-offset: 0;
+
+        margin: 20px;
+    }
+
+    .zoomPanel img{
+        padding: 5px;
+
+        height: 400px;
+    }
+
+    .zoomPanel text{
+        display: flex;
+        display: inline-block;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding: 3px;
+        margin: 5px;
+
+        font-size: 15pt;
+        width: 300px;
+        height: 150px;
+
+    }
+    textarea{
+        height: 150px;
+        width: 300px;
+    }
+     *::-webkit-scrollbar {
+        width: 10px;
+    }
+    *::-webkit-scrollbar-track {
+        background: #c0c0c0;
+    }
+    *::-webkit-scrollbar-thumb {
+        background-color: #ffd700;
+        border-radius: 5px;
+        border: 3px double #aa9064;
+    }
+
+    .button {
+          display: inline-block;
+          padding: 15px 25px;
+          font-size: 24px;
+          cursor: pointer;
+          text-align: center;
+          text-decoration: none;
+          outline: none;
+          color: #fff;
+          background-color: #04AA6D;
+          border: none;
+          border-radius: 15px;
+          box-shadow: 0 9px #999;
+    }
+    .button:hover {background-color: #3e8e41;}
+    .button:active {
+      background-color: #3e8e41;
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+
+    footer{
+        display: flex;
+        justify-content: center;
+    }
+
+</style>
+<script>
+
+</script>
+<body>
+    <header><a href= "https://clackclock.github.io/imagine_looking_for_this/tickTock_clock/index.html"><img alt = "logo" src = "../images/chesticuffs_logo.png"></a> CHEST-I-CUFF TESTING...</header>
+
+    <hr />
+
+    <main>
+        <div class = "sideDock">
+        <div class = "zoomPanel">
+            <div id = "imageView">
+                <img alt = "selectedCard" src = "../images/0_Back.jpg">
+                <text id = "cardText"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </text>
+            </div>
+            <div id = "buildView">
+                <img  alt = "builtCard" src = "../images/36_Back.jpg">
+                <text id = "comboText"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</text>
+            </div>
+            <img alt = "boardSummary" src="../images/42%20-%20Board%20(Front).jpg">
+        </div>
+            <label>
+                <textarea>Chat Coming Soon...or Game Log </textarea>
+            </label>
+        </div>
+        <div class = "mainPanel">
+            <div id = "otherPlayer">
+                <img alt = "board" src = "../images/chest_Tray2.png">
+                <div class = "consoleHolder">
+                    <button class = "button"> Evolve </button>
+                    <button class = "button"> Activate Combo</button>
+                    <button class = "button"> Use Item </button>
+                    <button class = "button"> Discard [Hand] </button>
+                    <button class = "button"> Discard [Board] </button>
+                </div>
+                hand, atk/def
+            </div>
+            <div id = "mainPlayer">
+                <img alt = "boardO" src = "../images/chest_Tray2.png">
+                <div class = "consoleHolder">
+                    <button class = "button"> Evolve </button>
+                    <button class = "button"> Activate Combo</button>
+                    <button class = "button"> Use Item </button>
+                    <button class = "button"> Discard [Hand] </button>
+                    <button class = "button"> Discard [Board] </button>
+                </div>
+                hand, atk/def
+            </div>
+        </div>
+    </main>
+
+    <hr />
+</body>
+<footer>
+    <p> ©prof.CluckCluck 2024 </p>
+    <p> SOMEONE SHOULD PUT YOU IN A BOX FLOATING DOWN THE RIVER GRANDMA! </p>
+</footer>
+</html>
