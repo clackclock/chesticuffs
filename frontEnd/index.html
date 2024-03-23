@@ -45,6 +45,11 @@
         flex-wrap: wrap;
         flex-direction: row;
     }
+    header .menuIcon a{
+        display: flex;
+        justify-content: end;
+        align-items: end;
+    }
 
     main{
         display: flex;
@@ -99,7 +104,7 @@
         width: 260px;
         overflow-x: auto;
 
-        background-color: rgb(125, 255, 0, 0.5);
+        background-color: rgb(125, 255, 255, 0.4);
         outline-color: #a9a9a9;
         outline-style: double;
         outline-width: 5px;
@@ -189,6 +194,7 @@
           border: none;
           border-radius: 15px;
           box-shadow: 0 9px #999;
+          cursor: crosshair;
     }
     .button:hover {background-color: #3e8e41;}
     .button:active {
@@ -207,7 +213,16 @@
 
 </script>
 <body>
-    <header><a href= "https://clackclock.github.io/imagine_looking_for_this/tickTock_clock/index.html"><img alt = "logo" src = "../images/chesticuffs_logo.png"><img alt = "logo" src = "../images/chesticuffs_logoW.png"></a> CHEST-I-CUFF TESTING...</header>
+    <header>
+        <a href= "https://clackclock.github.io/imagine_looking_for_this/tickTock_clock/index.html">
+            <img alt = "logo" src = "../images/chesticuffs_logo.png">
+            <img alt = "logo" src = "../images/chesticuffs_logoW.png">
+        </a>
+        <p>CHEST-I-CUFF TESTING...</p>
+        <div class = "menuIcon">
+            <a><img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Icon_menu_hover.png"></a>
+        </div>
+    </header>
 
     <hr />
 
