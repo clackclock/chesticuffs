@@ -25,7 +25,7 @@ public class Human implements Player {
         cards.cardData();
         int deckSize = 30;
         for (int i = 0; i < deckSize; i++) {
-            int shuffle = r.nextInt(1, cards.pack.size() - 1);
+            int shuffle = r.nextInt( cards.pack.size());
             deck.add(cards.pack.get(shuffle));
         }
     }
@@ -35,7 +35,7 @@ public class Human implements Player {
         cards.cardData();
         int handSize = 5;
         for (int i = 0; i < handSize; i++) {
-            int shuffle = r.nextInt(0, deck.size() - 1);
+            int shuffle = r.nextInt(deck.size() );
             hand.add(deck.get(shuffle));
             //deck.remove(shuffle);
         }
@@ -59,7 +59,7 @@ public class Human implements Player {
     }
     public void pickUpCard() {
         Card up;
-        int shuffle = r.nextInt(0, deck.size());
+        int shuffle = r.nextInt(deck.size());
         up = deck.get(shuffle);
         if (deck.size() == 0) {
             System.out.println("No more cards, SUFFER");
