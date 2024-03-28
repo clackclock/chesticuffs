@@ -23,6 +23,8 @@ _I'm mostly basing it off of videos and rules I've found from other people who'v
 
 [new link for rulebook post for Chesticuffs at r/Chesticuffs](https://www.reddit.com/r/Chesticuffs/comments/lcgvi3/a_long_booklet_of_chesticuffs_rules_links_pictures/)
 
+[Reddit4Stuff. “Documentation of the Chesticuff lore”](https://docs.google.com/document/d/1FZjgIGtJDya8eL0SmxLfq2KKagiiVtjJJWZzWISQOkc/edit?usp=sharing)
+
 As previously stated this is a very scuffed version to everything above has been mashed together to suit my tastes and make the game _"work"_. The research was as thourough as it could
 be but the execution is on trial for assault and battery of the first-degree.
 
