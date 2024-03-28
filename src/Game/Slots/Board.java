@@ -710,19 +710,7 @@ public class Board {
                             //points just add to the card ig
 
                         }
-                        //check all positions the check results
-                        JSONObject getResult = tmpRecipe.getJSONObject("result");
-                        int r = getResult.getInt("passNum");
-                        if(checkResults == r){
-                            int buildID = tmpRecipe.getInt("formID");
-                            cardDatabase fd = new cardDatabase();
-                            for(ComboBuild x: fd.formPack){
-                                if(x.getId() == buildID){
-                                    System.out.println(x.getItemName());
-                                    playerBoard.getPossibleBuilds().add(x);
-                                }
-                            }
-                        }
+                        //where results were
 
                     }else if(needCard && !stepTreat && !needType){
                         int tmpID = tmpIngredients.getInt("cardID");
@@ -827,19 +815,7 @@ public class Board {
                             }
 
                         }
-                        //check all positions the check results
-                        JSONObject getResult = tmpRecipe.getJSONObject("result");
-                        int r = getResult.getInt("passNum");
-                        if(checkResults == r){
-                            int buildID = tmpRecipe.getInt("formID");
-                            cardDatabase fd = new cardDatabase();
-                            for(ComboBuild x: fd.formPack){
-                                if(x.getId() == buildID){
-                                    System.out.println(x.getItemName());
-                                    playerBoard.getPossibleBuilds().add(x);
-                                }
-                            }
-                        }
+                       //where results were
 
                     }else if(stepTreat && !needCard && !needType){
                         for(int l = 0; l < getPos.length(); l++){
@@ -976,26 +952,25 @@ public class Board {
                                         checkResults++;
                                     }
                                 }
-
-                                JSONObject getResult = tmpRecipe.getJSONObject("result");
-                                int r = getResult.getInt("passNum");
-                                if(checkResults == r){
-                                    int buildID = tmpRecipe.getInt("formID");
-                                    cardDatabase fd = new cardDatabase();
-                                    for(ComboBuild x: fd.formPack){
-                                        if(x.getId() == buildID){
-                                            System.out.println(x.getItemName());
-                                            playerBoard.getPossibleBuilds().add(x);
-                                        }
-                                    }
-                                }
+                               //where results was
                             }
-                            //points just add to the card ig
+                            //points just add to the bundles
 
                         }
                     }
 
-
+                    JSONObject getResult = tmpRecipe.getJSONObject("result");
+                    int r = getResult.getInt("passNum");
+                    if(checkResults == r){
+                        int buildID = tmpRecipe.getInt("formID");
+                        cardDatabase fd = new cardDatabase();
+                        for(ComboBuild x: fd.formPack){
+                            if(x.getId() == buildID){
+                                System.out.println(x.getItemName());
+                                playerBoard.getPossibleBuilds().add(x);
+                            }
+                        }
+                    }
                 }
 
             }
