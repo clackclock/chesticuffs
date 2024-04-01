@@ -1,0 +1,65 @@
+{
+  "title": "Item Recipe Book",
+  "version": 0.1,
+
+  "recipe_List":[
+    {
+      "ingredients":
+      [
+        {
+          "cardCheck": true,
+          "card": "Plank",
+          "cardID": 21,
+          "typeCheck": false,
+          "position": [
+            {
+              "additionalPoints": false,
+              "posName": "CoreDEFENCE"
+            },
+            {
+              "additionalPoints": false,
+              "posName": "ATTACK"
+            }
+          ]
+        },
+        {
+          "cardCheck": false,
+          "typeCheck": true,
+          "type": "PLANT",
+          "position": [
+            {
+              "additionalPoints": false,
+              "posName": "UBER"
+            },
+            {
+              "additionalPoints": false,
+              "posName": "UBER"
+            },
+            {
+              "additionalPoints": false,
+              "posName": "ATTACK"
+            },
+            {
+              "additionalPoints": false,
+              "posName": "CoreDEFENCE"
+            },
+            {
+              "additionalPoints": false,
+              "posName": "CORE"
+            }
+
+          ]
+        }
+      ],
+      "result":
+      {
+        "ItemForm": "format:Plain_Tree",
+        "passNum": 7,
+        "formID": "17"
+      }
+
+    }
+
+  ]
+
+}

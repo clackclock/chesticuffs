@@ -1,0 +1,10 @@
+{
+  "title": "Basically Crafting",
+  "version": 0.2,
+
+  "evolve": [
+    {"name" : "Sapling_to_Plank", "itemIDToEvolve": 11, "requiredNumOfItem": 3, "finalItemID": 21, "numAddToBoard": 2}
+
+  ]
+
+}
