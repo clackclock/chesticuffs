@@ -4,8 +4,47 @@
     <meta charset="UTF-8">
     <title>Chest-i-cuffs</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquarda+Bastarda+9&display=swap" rel="stylesheet">
+
     <link rel ="icon" href = "../images/chesticuffs_logoW.png">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--    <link rel = "java" href = "../src/Game">-->
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src = "../src/Game" crossorigin="anonymous"></script>
+    <script src = "../src/Game/Slots" crossorigin="anonymous"></script>
+    <script src = "../src/Game/Slots/Board.java" crossorigin="anonymous"></script>
+    <script src = "../src/Game/Slots/Positions.java" crossorigin="anonymous"></script>
+    <script src = "../src/Game/Card.java" crossorigin="anonymous"></script>
+    <script src = "../src/Game/cardDatabase.java" crossorigin="anonymous"></script>
+    <script src = "../frontEnd/cardDatabase.js" crossorigin="anonymous"></script>
+    <script src = "../src/Game/ComboBuild.java" crossorigin="anonymous"></script>
+    <script src = "../src/Game/Human.java" crossorigin="anonymous"></script>
+    <script src = "../src/Game/ItemSkills.java" crossorigin="anonymous"></script>
+    <script src = "../src/Game/Player.java" crossorigin="anonymous"></script>
+
+    <script >
+        console.log("working...")
+        $(document).ready(function(){
+            play();
+
+        })
+
+        function Test(){
+            document.body.style.color = "red";
+        }
+        function play(){
+            Player one, two;
+            seeCardsOne();
+        }
+        function seeCardsOne(){
+            Player person;
+            person.makeDeck();
+            person.makeHand();
+
+
+        }
+    </script>
 
 </head>
 <style>
@@ -26,6 +65,7 @@
         flex-wrap: wrap;
         flex-direction: row;
         justify-content: middle;
+        font-family: "Jacquarda Bastarda 9", serif;
     }
     header, img{
         display: flex;
@@ -138,7 +178,7 @@
         outline-width: 5px;
         outline-offset: 0;
 
-        margin: 20px;
+        margin: 10px;
     }
 
     .zoomPanel img{
@@ -200,15 +240,19 @@
       transform: translateY(4px);
     }
 
+    .jacquarda-bastarda {
+            font-family: "Jacquarda Bastarda 9", serif;
+            font-weight: 400;
+            font-style: normal;
+    }
+
     footer{
         display: flex;
         justify-content: center;
     }
 
 </style>
-<script>
 
-</script>
 <body>
     <header>
         <a href= "https://clackclock.github.io/imagine_looking_for_this/tickTock_clock/index.html">
