@@ -11,39 +11,22 @@
     <link rel ="icon" href = "../images/chesticuffs_logoW.png">
 <!--    <link rel = "java" href = "../src/Game">-->
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src = "../src/Game" crossorigin="anonymous"></script>
-    <script src = "../src/Game/Slots" crossorigin="anonymous"></script>
-    <script src = "../src/Game/Slots/Board.java" crossorigin="anonymous"></script>
-    <script src = "../src/Game/Slots/Positions.java" crossorigin="anonymous"></script>
-    <script src = "../src/Game/Card.java" crossorigin="anonymous"></script>
-    <script src = "../src/Game/cardDatabase.java" crossorigin="anonymous"></script>
-    <script src = "../frontEnd/cardDatabase.js" crossorigin="anonymous"></script>
-    <script src = "../src/Game/ComboBuild.java" crossorigin="anonymous"></script>
-    <script src = "../src/Game/Human.java" crossorigin="anonymous"></script>
-    <script src = "../src/Game/ItemSkills.java" crossorigin="anonymous"></script>
-    <script src = "../src/Game/Player.java" crossorigin="anonymous"></script>
+
+    <script src = "../src/Game/CardData/card_image.json"></script>
+    <script src = "../src/Game/CardData/Evolutions.json"></script>
+    <script src = "../src/Game/CardData/Formation_Recipes.json"></script>
+    <script src = "../src/Game/CardData/Modifier.json"></script>
 
     <script >
         console.log("working...")
         $(document).ready(function(){
-            play();
-
+            Test();
         })
 
         function Test(){
             document.body.style.color = "red";
         }
-        function play(){
-            Player one, two;
-            seeCardsOne();
-        }
-        function seeCardsOne(){
-            Player person;
-            person.makeDeck();
-            person.makeHand();
 
-
-        }
     </script>
 
 </head>
@@ -110,8 +93,8 @@
         outline-offset: 0;
 
         color: white;
-        margin: 8px;
-        padding: 5px
+        margin: 5px;
+        padding: 3px
     }
     .mainPanel img{
         height: 325px;
