@@ -6,10 +6,16 @@
   "deck": {
     "cards": [
       {"name": "Blank", "cardID": -1, "skillType": "type", "typeCheck": "NEUTRAL", "modValueAtk": 0, "modValueDef": 0},
+      {"name": "Newton's Apple", "cardID": 41, "skillType": "type", "typeCheck": "FARM", "modValueAtk": 0, "modValueDef": 2 },
+      { "name": "Jeweled_Axe", "cardID": 14, "skillType": "type", "typeCheck": "LUCKY", "modValueAtk": 0, "modValueDef": 1 },
+      { "name": "Shears", "cardID": 9, "skillType": "type", "typeCheck": "FARM", "modValueAtk": 0, "modValueDef": 1 },
+      { "name": "Furnace", "cardID": 28, "skillType": "type", "typeCheck": "ORE", "modValueAtk": 0, "modValueDef": 1 },
 
       {"name": "Apple", "cardID": 6, "skillType": "type-position", "typeCheck": "PLANT", "posCheck": "CORE", "modValueAtk": 0, "modValueDef": 1},
       {"name": "Cornflower", "cardID": 10, "skillType": "type-position", "typeCheck": "FLOWER", "posCheck": "CORE", "modValueAtk": 1, "modValueDef": 0},
       {"name": "Mutton", "cardID": 7, "skillType": "type-position", "typeCheck": "ANIMAL", "posCheck": "CORE", "modValueAtk": 2, "modValueDef": 0},
+      { "name": "Anvil", "cardID": 24, "skillType": "type-position", "typeCheck": "TOOL", "posCheck": "CORE","modValueAtk": 0, "modValueDef": 1 },
+
 
       { "name": "HayBale", "cardID": 8, "skillType": "card", "cardIDCheck": 31, "modValueAtk": 1, "modValueDef": 1 }
     ]
