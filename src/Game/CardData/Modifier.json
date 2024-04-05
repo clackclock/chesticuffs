@@ -4,20 +4,39 @@
   "version": 0.2,
 
   "deck": {
+    "enum": ["PLANT", "WATER", "FLOWER", "TOOL", "ANIMAL", "FARM", "METAL", "ORE", "ITEM", "WOOD", "LUCKY", "NEUTRAL" ],
+
     "cards": [
       {"name": "Blank", "cardID": -1, "skillType": "type", "typeCheck": "NEUTRAL", "modValueAtk": 0, "modValueDef": 0},
       {"name": "Newton's Apple", "cardID": 41, "skillType": "type", "typeCheck": "FARM", "modValueAtk": 0, "modValueDef": 2 },
       { "name": "Jeweled_Axe", "cardID": 14, "skillType": "type", "typeCheck": "LUCKY", "modValueAtk": 0, "modValueDef": 1 },
       { "name": "Shears", "cardID": 9, "skillType": "type", "typeCheck": "FARM", "modValueAtk": 0, "modValueDef": 1 },
-      { "name": "Furnace", "cardID": 28, "skillType": "type", "typeCheck": "ORE", "modValueAtk": 0, "modValueDef": 1 },
+      { "name": "Furnace", "cardID": 28, "skillType": "type", "typeCheck": "ORE", "modValueAtk": 0, "modValueDef": 2 },
+      { "name": "Trident", "cardID": 29, "skillType": "type", "typeCheck": "WATER", "modValueAtk": 1, "modValueDef": 0 },
+      { "name": "Coral", "cardID": 32, "skillType": "type", "typeCheck": "WATER", "modValueAtk": 0, "modValueDef": 2 },
 
       {"name": "Apple", "cardID": 6, "skillType": "type-position", "typeCheck": "PLANT", "posCheck": "CORE", "modValueAtk": 0, "modValueDef": 1},
       {"name": "Cornflower", "cardID": 10, "skillType": "type-position", "typeCheck": "FLOWER", "posCheck": "CORE", "modValueAtk": 1, "modValueDef": 0},
       {"name": "Mutton", "cardID": 7, "skillType": "type-position", "typeCheck": "ANIMAL", "posCheck": "CORE", "modValueAtk": 2, "modValueDef": 0},
-      { "name": "Anvil", "cardID": 24, "skillType": "type-position", "typeCheck": "TOOL", "posCheck": "CORE","modValueAtk": 0, "modValueDef": 1 },
-
+      {"name": "Anvil", "cardID": 24, "skillType": "type-position", "typeCheck": "TOOL", "posCheck": "CORE","modValueAtk": 3, "modValueDef": 0 },
+      { "name": "Kelp", "cardID": 33, "skillType": "type-position", "typeCheck": "FLOWER", "posCheck": "CoreDEFENCE","modValueAtk": 0, "modValueDef": 2 },
+      { "name": "Cornflower", "cardID": 10, "skillType": "type-position", "typeCheck": "FLOWER", "posCheck": "CORE","modValueAtk": 1, "modValueDef": 0 },
+      { "name": "Poppy", "cardID": 37, "skillType": "type-position", "typeCheck": "Water", "posCheck": null,"modValueAtk": 2, "modValueDef": 0 },
+      { "name": "Raw_Steak", "cardID": 39, "skillType": "type-position", "typeCheck": "ANIMAL", "posCheck": "CORE","modValueAtk": 2, "modValueDef": 0 },
 
       { "name": "HayBale", "cardID": 8, "skillType": "card", "cardIDCheck": 31, "modValueAtk": 1, "modValueDef": 1 }
+    ],
+    "items": [
+      {"name": "Iron", "cardID": 19, "type": "METAL", "typeCheck": "TOOL", "modValueAtk": 2, "modValueDef": 0 },
+      {"name": "Iron_Ore","cardID": 20, "type": "ORE", "typeCheck": "TOOL", "modValueAtk": 2, "modValueDef": 0 },
+      {"name": "Gold","cardID": 23, "type": "METAL", "typeCheck": "TOOL", "modValueAtk": 2, "modValueDef": 0 },
+      {"name": "Gold_Ore","cardID": 36, "type": "ORE", "typeCheck": null, "modValueAtk": 1, "modValueDef": 1 },
+
+      {"name": "Door", "cardID": 12, "type": "ITEM", "posCheck": "UBER", "modValueAtk": 2, "modValueDef": 0},
+      {"name": "Fishing_Rod", "cardID": 16, "type": "ITEM","posCheck": null, "modValueAtk": 0, "modValueDef": 0},
+      {"name": "Bucket_Water", "cardID": 22, "type": "ITEM","posCheck": "UBER", "modValueAtk": -1, "modValueDef": 0},
+      {"name": "Healing_Potion", "cardID": 30, "type": "ITEM","posCheck": ["CORE", "UBER", "ATTACK"], "modValueAtk": 0, "modValueDef": [3,1]},
+      {"name": "Name_Tag", "cardID": 25, "type": "ITEM", "posCheck": null, "modValueAtk": 0, "modValueDef": 0}
     ]
   }
 
