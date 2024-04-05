@@ -4,5 +4,6 @@ $(document).ready(function(){
 })
 
 function Test(){
-   document.body.style.color = "red";
+//   document.body.style.color = "red";
+   $("p").css("background-color", "yellow");
 }
