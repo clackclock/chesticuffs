@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jacquarda+Bastarda+9&display=swap" rel="stylesheet">
 
     <link rel ="icon" href = "../images/chesticuffs_logoW.png">
-<!--    <link rel = "java" href = "../src/Game">-->
+<!--    <link rel = "java" href = "../src/Game"> c_opium-->
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!--    me trying not to do work-->
@@ -106,7 +106,7 @@
         flex-wrap: wrap;
         flex-direction: column;
     }
-    .hand{
+    #hand_2, #hand_1{
         display: flex;
         justify-content: start;
         align-items: center;
@@ -124,7 +124,7 @@
 
         margin: 5px;
     }
-    .hand img{
+    #hand_2 img , #hand_1 img{
         padding: 3px;
 
         height: 250px;
@@ -270,12 +270,10 @@
                     <button class = "button"> Discard [Hand] </button>
                     <button class = "button"> Discard [Board] </button>
                 </div>
-                <div class = "hand">
+                <div id = "hand_2">
                     <img alt = "selectedCard" src = "../images/0_Back.jpg">
                     <img alt = "selectedCard" src = "../images/0_Back.jpg">
-                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
-                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
-                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+
                 </div>
 
             </div>
@@ -288,12 +286,10 @@
                     <button class = "button"> Discard [Hand] </button>
                     <button class = "button"> Discard [Board] </button>
                 </div>
-                <div class = "hand">
+                <div id = "hand_1">
                     <img alt = "selectedCard" src = "../images/0_Back.jpg">
                     <img alt = "selectedCard" src = "../images/0_Back.jpg">
-                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
-                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
-                    <img alt = "selectedCard" src = "../images/0_Back.jpg">
+
                 </div>
             </div>
         </div>

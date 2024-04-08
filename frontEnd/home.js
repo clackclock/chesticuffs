@@ -1,7 +1,7 @@
 console.log("working...")
 $(document).ready(function(){
    Test();
-   getHandP1();
+   //getHandP1();
    testTst();
 })
 
@@ -21,16 +21,23 @@ function getHandP1(){
 }
 function testTst() {
    let ciD = Math.floor(Math.random() * 42);
+   console.log(ciD);
    var myCardAPI = "../src/Game/CardData/card_image.json";
-   $.getJSON( myCardAPI, {
-     tags: "cID, imageID",
+   let jbb = $.getJSON( myCardAPI, {
+     tags: "cardList, name, cID, imageID",
      tagmode: "any",
      format: "json"
    })
-     .done(function( data ) {
-       $.each( data.items, function( i, item ) {
-         //$( "<img>" ).attr( "src", item.media.m ).appendTo( "#mainplayer .hand" );
-       });
-         console.log(data);
-     });
+//     .done(function( data ) {
+//       $.each( data, function(i, data ) {
+//         //$( "<img>" ).attr( "src", data.imageID ).appendTo( ".hand" );
+//       });
+//         console.log(data.name);
+//     });
+
+   .done(function(jbb){
+        $.each(jbb, function (index, jbb) {
+            console.log(jbb)
+        });
+   })
 }
