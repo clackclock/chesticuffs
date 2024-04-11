@@ -1,27 +1,35 @@
 package Game.Slots;
 
-import Game.Card;
-import Game.Player;
-import Game.cardDatabase;
-import Game.ComboBuild;
+import Game.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
+import java.util.function.ToIntFunction;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.groupingBy;
 
 import static Game.Slots.Board.Board_Positions.*;
 
 public class Board {
     public enum Board_Positions { //implements boardPosition_Action
-        //3,2,3,1,3
-        UBER(), ATTACK(), CoreDEFENCE(), CORE(),DEFENCE()
-//        Board_Positions(int openSlots){}
+        UBER(0), ATTACK(1), CoreDEFENCE(-1), CORE(2),DEFENCE(3);
+        private final int validIndex;
+
+        Board_Positions(int index) {
+            validIndex = index;
+        }
+        public int index() {
+            return validIndex;
+        }
     }
 
     private final Positions[][] board_Grid;
     private final int[] uberRow = {0,0}, atkRow = {0,0}, cDefRow = {0,0}, coreBlock = {0,0}, defRow = {0,0};
+    private final PosMap posMap = new PosMap(uberRow, atkRow, cDefRow, coreBlock, defRow);
     private ComboBuild currentBuild;
     private boolean isThereBuild = false;
     public Board(){ board_Grid = new Positions[4][3]; } //4 rows 3 col
@@ -32,93 +40,26 @@ public class Board {
     public int[] getCoreBlock(){ return coreBlock; }
     public int[] getDefRow(){return defRow; }
 
+    private Map<Board_Positions, Integer> positionSum(ToIntFunction<Positions> mapper) {
+        return Arrays.stream(board_Grid).flatMap(Arrays::stream).
+                filter(Objects::nonNull).collect(groupingBy(Positions::currentPlace,  Collectors.summingInt(mapper)));
+    }
+    private void resetValues(Map<Board_Positions, Integer> atkMap, Map<Board_Positions, Integer> defMap) {
+        for (Board_Positions position : Board_Positions.values()) {
+            posMap.row(position)[0] = atkMap.getOrDefault(position, 0);
+            posMap.row(position)[1] = defMap.getOrDefault(position, 0);
+        }
+    }
     public void calculate(Board enemy) throws IOException{
-        for(int f = 0; f < 2; f++){
-            for(int r = 0; r < 3; r++){
-                if(board_Grid[0][r] != null){
-                    if(f == 0) {
-                        uberRow[f] = uberRow[f] + board_Grid[0][r].getAtk();
-                    } else{
-                        uberRow[f] = uberRow[f] + board_Grid[0][r].getDef();
-                    }
-                }
-                if(enemy.getGrid()[0][r] != null){
-                    if(f == 0) {
-                        enemy.getUberRow()[f] = enemy.getUberRow()[f] + enemy.getGrid()[0][r].getAtk();
-                    } else{
-                        enemy.getUberRow()[f] = enemy.getUberRow()[f] + enemy.getGrid()[0][r].getDef();
-                    }
-                }
+        Map<Board_Positions, Integer> atkMap = positionSum(Positions::getAtk);
+        Map<Board_Positions, Integer> defMap = positionSum(Positions::getDef);
+        Map<Board_Positions, Integer> enemyAtkMap = enemy.positionSum(Positions::getAtk);
+        Map<Board_Positions, Integer> enemyDefMap = enemy.positionSum(Positions::getDef);
+        resetValues(atkMap, defMap);
+        enemy.resetValues(enemyAtkMap, enemyDefMap);
 
-                if(board_Grid[3][r] != null){
-                    if(f == 0) {
-                        defRow[f] = defRow[f] + board_Grid[3][r].getAtk();
-                    } else{
-                        defRow[f] = defRow[f] + board_Grid[3][r].getDef();
-                    }
-                }
-                if(enemy.getGrid()[3][r] != null){
-                    if(f == 0) {
-                        enemy.getDefRow()[f] = enemy.getDefRow()[f] + enemy.getGrid()[3][r].getAtk();
-                    } else{
-                        enemy.getDefRow()[f] = enemy.getDefRow()[f] + enemy.getGrid()[3][r].getDef();
-                    }
-                }
+        try(BufferedReader modReader = new BufferedReader(new InputStreamReader(Main.class.getResourceAsStream("../src/Game/CardData/Modifier.json")))) {
 
-            }
-        }
-        if(board_Grid[1][0] != null){
-            atkRow[0] = atkRow[0] + board_Grid[1][0].getAtk();
-            atkRow[1] = atkRow[1] +board_Grid[1][0].getDef();
-        }
-        if(board_Grid[1][2] != null){
-            atkRow[0] = atkRow[0] + board_Grid[1][2].getAtk();
-            atkRow[1] = atkRow[1] + board_Grid[1][2].getDef();
-        }
-        if(enemy.getGrid()[1][0] != null){
-            enemy.getAtkRow()[0] = enemy.getGrid()[1][0].getAtk() + enemy.getAtkRow()[0];
-            enemy.getAtkRow()[1] = enemy.getGrid()[1][0].getDef() + enemy.getAtkRow()[1];
-        }
-        if(enemy.getGrid()[1][2] != null){
-            enemy.getAtkRow()[0] = enemy.getAtkRow()[0] + enemy.getGrid()[1][2].getAtk();
-            enemy.getAtkRow()[1] = enemy.getAtkRow()[1] + enemy.getGrid()[1][2].getDef();
-        }
-
-        if(board_Grid[1][1] != null) {
-            cDefRow[0] = board_Grid[1][1].getAtk() + cDefRow[0];
-            cDefRow[1] = board_Grid[1][1].getDef() + cDefRow[1];
-        }
-        if(board_Grid[2][0] != null){
-            cDefRow[0] = board_Grid[2][0].getAtk() + cDefRow[0];
-            cDefRow[1] = board_Grid[2][0].getDef() + cDefRow[1];
-        }
-        if(board_Grid[2][2] != null){
-            cDefRow[0] = cDefRow[0] + board_Grid[2][2].getAtk();
-            cDefRow[1] = cDefRow[1] + board_Grid[2][2].getDef();
-        }
-        if(enemy.getGrid()[1][1] != null) {
-            enemy.getCDefRow()[0] = enemy.getGrid()[1][1].getAtk() + enemy.getCDefRow()[0];
-            enemy.getCDefRow()[1] = enemy.getGrid()[1][1].getDef() + enemy.getCDefRow()[1];
-        }
-        if(enemy.getGrid()[2][0] != null){
-            enemy.getCDefRow()[0] = enemy.getGrid()[2][0].getAtk() + enemy.getCDefRow()[0];
-            enemy.getCDefRow()[1] = enemy.getGrid()[2][0].getDef() + enemy.getCDefRow()[1];
-        }
-        if(enemy.getGrid()[2][2] != null){
-            enemy.getCDefRow()[0] = enemy.getCDefRow()[0] + enemy.getGrid()[2][2].getAtk();
-            enemy.getCDefRow()[1] = enemy.getCDefRow()[1] + enemy.getGrid()[2][2].getDef();
-        }
-
-        if(board_Grid[2][1] != null){
-            coreBlock[0] = board_Grid[2][1].getAtk();
-            coreBlock[1] = board_Grid[2][1].getDef();
-        }
-        if(enemy.getGrid()[2][1] != null) {
-            enemy.getCoreBlock()[0] = enemy.getGrid()[2][1].getAtk();
-            enemy.getCoreBlock()[1] = enemy.getGrid()[2][1].getDef();
-        }
-
-        try(FileReader modReader = new FileReader("C:\\Users\\sensa\\IdeaProjects\\testGame\\src\\Game\\CardData\\Modifier.json")) {
             StringBuilder modString = new StringBuilder(" ");
             int i;
             while ((i = modReader.read()) != -1) {
@@ -136,12 +77,19 @@ public class Board {
                 String typeBase = cList.getString("skillType");
                 //if cID == card in row add mod value
 
+                int mAtk = cList.getInt("modValueAtk");
+                int mDef = cList.getInt("modValueDef");
+                String tC = cList.has("typeCheck") ? cList.getString("typeCheck") : "";
+                Board_Positions pCheck = cList.has("posCheck") ? Board_Positions.valueOf(cList.getString("posCheck")) : null;
+
+                Stream<Positions> s = Arrays.stream(board_Grid).flatMap(Arrays::stream).
+                        filter(Objects::nonNull).filter(p -> p.getSlot().getId() == cID);
+                Stream<Positions> e = Arrays.stream(enemy.board_Grid).flatMap(Arrays::stream).
+                        filter(Objects::nonNull).filter(p -> p.getSlot().getId() == cID);
+
                 switch (typeBase) {
                     case "type" -> {
-                        int mAtk = cList.getInt("modValueAtk");
-                        int mDef = cList.getInt("modValueDef");
 
-                        String tC = cList.getString("typeCheck");
                         int tik = 0;
 
                         for(int l = 0; l < 4; l++){
@@ -205,9 +153,6 @@ public class Board {
 
                     }
                     case "position" -> {
-                        int mAtk = cList.getInt("modValueAtk");
-                        int mDef = cList.getInt("modValueDef");
-
                         String pC = cList.getString("posCheck");
 
                         for (int k = 0; k < 3; k++) {
@@ -252,9 +197,6 @@ public class Board {
                     case "type-position" -> {
                         String typeC = cList.getString("typeCheck");
                         String posC = cList.getString("posCheck");
-
-                        int mAtk = cList.getInt("modValueAtk");
-                        int mDef = cList.getInt("modValueDef");
 
                         for(int n = 0; n < 4; n++) {
                             for (int o = 0; o < 3; o++) {
@@ -305,9 +247,6 @@ public class Board {
                     }
                     case "card" -> {
                         int cIDCheck = cList.getInt("cardIDCheck");
-
-                        int mAtk = cList.getInt("modValueAtk");
-                        int mDef = cList.getInt("modValueDef");
 
                         int tik = 0;
 
@@ -599,7 +538,6 @@ public class Board {
                 board_Grid[3][posIndex] = null;
             }
         }
-
     }
 
     public Positions[][] getGrid(){
@@ -639,7 +577,7 @@ public class Board {
             return;
         }
 
-        try(FileReader modReader = new FileReader("C:\\Users\\sensa\\IdeaProjects\\testGame\\src\\Game\\CardData\\Formation_Recipes.json")) {
+        try(FileReader modReader = new FileReader("../src/Game/CardData/Formation_Recipes.json")) {
             StringBuilder recipeString = new StringBuilder(" ");
             int i;
             while ((i = modReader.read()) != -1) {
@@ -987,7 +925,7 @@ public class Board {
 
     //evolutions can scan the board check for the card then check the number if it's not there or there is not enough space move on
     public void evolve(Player cc, int cID) throws IOException{
-        try(FileReader modReader = new FileReader("C:\\Users\\sensa\\IdeaProjects\\testGame\\src\\Game\\CardData\\Evolutions.json")) {
+        try(FileReader modReader = new FileReader("../src/Game/CardData/Evolutions.json")) {
             StringBuilder modString = new StringBuilder(" ");
             int i;
             while ((i = modReader.read()) != -1) {
