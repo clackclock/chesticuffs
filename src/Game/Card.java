@@ -42,4 +42,8 @@ public class Card {
         return id + " " + cardName + " " + cardTypeONE + " " + cardTypeTWO + " ";
 
     }
+
+    public boolean eitherType(String type) {
+        return cardTypeONE.equals(type) || cardTypeTWO.equals(type);
+    }
 }

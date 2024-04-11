@@ -177,7 +177,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         //every 8 or 10 rounds there will be a calculation, 3 or 6 is the test
         int roundCount = 1;
-        while (roundCount % 6 != 0) {
+        while (roundCount % 3 != 0) {
             System.out.println("player two");
             System.out.println(Arrays.deepToString(two.getGrid()));
             System.out.println("player one");

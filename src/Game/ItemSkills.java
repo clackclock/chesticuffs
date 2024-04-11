@@ -29,7 +29,7 @@ public class ItemSkills {
     public void fishingRod(int checkID){
         if(checkID == 16){
             Random r = new Random();
-            int coinFlip = r.nextInt(0,1); //head = 0 tails = 1
+            int coinFlip = r.nextInt(2); //head = 0 tails = 1
             if(coinFlip == 0){
                 otherCard = null;
             }
