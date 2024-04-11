@@ -15,12 +15,6 @@
     <!--    me trying not to do work-->
     <script src = "../frontEnd/home.js" crossorigin="anonymous"></script>
 
-    <!-- <script src = "../src/Game/CardData/card_image.json" crossorigin="anonymous"></script>
-    <script src = "../src/Game/CardData/Evolutions.json" crossorigin="anonymous"></script>
-    <script src = "../src/Game/CardData/Formation_Recipes.json" crossorigin="anonymous"></script>
-    <script src = "../src/Game/CardData/Modifier.json" crossorigin="anonymous"></script> -->
-
-
 </head>
 <style>
     body{
@@ -136,6 +130,32 @@
         background-color: yellow;
     }
 
+    #board_1, #board_2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+         /* flex-wrap: wrap;
+        flex-direction: row; */
+        /* max-width: 400px; */
+
+        background-image: url('/../images/chest_Tray2.png');
+        background-size: cover ;
+    }
+    #board_1 button, #board_2 button{
+        /* margin: 5px; */
+        padding: 5px;
+    }
+    .row1, .row2, .row3, .row4{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        margin-top: 5px;
+        margin-left: 5px;
+
+    }
+
     .sideDock{
         display: flex;
         justify-content: start;
@@ -164,7 +184,6 @@
 
     .zoomPanel img{
         padding: 5px;
-
         height: 400px;
     }
 
@@ -268,7 +287,30 @@
         </div>
         <div class = "mainPanel">
             <div id = "otherPlayer">
-                <a><img alt = "board" src = "../images/chest_Tray2.png">Player2</a>
+                <div id = "board_2">
+                    <div class = "row1">
+                        <button > u1 </button>
+                        <button > u2 </button>
+                        <button > u3 </button>
+                    </div>
+                   <div class = "row2">
+                       <button > a1 </button>
+                       <button> cd1 </button>
+                       <button > a2 </button>
+                   </div>
+                    <div class = "row3">
+                        <button> cd2 </button>
+                        <button> core </button>
+                        <button> cd3 </button>
+                    </div>
+                    <div class = "row4">
+                        <button > d1 </button>
+                        <button > d2 </button>
+                        <button > d3 </button>
+                    </div>
+<!--                    <a><img alt = "board" src = "../images/chest_Tray2.png">Player2</a>-->
+                </div>
+
                 <div class = "consoleHolder">
                     <button class = "button"> Evolve </button>
                     <button class = "button"> Activate Combo</button>
@@ -286,7 +328,29 @@
 
             </div>
             <div id = "mainPlayer">
-                <a><img alt = "boardO" src = "../images/chest_Tray2.png"> Player1</a>
+                <div id = "board_1">
+                    <div class = "row1">
+                        <button > u1 </button>
+                        <button > u2 </button>
+                        <button > u3 </button>
+                    </div>
+                    <div class = "row2">
+                        <button > a1 </button>
+                        <button> cd1 </button>
+                        <button > a2 </button>
+                    </div>
+                    <div class = "row3">
+                        <button> cd2 </button>
+                        <button> core </button>
+                        <button> cd3 </button>
+                    </div>
+                    <div class = "row4">
+                        <button > d1 </button>
+                        <button > d2 </button>
+                        <button > d3 </button>
+                    </div>
+<!--                    <a><img alt = "boardO" src = "../images/chest_Tray2.png"> Player1</a>-->
+                </div>
                 <div class = "consoleHolder">
                     <button class = "button"> Evolve </button>
                     <button class = "button"> Activate Combo</button>

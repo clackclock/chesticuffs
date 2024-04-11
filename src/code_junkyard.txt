@@ -1458,3 +1458,10 @@ Game_cardDatabase_c._Game_cardDatabaseInit = function() {
    this.formPack = new jv_ArrayList();
       ;
 };
+
+<!-- <script src = "../src/Game/CardData/card_image.json" crossorigin="anonymous"></script>
+<script src = "../src/Game/CardData/Evolutions.json" crossorigin="anonymous"></script>
+<script src = "../src/Game/CardData/Formation_Recipes.json" crossorigin="anonymous"></script>
+<script src = "../src/Game/CardData/Modifier.json" crossorigin="anonymous"></script> -->
+
+

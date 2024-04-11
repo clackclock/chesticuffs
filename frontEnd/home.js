@@ -1,20 +1,30 @@
 console.log("working...")
+var mapHash = new Map();
+mapHash.set('Uber1', 'value1');
+mapHash.set('Uber2', 'value2');
+mapHash.set('Uber3', 'value3');
+
+//map the button to the card's array and pull
+
 $(document).ready(function(){
    Test();
-   getHandP1();
-   getHandP2();
-   //parser();
+   //basic web functions
    $("img").hover(function () {
       let v = $(this).attr("src");
-      if(v == "../images/chest_Tray2.png"){
+      if(v == "../images/chest_Tray2.png" || v == "../images/36_Back.jpg" || v == "../images/chesticuffs_logo.png" || v == "../images/chesticuffs_logoW.png"){
         v = "../images/0_Back.jpg";
       }
       $("#zoom").attr("src", v);
-      console.log(v);
+//      console.log(v);
 //      $(this).css("background-color", "green");
    }, function () {
        $("#zoom").attr("src", "../images/0_Back.jpg");
    });
+
+   //playing the game
+   getHandP1();
+   getHandP2();
+
 })
 
 function Test(){
