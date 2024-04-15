@@ -71,6 +71,27 @@ function getHandP2(){
        $("#9").attr("src", data.cardList[randomCardNum()].imageID);
    });
 }
+function placeCard(){
+   let cdataURL = '../src/Game/CardData/card_image.json';
+   $.ajax({
+       url: cdataURL,
+       contentType: "application/json",
+       data: JSON.stringify("{" + cdataURL + "}"),
+       dataType: "json"
+   })
+   .done(function(data){
+        $("img").on("click", "#hand_1", function () {
+
+             let v = $(this).attr("src");
+             $(".slot").on("click", function(){
+                $(this).attr("src", v);
+             })
+
+             $(this).attr("src", data.cardList[randomCardNum()].imageID);
+       })
+
+   });
+}
 
 function testTst() {
    let ciD = Math.floor(Math.random() * 42);

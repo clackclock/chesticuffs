@@ -21,7 +21,6 @@ import Game.Main;
 public class Board {
     public enum Board_Positions { //implements boardPosition_Action
         UBER(0), ATTACK(1), CoreDEFENCE(-1), CORE(2),DEFENCE(3);
-
         private final int validIndex;
 
         //3,2,3,1,3
@@ -36,11 +35,21 @@ public class Board {
     }
 
     private final Positions[][] board_Grid;
+    public Positions[][] getGrid(){ return board_Grid; }
+
     private final int[] uberRow = {0,0}, atkRow = {0,0}, cDefRow = {0,0}, coreBlock = {0,0}, defRow = {0,0};
     private final PosMap posMap = new PosMap(uberRow, atkRow, cDefRow, coreBlock, defRow);
-    private ComboBuild currentBuild;
-    private boolean isThereBuild = false;
     public Board(){ board_Grid = new Positions[4][3]; } //4 rows 3 col
+    public boolean isBoardEmpty(){
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 3; j++){
+                if(board_Grid[0][j] == null && board_Grid[1][j] == null && board_Grid[2][0] == null && board_Grid[2][2] == null && board_Grid[3][j] == null ){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public int[] getUberRow(){ return uberRow; }
     public int[] getAtkRow(){ return atkRow; }
@@ -52,12 +61,17 @@ public class Board {
         return Arrays.stream(board_Grid).flatMap(Arrays::stream).
                 filter(Objects::nonNull).collect(groupingBy(Positions::currentPlace,  Collectors.summingInt(mapper)));
     }
-
     private void resetValues(Map<Board_Positions, Integer> atkMap, Map<Board_Positions, Integer> defMap) {
         for (Board_Positions position : Board_Positions.values()) {
             posMap.row(position)[0] = atkMap.getOrDefault(position, 0);
             posMap.row(position)[1] = defMap.getOrDefault(position, 0);
         }
+    }
+    private void modify(Stream<Positions> s, int mAtk, int mDef) { // credit ^^
+        s.forEach( p -> {
+            posMap.row(p.currentPlace())[0] += mAtk;
+            posMap.row(p.currentPlace())[1] += mDef;
+        });
     }
 
     public void calculate(Board enemy) throws IOException{
@@ -129,39 +143,7 @@ public class Board {
             enemy.getDefRow()[r] = enemy.getDefRow()[r] + enemy.getCoreBlock()[r];
         }
 
-        int overflowP1, overflowP2;
-        overflowP2 = uberRow[1] - enemy.getUberRow()[0]; // uber gets no overflow
-        overflowP1 = enemy.getUberRow()[1] - uberRow[0]; //p1 remainder from subtracting atk from enemy def
-        int tmp1, tmp2; // the overflow goes once, so it needs to reset after
-
-        if(overflowP1 > 0){
-            atkRow[0] = atkRow[0] + overflowP1;
-        }
-        tmp1 = overflowP1;
-        if(overflowP2 > 0){
-            enemy.getAtkRow()[0] = enemy.getAtkRow()[0] + overflowP2;
-        }
-        tmp2 = overflowP2;
-
-        overflowP2 = atkRow[1] - (enemy.getAtkRow()[0] - tmp2);
-        overflowP1 = enemy.getAtkRow()[1] - (atkRow[0] - tmp1) ;
-        if(overflowP1 > 0){
-            cDefRow[0] = cDefRow[0] + overflowP1;
-        }
-        tmp1 = overflowP1;
-        if(overflowP2 > 0){
-            enemy.getCDefRow()[0] = enemy.getCDefRow()[0] + overflowP2;
-        }
-        tmp2 = overflowP2;
-
-        overflowP2 = cDefRow[1] - (enemy.getCDefRow()[0] - tmp2);
-        overflowP1 = enemy.getCDefRow()[1] - (cDefRow[0] - tmp1);
-        if(overflowP1 > 0){
-            defRow[0] = defRow[0] + overflowP1;
-        }
-        if(overflowP2 > 0){
-            enemy.getDefRow()[0] = enemy.getDefRow()[0] + overflowP2;
-        }
+        //overflow was here
 
         //if board row is greater remove cards from other board vice versa
         //enemy lose action = take away cards
@@ -223,18 +205,16 @@ public class Board {
         }
     }
 
-    private void modify(Stream<Positions> s, int mAtk, int mDef) {
-        s.forEach( p -> {
-            posMap.row(p.currentPlace())[0] += mAtk;
-            posMap.row(p.currentPlace())[1] += mDef;
-        });
-    }
 
-    private final ArrayList<ComboBuild> possibleBuilds = new ArrayList<>();
-    public ArrayList<ComboBuild> getPossibleBuilds(){ return possibleBuilds; }
-    public void addBuild(ComboBuild x){ currentBuild = x; isThereBuild = true; }
-    public void removeBuild(){currentBuild = null; isThereBuild = false; }
-    public ComboBuild getCurrentBuild(){ return currentBuild; }
+    private final ArrayList<ComboBuild> comboBucket = new ArrayList<>();
+    private ComboBuild currentBuild;
+    private boolean isThereBuild = false;
+    public boolean hasBuild(){ return isThereBuild; }
+    public void removeBuild(){if(hasBuild()){currentBuild = null; isThereBuild = false;} }
+//    public ArrayList<ComboBuild> checkComboBucket(){ return comboBucket; }
+//    public void addBuild(ComboBuild x){ currentBuild = x; isThereBuild = true; }
+//    public ComboBuild getCurrentBuild(){ return currentBuild; }
+
 
     public void addToSlots(String name, Card fromHand) {
         System.out.println("Which slot in this position? (0-2)");
@@ -312,7 +292,6 @@ public class Board {
             }
         }         */
     }
-
     public void removeFromSlots(String name, int posIndex) {
         Board_Positions pos = Board_Positions.valueOf(name);
         int index = pos.index();
@@ -364,21 +343,6 @@ public class Board {
         }         */
 
     }
-
-    public Positions[][] getGrid(){
-        return board_Grid;
-    }
-
-    public boolean isBoardEmpty(){
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 3; j++){
-                if(board_Grid[0][j] == null && board_Grid[1][j] == null && board_Grid[2][0] == null && board_Grid[2][2] == null && board_Grid[3][j] == null ){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
     public void removeMetalOre(){
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 3; j++){
@@ -392,362 +356,6 @@ public class Board {
         }
     }
 
-    public boolean hasBuild(){ return isThereBuild; }
-    public void showValidBuilds(Board playerBoard) throws IOException {
-        int checkResults = 0;
-
-        if(playerBoard.hasBuild()){
-//            return playerBoard.getCurrentBuild();
-            System.out.println("Ye no");
-            return;
-        }
-
-        try(BufferedReader modReader = new BufferedReader(new InputStreamReader(
-                Main.class.getResourceAsStream("CardData/Formation_Recipes.json")))) {
-            StringBuilder recipeString = new StringBuilder(" ");
-            int i;
-            while ((i = modReader.read()) != -1) {
-                //System.out.print((char)i);
-                recipeString.append((char) i);
-            }
-            JSONObject jsonMODObject = new JSONObject(recipeString.toString());
-            JSONArray cookBook = (JSONArray) jsonMODObject.get("recipe_List");
-
-            for(int j = 0; j < cookBook.length(); j++ ){
-                JSONObject tmpRecipe = cookBook.getJSONObject(j);
-                JSONArray recipeIngredients = tmpRecipe.getJSONArray("ingredients");
-
-                for(int k = 0; k < recipeIngredients.length(); k++){
-                    JSONObject tmpIngredients = recipeIngredients.getJSONObject(k);
-
-                    boolean stepTreat = tmpIngredients.getBoolean("getCard");
-
-                    boolean needCard = tmpIngredients.getBoolean("cardCheck");
-                    boolean needType = tmpIngredients.getBoolean("typeCheck");
-                    JSONArray getPos = tmpIngredients.getJSONArray("position");
-
-                    if(!needCard && !stepTreat && needType){
-                        String tmpType = tmpIngredients.getString("type");
-
-                        for(int l = 0; l < getPos.length(); l++){
-                            JSONObject tmpPos = getPos.getJSONObject(l);
-
-                            boolean needMorePoints = tmpPos.getBoolean("additionalPoints");
-                            if(!needMorePoints){
-                                String pName = tmpPos.getString("posName");
-                                //switch to the corresponding row for the posName to check the types
-                                switch(pName) {
-                                    default -> System.exit(1);
-                                    case "UBER" -> {
-                                        for (int p = 0; p < 3; p++) {
-                                            if (playerBoard.getGrid()[0][p].getSlot().activeTypeOne().equals(tmpType)) {
-                                                checkResults++; // log the correct the go check others
-                                            }
-                                        }
-                                    }
-                                    case "ATTACK" -> {
-                                        if (playerBoard.getGrid()[1][0].getSlot().activeTypeOne().equals(tmpType) || playerBoard.getGrid()[1][2].getSlot().activeTypeOne().equals(tmpType)) {
-                                            checkResults++; // log the correct the go check others
-                                        }
-                                    }
-                                    case "CoreDEFENCE" -> {
-                                        if (playerBoard.getGrid()[1][1].getSlot().activeTypeOne().equals(tmpType) || playerBoard.getGrid()[2][0].getSlot().activeTypeOne().equals(tmpType) || playerBoard.getGrid()[2][2].getSlot().activeTypeOne().equals(tmpType)) {
-                                            checkResults++; // log the correct the go check others
-                                        }
-                                    }
-                                    case "CORE" -> {
-                                        if (playerBoard.getGrid()[2][1].getSlot().activeTypeOne().equals(tmpType)) {
-                                            checkResults++;
-                                        }
-                                    }
-                                    case "DEFENCE" -> {
-                                        for (int p = 0; p < 3; p++) {
-                                            if (playerBoard.getGrid()[3][p].getSlot().activeTypeOne().equals(tmpType)) {
-                                                checkResults++; // log the correct the go check others
-                                            }
-                                        }
-                                    }
-//
-                                }
-
-                            }
-                            //points just add to the card ig
-
-                        }
-                        //where results were
-
-                    }else if(needCard && !stepTreat && !needType){
-                        int tmpID = tmpIngredients.getInt("cardID");
-
-                        for(int l = 0; l < getPos.length(); l++){
-                            JSONObject tmpPos = getPos.getJSONObject(l);
-
-                            boolean needMorePoints = tmpPos.getBoolean("additionalPoints");
-                            String pName = tmpPos.getString("posName");
-                            if(!needMorePoints){
-                                //switch to the corresponding row for the posName to check the types
-                                switch(pName) {
-                                    default -> System.exit(1);
-                                    case "UBER" -> {
-                                        for (int p = 0; p < 3; p++) {
-                                            if (playerBoard.getGrid()[0][p].getSlot().getId() == tmpID) {
-                                                checkResults++; // log the correct the go check others
-                                            }
-                                        }
-                                    }
-                                    case "ATTACK" -> {
-                                        if (playerBoard.getGrid()[1][0].getSlot().getId() == tmpID || playerBoard.getGrid()[1][2].getSlot().getId() == tmpID) {
-                                            checkResults++; // log the correct the go check others
-                                        }
-                                    }
-                                    case "CoreDEFENCE" -> {
-                                        if (playerBoard.getGrid()[1][1].getSlot().getId() == tmpID || playerBoard.getGrid()[2][0].getSlot().getId() == tmpID || playerBoard.getGrid()[2][2].getSlot().getId() == tmpID) {
-                                            checkResults++; // log the correct the go check others
-                                        }
-                                    }
-                                    case "CORE" -> {
-                                        if (playerBoard.getGrid()[2][1].getSlot().getId() == tmpID) {
-                                            checkResults++;
-                                        }
-                                    }
-                                    case "DEFENCE" -> {
-                                        for (int p = 0; p < 3; p++) {
-                                            if (playerBoard.getGrid()[3][p].getSlot().getId() == tmpID) {
-                                                checkResults++; // log the correct the go check others
-                                            }
-                                        }
-                                    }
-//                                playerBoard.board_Grid[][].currentPlace();
-                                }
-                            } else {
-                                int extraPoints = tmpPos.getInt("ePoints");
-                                //switch to the corresponding row for the posName to check the types
-                                switch(pName) {
-                                    default -> System.exit(1);
-                                    case "UBER" -> {
-                                        for (int p = 0; p < 3; p++) {
-                                            if (playerBoard.getGrid()[0][p].getSlot().getId() == tmpID) {
-                                                checkResults++; // log the correct the go check others
-                                                playerBoard.getUberRow()[0] = playerBoard.getUberRow()[0] + extraPoints;
-                                                playerBoard.getUberRow()[1] = playerBoard.getUberRow()[1] + extraPoints;
-                                            }
-                                        }
-                                    }
-                                    case "ATTACK" -> {
-                                        if (playerBoard.getGrid()[1][0].getSlot().getId() == tmpID ) {
-                                            checkResults++; // log the correct the go check others
-                                            playerBoard.getAtkRow()[0] = playerBoard.getAtkRow()[0] + extraPoints;
-                                            playerBoard.getAtkRow()[1] = playerBoard.getAtkRow()[1] + extraPoints;
-                                        } else if(playerBoard.getGrid()[1][2].getSlot().getId() == tmpID){
-                                            checkResults++;
-                                            playerBoard.getAtkRow()[0] = playerBoard.getAtkRow()[0] + extraPoints;
-                                            playerBoard.getAtkRow()[1] = playerBoard.getAtkRow()[1] + extraPoints;
-                                        }
-                                    }
-                                    case "CoreDEFENCE" -> {
-                                        if (playerBoard.getGrid()[1][1].getSlot().getId() == tmpID ) {
-                                            checkResults++; // log the correct the go check others
-                                            playerBoard.getCDefRow()[0] = playerBoard.getCDefRow()[0] + extraPoints;
-                                            playerBoard.getCDefRow()[1] = playerBoard.getCDefRow()[1] + extraPoints;
-                                        } else if(playerBoard.getGrid()[2][0].getSlot().getId() == tmpID){
-                                            checkResults++;
-                                            playerBoard.getCDefRow()[0] = playerBoard.getCDefRow()[0] + extraPoints;
-                                            playerBoard.getCDefRow()[1] = playerBoard.getCDefRow()[1] + extraPoints;
-                                        } else if(playerBoard.getGrid()[2][2].getSlot().getId() == tmpID){
-                                            checkResults++;
-                                            playerBoard.getCDefRow()[0] = playerBoard.getCDefRow()[0] + extraPoints;
-                                            playerBoard.getCDefRow()[1] = playerBoard.getCDefRow()[1] + extraPoints;
-                                        }
-                                    }
-                                    case "CORE" -> {
-                                        if (playerBoard.getGrid()[2][1].getSlot().getId() == tmpID) {
-                                            checkResults++;
-                                            playerBoard.getCoreBlock()[0] = playerBoard.getCoreBlock()[0] + extraPoints;
-                                            playerBoard.getCoreBlock()[1] = playerBoard.getCoreBlock()[1] + extraPoints;
-                                        }
-                                    }
-                                    case "DEFENCE" -> {
-                                        for (int p = 0; p < 3; p++) {
-                                            if (playerBoard.getGrid()[3][p].getSlot().getId() == tmpID) {
-                                                checkResults++; // log the correct the go check others
-                                                playerBoard.getDefRow()[0] = playerBoard.getDefRow()[0] + extraPoints;
-                                                playerBoard.getDefRow()[1] = playerBoard.getDefRow()[1] + extraPoints;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-                       //where results were
-
-                    }else if(stepTreat && !needCard && !needType){
-                        for(int l = 0; l < getPos.length(); l++){
-                            JSONObject tmpPos = getPos.getJSONObject(l);
-                            ArrayList<Card> cardStack = new ArrayList<>();
-
-                            boolean needMorePoints = tmpPos.getBoolean("additionalPoints");
-                            String pName = tmpPos.getString("posName");
-
-                            if(!needMorePoints){
-                                //switch to the corresponding row for the posName to check the types
-                                switch(pName) {
-                                    default -> System.exit(1);
-                                    case "UBER" -> {
-                                        for (int p = 0; p < 3; p++) {
-                                            if (playerBoard.getGrid()[0][p] != null) {
-                                                //checkResults++; // log the correct the go check others
-                                                cardStack.add(playerBoard.getGrid()[0][p].getSlot());
-                                            }
-                                        }
-                                    }
-                                    case "ATTACK" -> {
-                                        if (playerBoard.getGrid()[1][0] != null ) {
-                                            cardStack.add(playerBoard.getGrid()[1][0].getSlot());
-                                        } else if(playerBoard.getGrid()[1][2] != null){
-                                            cardStack.add(playerBoard.getGrid()[1][2].getSlot());
-                                        }
-                                    }
-                                    case "CoreDEFENCE" -> {
-                                        if (playerBoard.getGrid()[1][1] != null) {
-                                            cardStack.add(playerBoard.getGrid()[1][1].getSlot());
-                                        } else if( playerBoard.getGrid()[2][0] != null ){
-                                            cardStack.add(playerBoard.getGrid()[2][0].getSlot());
-                                        }else if(playerBoard.getGrid()[2][2] != null){
-                                            cardStack.add(playerBoard.getGrid()[2][2].getSlot());
-                                        }
-                                    }
-                                    case "CORE" -> {
-                                        if (playerBoard.getGrid()[2][1] != null) {
-                                            cardStack.add(playerBoard.getGrid()[2][1].getSlot());
-                                        }
-                                    }
-                                    case "DEFENCE" -> {
-                                        for (int p = 0; p < 3; p++) {
-                                            if (playerBoard.getGrid()[3][p] != null) {
-                                                cardStack.add(playerBoard.getGrid()[3][p].getSlot());
-                                            }
-                                        }
-                                    }
-//                                playerBoard.board_Grid[][].currentPlace();
-                                }
-
-                                for (Card card : cardStack) {
-                                    Card x = cardStack.get(0);
-                                    if (x.getId() == card.getId()) {
-                                        checkResults++;
-                                    }
-                                }
-                                JSONObject getResult = tmpRecipe.getJSONObject("result");
-                                int r = getResult.getInt("passNum");
-                                if(checkResults == r){
-                                    int buildID = tmpRecipe.getInt("formID");
-                                    cardDatabase fd = new cardDatabase();
-                                    for(ComboBuild x: fd.formPack){
-                                        if(x.getId() == buildID){
-                                            System.out.println(x.getItemName());
-                                            playerBoard.getPossibleBuilds().add(x);
-                                        }
-                                    }
-                                }
-
-                            } else {
-                                int extraPoints = tmpPos.getInt("ePoints");
-                                //switch to the corresponding row for the posName to check the types
-                                switch(pName) {
-                                    default -> System.exit(1);
-                                    case "UBER" -> {
-                                        for (int p = 0; p < 3; p++) {
-                                            if (playerBoard.getGrid()[0][p] != null) {
-                                                //checkResults++; // log the correct the go check others
-                                                cardStack.add(playerBoard.getGrid()[0][p].getSlot());
-                                                playerBoard.getUberRow()[0] = playerBoard.getUberRow()[0] + extraPoints;
-                                                playerBoard.getUberRow()[1] = playerBoard.getUberRow()[1] + extraPoints;
-                                            }
-                                        }
-                                    }
-                                    case "ATTACK" -> {
-                                        if (playerBoard.getGrid()[1][0] != null ) {
-                                            cardStack.add(playerBoard.getGrid()[1][0].getSlot());
-                                            playerBoard.getCDefRow()[0] = playerBoard.getCDefRow()[0] + extraPoints;
-                                            playerBoard.getCDefRow()[1] = playerBoard.getCDefRow()[1] + extraPoints;
-                                        } else if(playerBoard.getGrid()[1][2] != null){
-                                            cardStack.add(playerBoard.getGrid()[1][2].getSlot());
-                                            playerBoard.getCDefRow()[0] = playerBoard.getCDefRow()[0] + extraPoints;
-                                            playerBoard.getCDefRow()[1] = playerBoard.getCDefRow()[1] + extraPoints;
-                                        }
-                                    }
-                                    case "CoreDEFENCE" -> {
-                                        if (playerBoard.getGrid()[1][1] != null) {
-                                            cardStack.add(playerBoard.getGrid()[1][1].getSlot());
-                                            playerBoard.getCDefRow()[0] = playerBoard.getCDefRow()[0] + extraPoints;
-                                            playerBoard.getCDefRow()[1] = playerBoard.getCDefRow()[1] + extraPoints;
-                                        } else if( playerBoard.getGrid()[2][0] != null ){
-                                            cardStack.add(playerBoard.getGrid()[2][0].getSlot());
-                                            playerBoard.getCDefRow()[0] = playerBoard.getCDefRow()[0] + extraPoints;
-                                            playerBoard.getCDefRow()[1] = playerBoard.getCDefRow()[1] + extraPoints;
-                                        }else if(playerBoard.getGrid()[2][2] != null){
-                                            cardStack.add(playerBoard.getGrid()[2][2].getSlot());
-                                            playerBoard.getCDefRow()[0] = playerBoard.getCDefRow()[0] + extraPoints;
-                                            playerBoard.getCDefRow()[1] = playerBoard.getCDefRow()[1] + extraPoints;
-                                        }
-                                    }
-                                    case "CORE" -> {
-                                        if (playerBoard.getGrid()[2][1] != null) {
-                                            cardStack.add(playerBoard.getGrid()[2][1].getSlot());
-                                            playerBoard.getCoreBlock()[0] = playerBoard.getCoreBlock()[0] + extraPoints;
-                                            playerBoard.getCoreBlock()[1] = playerBoard.getCoreBlock()[1] + extraPoints;
-                                        }
-                                    }
-                                    case "DEFENCE" -> {
-                                        for (int p = 0; p < 3; p++) {
-                                            if (playerBoard.getGrid()[3][p] != null) {
-                                                cardStack.add(playerBoard.getGrid()[3][p].getSlot());
-                                                playerBoard.getDefRow()[0] = playerBoard.getDefRow()[0] + extraPoints;
-                                                playerBoard.getDefRow()[1] = playerBoard.getDefRow()[1] + extraPoints;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                for (Card card : cardStack) {
-                                    Card x = cardStack.get(0);
-                                    if (x.getId() == card.getId()) {
-                                        checkResults++;
-                                    }
-                                }
-                               //where results was
-                            }
-                            //points just add to the bundles
-
-                        }
-                    }
-
-                    JSONObject getResult = tmpRecipe.getJSONObject("result");
-                    int r = getResult.getInt("passNum");
-                    if(checkResults == r){
-                        int buildID = tmpRecipe.getInt("formID");
-                        cardDatabase fd = new cardDatabase();
-                        for(ComboBuild x: fd.formPack){
-                            if(x.getId() == buildID){
-                                System.out.println(x.getItemName());
-                                playerBoard.getPossibleBuilds().add(x);
-                            }
-                        }
-                    }
-                }
-
-            }
-
-        } catch (IOException ex){
-            throw new IOException("Something Has Failed");
-
-        } finally {
-            System.out.println("The results are as seen above... tread lightly");
-        }
-
-        //return playerBoard.hasBuild();
-    }
 
     //evolutions can scan the board check for the card then check the number if it's not there or there is not enough space move on
     public void evolve(Player cc, int cID) throws IOException{

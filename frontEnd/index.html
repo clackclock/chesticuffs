@@ -123,10 +123,7 @@
 
         height: 250px;
     }
-    #hand_2 img:hover{
-        background-color: yellow;
-    }
-    #hand_1 img:hover{
+    #hand_2 img:hover, #hand_1 img:hover{
         background-color: yellow;
     }
 
@@ -140,24 +137,28 @@
 
         background-image: url('/../images/chest_Tray2.png');
         background-size: cover;
-        height: 300px;
-        width: 450px;
-        margin: 3px;
-    }
-    #board_1 button, #board_2 button{
-        /* margin: 5px; */
-        padding: 5px;
+        height: 330px;
+        width: 480px;
+        /* margin: 3px; */
 
+        font-family: "Jacquarda Bastarda 9", serif;
+        font-size: 15pt;
     }
+    #board_1 a:hover, #board_2 a:hover{
+        background-color: antiquewhite;
+    }
+
     .row1, .row2, .row3, .row4{
         display: flex;
+        display: inline-block;
         justify-content: center;
         align-items: center;
         flex-direction: column;
 
-        margin-top: 10px;
-        margin-left: 15px;
-        margin-right: 20px;
+        /* margin-top: 0px; */
+        /* margin-left: 15px; */
+        /* margin-right: 20px; */
+        margin: 5px;
     }
     .slot{
         display: flex;
@@ -165,8 +166,19 @@
         align-items: center;
         flex-direction: column;
 
-        margin: 20px;
+        color: black;
+        margin: 30px;
+        margin-top: 50px;
+        margin-bottom: 40px;
+        outline-style: double;
+        outline-color: white;
 
+        height: 50px;
+        width: 50px;
+    }
+    .slot img{
+        height: 80px;
+        width: auto;
     }
 
     .sideDock{
@@ -286,11 +298,16 @@
         <div class = "zoomPanel">
             <div id = "imageView">
                 <img id = "zoom" alt = "selectedCard" src = "../images/0_Back.jpg">
-                <text id = "cardText"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
+<!--                <text id = "cardText"> Lorem ipsum dolor sit amet, sed do ut et magna. Ut ad minim ut ex ea.</text>-->
             </div>
             <div id = "buildView">
-                <img  alt = "builtCard" src = "../images/36_Back.jpg">
-                <text id = "comboText"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</text>
+                <img  alt = "buildCard" src = "../images/36_Back.jpg">
+                <img  alt = "buildCard" src = "../images/36_Front.jpg">
+                <img  alt = "buildCard" src = "../images/38_Front.jpg">
+                <img  alt = "buildCard" src = "../images/39_Front.jpg">
+                <img  alt = "buildCard" src = "../images/40_Front.jpg">
+                <img  alt = "buildCard" src = "../images/41_Front.jpg">
+<!--                <text id = "comboText"> Lorem ipsum dolor sit amet, sed do ut et magna. Ut ad minim ut ex ea.</text>-->
             </div>
             <img alt = "boardSummary" src="../images/42%20-%20Board%20(Front).jpg">
         </div>
@@ -302,24 +319,24 @@
             <div id = "otherPlayer">
                 <div id = "board_2">
                     <div class = "row1">
-                        <a class = "slot"><button > u1 </button> text </a>
-                        <a class = "slot"><button > u2 </button> text </a>
-                        <a class = "slot"><button > u3 </button> text </a>
+                        <a class = "slot"> u1 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> u2 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> u3 <img alt = "selectedCard"  src = > </a>
                     </div>
                     <div class = "row2">
-                        <a class = "slot"><button > a1 </button> text </a>
-                        <a class = "slot"><button> cd1 </button> text </a>
-                        <a class = "slot"><button > a2 </button> text </a>
+                        <a class = "slot"> a1 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> cd1 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> a2 <img alt = "selectedCard"  src = > </a>
                     </div>
                     <div class = "row3">
-                        <a class = "slot"><button> cd2 </button> text </a>
-                        <a class = "slot"><button> core </button> text </a>
-                        <a class = "slot"><button> cd3 </button> text </a>
+                        <a class = "slot"> cd2 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> co <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> cd3 <img alt = "selectedCard"  src = > </a>
                     </div>
                     <div class = "row4">
-                        <a class = "slot"><button > d1 </button> text </a>
-                        <a class = "slot"><button > d2 </button> text </a>
-                        <a class = "slot"><button > d3 </button> text </a>
+                        <a class = "slot"> d1 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> d2 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> d3 <img alt = "selectedCard"  src = > </a>
                     </div>
 <!--                    <a><img alt = "board" src = "../images/chest_Tray2.png">Player2</a>-->
                 </div>
@@ -343,24 +360,24 @@
             <div id = "mainPlayer">
                 <div id = "board_1">
                     <div class = "row1">
-                        <a class = "slot"><button > u1 </button> text </a>
-                        <a class = "slot"><button > u2 </button> text </a>
-                        <a class = "slot"><button > u3 </button> text </a>
+                        <a class = "slot"> u1 <img alt = "selectedCard" src = > </a>
+                        <a class = "slot"> u2 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> u3 <img alt = "selectedCard"  src = > </a>
                     </div>
                     <div class = "row2">
-                        <a class = "slot"><button > a1 </button> text </a>
-                        <a class = "slot"><button> cd1 </button> text </a>
-                        <a class = "slot"><button > a2 </button> text </a>
+                        <a class = "slot"> a1 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> cd1 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> a2 <img alt = "selectedCard"  src = > </a>
                     </div>
                     <div class = "row3">
-                        <a class = "slot"><button> cd2 </button> text </a>
-                        <a class = "slot"><button> core </button> text </a>
-                        <a class = "slot"><button> cd3 </button> text </a>
+                        <a class = "slot"> cd2 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> co <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> cd3 <img alt = "selectedCard"  src = > </a>
                     </div>
                     <div class = "row4">
-                        <a class = "slot"><button > d1 </button> text </a>
-                        <a class = "slot"><button > d2 </button> text </a>
-                        <a class = "slot"><button > d3 </button> text </a>
+                        <a class = "slot"> d1 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> d2 <img alt = "selectedCard"  src = > </a>
+                        <a class = "slot"> d3 <img alt = "selectedCard"  src = > </a>
                     </div>
 <!--                    <a><img alt = "boardO" src = "../images/chest_Tray2.png"> Player1</a>-->
                 </div>
@@ -372,7 +389,7 @@
                     <button class = "button"> Discard [Board] </button>
                 </div>
                 <div id = "hand_1">
-                    <img id = "0" alt = "selectedCard" src = "../images/0_Back.jpg">
+                    <img onclick="placeCard()" id = "0" alt = "selectedCard" src = "../images/0_Back.jpg">
                     <img id = "1" alt = "selectedCard" src = "../images/0_Back.jpg">
                     <img id = "2" alt = "selectedCard" src = "../images/0_Back.jpg">
                     <img id = "3" alt = "selectedCard" src = "../images/0_Back.jpg">

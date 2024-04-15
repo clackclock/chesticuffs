@@ -139,26 +139,7 @@ public class Main {
                 }
             }
             case "5" -> {
-                if(current.getBoard().hasBuild()) {
-                    System.out.println(current.getBoard().getCurrentBuild().getItemName());
-                    System.out.println("Do you want to remove Build effects? (y/n)");
-                    String useBuild = input.nextLine();
-                    if(useBuild.equals("y")){ current.getBoard().removeBuild();}
-
-                } else {
-                    //ComboBuild availableBuild = current.getBoard().showValidBuilds(current.getBoard());
-                    current.getBoard().showValidBuilds(current.getBoard());
-                    System.out.println("use build? (y/n)");
-                    String b = input.nextLine();
-                    if(b.equals("y")) {
-                        System.out.println("which build? (0,1,2...)");
-                        int useBuild = input.nextInt();
-                        ComboBuild availableBuild = current.getBoard().getPossibleBuilds().get(useBuild);
-                        availableBuild.useBuild();
-                        current.getBoard().addBuild(availableBuild);
-                    }
-
-                }
+                //
 
             } //if true get which then choose to use
             case "6" -> {
