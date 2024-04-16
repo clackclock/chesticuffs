@@ -354,24 +354,24 @@
             <div id = "otherPlayer">
                 <div id = "board_2">
                     <div class = "row1">
-                        <a class = "slot"> u1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> u2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> u3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> u1 <img alt = "selectedCard" src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> u2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> u3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
                     </div>
                     <div class = "row2">
-                        <a class = "slot"> a1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> cd1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> a2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> a1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> cd1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> a2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
                     </div>
                     <div class = "row3">
-                        <a class = "slot"> cd2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> co <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> cd3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> cd2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> co <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> cd3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
                     </div>
                     <div class = "row4">
-                        <a class = "slot"> d1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> d2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> d3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> d1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> d2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> d3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
                     </div>
 <!--                    <a><img alt = "board" src = "../images/chest_Tray2.png">Player2</a>-->
                 </div>
@@ -380,8 +380,6 @@
                     <button class = "button"> Evolve </button>
                     <button class = "button"> Activate Combo</button>
                     <button class = "button"> Use Item </button>
-                    <button class = "button"> Discard [Hand] </button>
-                    <button class = "button"> Discard [Board] </button>
                 </div>
                 <div id = "hand_2">
                     <img onclick="replaceCard()" id = "5"  alt = "selectedCard" src = "../images/0_Back.jpg">
@@ -395,24 +393,24 @@
             <div id = "mainPlayer">
                 <div id = "board_1">
                     <div class = "row1">
-                        <a class = "slot"> u1 <img alt = "selectedCard" src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> u2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> u3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> u1 <img alt = "selectedCard" src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> u2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> u3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
                     </div>
                     <div class = "row2">
-                        <a class = "slot"> a1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> cd1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> a2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> a1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> cd1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> a2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
                     </div>
                     <div class = "row3">
-                        <a class = "slot"> cd2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> co <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> cd3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> cd2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> co <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> cd3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
                     </div>
                     <div class = "row4">
-                        <a class = "slot"> d1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> d2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
-                        <a class = "slot"> d3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> d1 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> d2 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
+                        <a ondblclick="removeCard()" class = "slot"> d3 <img alt = "selectedCard"  src = "../images/chesticuffs_logo.png"> </a>
                     </div>
 <!--                    <a><img alt = "boardO" src = "../images/chest_Tray2.png"> Player1</a>-->
                 </div>
@@ -420,8 +418,6 @@
                     <button class = "button"> Evolve </button>
                     <button class = "button"> Activate Combo</button>
                     <button class = "button"> Use Item </button>
-                    <button class = "button"> Discard [Hand] </button>
-                    <button class = "button"> Discard [Board] </button>
                 </div>
                 <div id = "hand_1">
                     <img onclick="replaceCard()" id = "0" alt = "selectedCard" src = "../images/0_Back.jpg">

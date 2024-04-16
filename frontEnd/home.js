@@ -84,7 +84,6 @@ function getHandP2(){
        $("#9").attr("src", data.cardList[randomCardNum()].imageID);
    });
 }
-
 function replaceCard(){
    let cdataURL = '../src/Game/CardData/card_image.json';
    $.ajax({
@@ -102,6 +101,14 @@ function replaceCard(){
             $(this).attr("src", data.cardList[randomCardNum()].imageID);
         })
    });
+}
+function removeCard(){
+    $(".slot img").on("click", function(){
+        let c = $(this).attr("src");
+        if(c != "../images/chesticuffs_logo.png"){
+            $(this).attr("src", "../images/chesticuffs_logo.png");
+        }
+    })
 }
 
 function testTst() {
