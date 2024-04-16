@@ -2549,3 +2549,9 @@ if(overflowP2 > 0){
 #board_1 button:hover, #board_2 button:hover{
     background-color: white;
 }
+
+
+let v = $(this).attr("src");
+$(".slot").on("click", function(){
+$(this).attr("src", v);
+})

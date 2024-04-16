@@ -7,11 +7,11 @@ mapHash.set('Uber3', 'value3');
 //map the button to the card's array and pull
 
 $(document).ready(function(){
-   Test();
+//   Test();
    //basic web functions
    $("img").hover(function () {
       let v = $(this).attr("src");
-      if(v == "../images/chest_Tray2.png" || v == "../images/36_Back.jpg" || v == "../images/chesticuffs_logo.png" || v == "../images/chesticuffs_logoW.png"){
+      if(v == "../images/chest_Tray2.png" || v == "../images/36_Back.jpg" || v == "../images/chesticuffs_logo.png" || v == "../images/chesticuffs_logoW.png" || v == "" || v == "https://upload.wikimedia.org/wikipedia/commons/3/35/Information_icon.svg"){
         v = "../images/0_Back.jpg";
       }
       $("#zoom").attr("src", v);
@@ -22,6 +22,19 @@ $(document).ready(function(){
    });
 
    //playing the game
+//   $( "img" ).selectable({ snap: ".slot" });
+   $("#hand_1 img").on('click', function(){
+        let re = $(this).attr("src");
+        $("#mainPlayer .slot img").on('click', function(){
+            $(this).attr("src", re);
+        })
+   })
+   $("#hand_2 img").on('click', function(){
+           let re = $(this).attr("src");
+           $("#otherPlayer .slot img").on('click', function(){
+               $(this).attr("src", re);
+           })
+      })
    getHandP1();
    getHandP2();
 
@@ -71,7 +84,8 @@ function getHandP2(){
        $("#9").attr("src", data.cardList[randomCardNum()].imageID);
    });
 }
-function placeCard(){
+
+function replaceCard(){
    let cdataURL = '../src/Game/CardData/card_image.json';
    $.ajax({
        url: cdataURL,
@@ -80,16 +94,13 @@ function placeCard(){
        dataType: "json"
    })
    .done(function(data){
-        $("img").on("click", "#hand_1", function () {
-
-             let v = $(this).attr("src");
-             $(".slot").on("click", function(){
-                $(this).attr("src", v);
-             })
-
+        $("#hand_1 img").click( function() {
+             //"pick up" after moving the card
              $(this).attr("src", data.cardList[randomCardNum()].imageID);
        })
-
+        $("#hand_2 img").click( function() {
+            $(this).attr("src", data.cardList[randomCardNum()].imageID);
+        })
    });
 }
 
@@ -125,4 +136,21 @@ function parser(){ //fullPrompt, cb
         $("#1").attr("src", data.cardList[0].imageID);
     });
 }
+function ttt() {
+     $("#hand_1 img").selectable({
+       stop: function() {
+         var result = $(".slot img").click;
+         $( "#hand_1 img", this ).each(function() {
+           var index = $( "#hand_1 img" ).attr( "src" );
+           result.attr( "src", index  );
+         });
+       }
+     });
+}
+function tt() {
+       $('a.popper').hover(function() {
+           $("img").remove();
+           $('.pop').toggle();
+       });
+   }
 
