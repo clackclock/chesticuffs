@@ -10,9 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Jacquarda+Bastarda+9&display=swap" rel="stylesheet">
 
     <link rel ="icon" href = "../images/chesticuffs_logoW.png">
+
 <!--    <link rel = "java" href = "../src/Game"> c_opium-->
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <!--    me trying not to do work-->
     <script src = "../frontEnd/home.js" crossorigin="anonymous"></script>
 
@@ -233,24 +233,40 @@
 
     #exchangeTable{
         display: flex;
-        display: inline-block;
+        
         justify-content: center;
-        align-content: center:
-        flex-direction: column;
+        align-content: center;
+        flex-direction: row;
         flex-wrap: wrap;
 
-        margin: 5px;
-        height: 650px;
-        width: 40px;
+        /* margin: 5px; */
+        
+        height: 50px;
         max-height: auto;
-        max-width: 50px;
-        outline-style: dotted;
+        width: 100%;
+        outline-style: double;
+        outline-color: #a9a9a9;
+        
     }
-    main #exchangeTable{
+    #eLeft, #eRight{
+        display: flex;
+        
         justify-content: center;
-        align-content: center:
-
+        align-content: center;
+        flex-direction: row;
+        
+        height: 50px;
+        max-height:80px;
+        margin: 3px;
+    
+        background-color: antiquewhite;
     }
+    /* #eLeft{
+        margin-right:50%;
+    }
+    #eRight{
+        margin-left:50%;
+    } */
 
     .pop:hover{
         display              : flex;
@@ -278,19 +294,19 @@
         margin: 5px;
     }
     .button {
-          display: inline-block;
-          padding: 10px 20px;
-          font-size: 18px;
-          cursor: pointer;
-          text-align: center;
-          text-decoration: none;
-          outline: none;
-          color: #fff;
-          background-color: #aa9064;
-          border: none;
-          border-radius: 15px;
-          box-shadow: 0 9px #999;
-          cursor: crosshair;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #aa9064;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        cursor: crosshair;
     }
     .button:hover {background-color: #3e8e41;}
     .button:active {
@@ -300,9 +316,9 @@
     }
 
     .jacquarda-bastarda {
-            font-family: "Jacquarda Bastarda 9", serif;
-            font-weight: 400;
-            font-style: normal;
+        font-family: "Jacquarda Bastarda 9", serif;
+        font-weight: 400;
+        font-style: normal;
     }
 
     footer{
@@ -430,7 +446,12 @@
             </div>
         </div>
         <div id = "exchangeTable">
-            The table or dropbox thing for exchanges to make combos will go here maybe
+            <div id = "eLeft">
+                Player 2 drop
+            </div>
+            <div id = "eRight">
+                Player 1 drop
+            </div>
         </div>
     </main>
 

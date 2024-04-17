@@ -211,9 +211,9 @@ public class Board {
     private boolean isThereBuild = false;
     public boolean hasBuild(){ return isThereBuild; }
     public void removeBuild(){if(hasBuild()){currentBuild = null; isThereBuild = false;} }
-//    public ArrayList<ComboBuild> checkComboBucket(){ return comboBucket; }
+    public ArrayList<ComboBuild> checkComboBucket(){ return comboBucket; }
 //    public void addBuild(ComboBuild x){ currentBuild = x; isThereBuild = true; }
-//    public ComboBuild getCurrentBuild(){ return currentBuild; }
+    public ComboBuild getCurrentBuild(){ return currentBuild; }
 
 
     public void addToSlots(String name, Card fromHand) {
@@ -235,62 +235,7 @@ public class Board {
             posMap.row(pos)[0] += atk;
             posMap.row(pos)[1] += def;
         }
-        /*
-        switch (name) {
-            case "UBER" -> {
-                //for each uber position on the grid //if there are less than uber open slot amount of uber positions
-                if(board_Grid[0][colChoice] == null){
-                    board_Grid[0][colChoice] = new Positions(UBER, fromHand);
 
-                    int atk = board_Grid[0][colChoice].getAtk();
-                    int def =board_Grid[0][colChoice].getDef();
-                    getUberRow()[0] = getUberRow()[0] + atk;
-                    getUberRow()[1] = getUberRow()[1] + def;
-                }
-            }
-            case "ATTACK" -> {
-                if(board_Grid[1][colChoice] == null ){ // only col 0 & 2
-                    board_Grid[1][colChoice] = new Positions(ATTACK, fromHand);
-
-                    int atk = board_Grid[1][colChoice].getAtk();
-                    int def = board_Grid[1][colChoice].getDef();
-                    getAtkRow()[0] = getAtkRow()[0] + atk;
-                    getAtkRow()[1] = getAtkRow()[1] + def;
-                }
-            }
-            case "CoreDEFENCE" -> {
-                System.out.println("Which Row? (1 or 2)");
-                int rowChoice = input.nextInt();
-                if(board_Grid[rowChoice][colChoice] == null) { // only 1,1 2,0 2,2
-                    board_Grid[rowChoice][colChoice] = new Positions(CoreDEFENCE, fromHand);
-
-                    int atk = board_Grid[rowChoice][colChoice].getAtk();
-                    int def = board_Grid[rowChoice][colChoice].getDef();
-                    getCDefRow()[0] = getCDefRow()[0] + atk;
-                    getCDefRow()[1] = getCDefRow()[1] + def;
-                }
-            }
-            case "CORE" -> {
-                if(board_Grid[2][1] == null){
-                    board_Grid[2][1] = new Positions(CORE, fromHand);
-
-                    int atk = board_Grid[2][1].getAtk();
-                    int def = board_Grid[2][1].getDef();
-                    getCoreBlock()[0] = atk;
-                    getCoreBlock()[1] = def;
-                }
-            }
-            case "DEFENCE" -> {
-                if(board_Grid[3][colChoice] == null){
-                    board_Grid[3][colChoice] = new Positions(DEFENCE, fromHand);
-
-                    int atk = board_Grid[3][colChoice].getAtk();
-                    int def = board_Grid[3][colChoice].getDef();
-                    getDefRow()[0] = getDefRow()[0] + atk;
-                    getDefRow()[1] = getDefRow()[1] + def;
-                }
-            }
-        }         */
     }
     public void removeFromSlots(String name, int posIndex) {
         Board_Positions pos = Board_Positions.valueOf(name);
@@ -304,43 +249,6 @@ public class Board {
         posMap.row(pos)[0] -= board_Grid[index][posIndex].getAtk();
         posMap.row(pos)[1] -= board_Grid[index][posIndex].getDef();
         board_Grid[index][posIndex] = null;
-
-        /*switch (name) {
-            case "UBER" -> {
-                getUberRow()[0] = getUberRow()[0] - board_Grid[0][posIndex].getAtk();
-                getUberRow()[1] = getUberRow()[1] - board_Grid[0][posIndex].getDef();
-
-                board_Grid[0][posIndex] = null;
-            }
-            case "ATTACK" -> {
-                getAtkRow()[0] = getAtkRow()[0] - board_Grid[1][posIndex].getAtk();
-                getAtkRow()[1] = getAtkRow()[1] - board_Grid[1][posIndex].getDef();
-
-                board_Grid[1][posIndex] = null;
-            } //only 0 and 2 are valid
-            case "CoreDEFENCE" -> {
-                Scanner input = new Scanner(System.in);
-                System.out.println("Which row? 1 or 2");
-                int rowSelect = input.nextInt();
-
-                getCDefRow()[0] = getCDefRow()[0] - board_Grid[posIndex][rowSelect].getAtk();
-                getCDefRow()[1] = getCDefRow()[1] - board_Grid[posIndex][rowSelect].getDef();
-
-                board_Grid[posIndex][rowSelect] = null; // only 0 and 2 are valid for row 2 and 1 is valid row 1
-            }
-            case "CORE" ->{
-                getCoreBlock()[0] = getCoreBlock()[0] - board_Grid[2][1].getAtk();
-                getCoreBlock()[1] = getCoreBlock()[1] - board_Grid[2][1].getDef();
-
-                board_Grid[2][1] = null;
-            }// only 1 is valid
-            case "DEFENCE" ->{
-                getDefRow()[0] = getDefRow()[0] - board_Grid[3][posIndex].getAtk();
-                getDefRow()[1] = getDefRow()[1] - board_Grid[3][posIndex].getDef();
-
-                board_Grid[3][posIndex] = null;
-            }
-        }         */
 
     }
     public void removeMetalOre(){
