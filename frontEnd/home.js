@@ -106,7 +106,9 @@ function removeCard(){
     $(".slot img").on("click", function(){
         let c = $(this).attr("src");
         if(c != "../images/chesticuffs_logo.png"){
-            $(this).attr("src", "../images/chesticuffs_logo.png");
+           $(this).on("dblclick", function(){
+               $(this).attr("src", "../images/chesticuffs_logo.png");
+           }
         }
     })
 }
