@@ -211,9 +211,47 @@ public class Board {
     private boolean isThereBuild = false;
     public boolean hasBuild(){ return isThereBuild; }
     public void removeBuild(){if(hasBuild()){currentBuild = null; isThereBuild = false;} }
-    public ArrayList<ComboBuild> checkComboBucket(){ return comboBucket; }
+//    public ArrayList<ComboBuild> checkComboBucket(){ return comboBucket; }
 //    public void addBuild(ComboBuild x){ currentBuild = x; isThereBuild = true; }
     public ComboBuild getCurrentBuild(){ return currentBuild; }
+    public void addBuild() throws IOException{
+        try(BufferedReader modReader = new BufferedReader(new InputStreamReader(
+                Main.class.getResourceAsStream("CardData/comboItemList.json")))) {
+            StringBuilder comboString = new StringBuilder(" ");
+            int i;
+            while ((i = modReader.read()) != -1) {
+                //System.out.print((char)i);
+                comboString.append((char) i);
+            }
+
+            JSONObject getJSONCombo = new JSONObject(comboString.toString());
+            JSONObject recList = getJSONCombo.getJSONObject("recipe_List");
+            JSONArray ingList = (JSONArray) recList.get("ingredients");
+            JSONObject reSalt = (JSONObject) recList.get("result");
+
+            for (int l = 0; l < ingList.length(); l++) {
+                JSONObject greed = ingList.getJSONObject(l);
+                boolean isCard = greed.getBoolean("getCard");
+                boolean isSpecificCard = greed.getBoolean("cardCheck");
+                boolean isType = greed.getBoolean("typeCheck");
+
+                int itemCount = greed.getInt("numOfItem");
+
+                switch(isCard + "-" + isSpecificCard + "-" + isType){
+                    case "true-false-false": {
+                        for(int o = 0; o < comboBucket.size(); o++){
+                            //check if the card appears the number of times
+                        }
+                    }
+                    case "false-true-false": System.exit(1);
+                    case "false-false-true": System.exit(2);
+                    default: throw new RuntimeException("something strange happening here");
+                }
+            }
+        }catch(IOException ex){
+            throw new IOException("Something Has Failed");
+        }
+    }
 
 
     public void addToSlots(String name, Card fromHand) {
