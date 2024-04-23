@@ -109,7 +109,7 @@ function removeCard(){
            $(this).on("dblclick", function(){
                $(this).attr("src", "../images/chesticuffs_logo.png");
            }
-        }
+        )}
     })
 }
 
