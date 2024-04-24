@@ -206,7 +206,8 @@ public class Board {
     }
 
 
-    private final ArrayList<ComboBuild> comboBucket = new ArrayList<>();
+    private ArrayList<ComboBuild> comboBucket = new ArrayList<>();
+    private ArrayList<Card> exchangeBin = new ArrayList<>();
     private ComboBuild currentBuild;
     private boolean isThereBuild = false;
     public boolean hasBuild(){ return isThereBuild; }
@@ -239,12 +240,19 @@ public class Board {
 
                 switch(isCard + "-" + isSpecificCard + "-" + isType){
                     case "true-false-false": {
-                        for(int o = 0; o < comboBucket.size(); o++){
+                        for(int o = 0; o < exchangeBin.size(); o++){
                             //check if the card appears the number of times
+                            Card x = exchangeBin.get(o);
+                            for(int r = 1; r < exchangeBin.size()-1; r++){
+                                if(x.getId() == exchangeBin.get(r).getId()){
+
+                                }
+                            }
                         }
                     }
                     case "false-true-false": System.exit(1);
                     case "false-false-true": System.exit(2);
+                    case "true-false-true": System.exit(3);
                     default: throw new RuntimeException("something strange happening here");
                 }
             }
