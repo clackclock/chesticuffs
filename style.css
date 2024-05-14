@@ -1,6 +1,7 @@
 body{
         /* https://timelessmoon.getarchive.net/amp/media/wood-desk-wallpaper-backgrounds-textures-bea895 */
-        background-image: url("https://cdn12.picryl.com/photo/2016/12/31/wood-desk-wallpaper-backgrounds-textures-bea895-1024.jpg");
+        /* https://cdn12.picryl.com/photo/2016/12/31/wood-desk-wallpaper-backgrounds-textures-bea895-1024.jpg */
+        background-image: url("images/wood-desk-wallpaper-backgrounds-textures-bea895-1024.jpg");
 
         background-repeat: no-repeat;
         background-size: cover;
@@ -252,11 +253,11 @@ body{
         display              : flex;
         position             : absolute;
 
-        padding              : 10px;
-        background           : #3AB9AE;
+        padding              : 5px;
+        background           : #f5cf13;
         border               : 1px solid antiquewhite;
 
-        /* -webkit-border-radius: 20px; */
+        -webkit-border-radius: 20px;
         margin               : 0px;
     }
      *::-webkit-scrollbar {

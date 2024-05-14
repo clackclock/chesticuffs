@@ -11,7 +11,7 @@ $(document).ready(function(){
    //basic web functions
    $("img").hover(function () {
       let v = $(this).attr("src");
-      if(v == "../images/chest_Tray2.png" || v == "../images/36_Back.jpg" || v == "../images/chesticuffs_logo.png" || v == "../images/chesticuffs_logoW.png" || v == "" || v == "https://upload.wikimedia.org/wikipedia/commons/3/35/Information_icon.svg"){
+      if(v == "../images/chest_Tray2.png" || v == "../images/36_Back.jpg" || v == "images/chesticuffs_logo.png" || v == "images/chesticuffs_logoW.png" || v == "" || v == "https://upload.wikimedia.org/wikipedia/commons/3/35/Information_icon.svg"){
         v = "../images/0_Back.jpg";
       }
       $("#zoom").attr("src", v);
