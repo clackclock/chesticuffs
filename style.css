@@ -9,7 +9,8 @@ body{
         /*         color: #caf0f8; */
         margin: 10px;
         cursor: crosshair;
-        overflow-x: hidden;
+        overflow-x: unset;
+        -webkit-overflow-scrolling: touch;
     }
     header{
         margin: 0%;
