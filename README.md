@@ -1,8 +1,6 @@
 <img align = "left" height = "64" src = "images/chesticuffs_logoW.png">
 
-# [Play the Game](https://clackclock.github.io/chesticuffs/)
-
-# Motivation
+# [Play the Game HERE](https://clackclock.github.io/chesticuffs/)
 
 ## About
 
