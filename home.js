@@ -16,13 +16,11 @@ $(document).ready(function(){
       }
       $("#zoom").attr("src", v);
 //      console.log(v);
-//      $(this).css("background-color", "green");
    }, function () {
-       $("#zoom").attr("src", "../images/0_Back.jpg");
+       $("#zoom").attr("src", "images/0_Back.jpg");
    });
 
    //playing the game
-//   $( "img" ).selectable({ snap: ".slot" });
     $("#hand_1 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
     $("#mainPlayer .slot img").droppable({
           accept: "#hand_1 > img",
