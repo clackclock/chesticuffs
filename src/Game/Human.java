@@ -3,8 +3,7 @@ package Game;
 import Game.Slots.Board;
 import Game.Slots.Positions;
 
-import static Game.Slots.Board.Board_Positions.*;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,7 +16,7 @@ public class Human implements Player {
 
     private final Board b = new Board();
 
-    public Human() {
+    public Human() throws IOException {
         new Scanner(System.in);
     }
 
@@ -61,7 +60,7 @@ public class Human implements Player {
         Card up;
         int shuffle = r.nextInt(deck.size());
         up = deck.get(shuffle);
-        if (deck.size() == 0) {
+        if (deck.size() == 1) {
             System.out.println("No more cards, SUFFER");
             return;
         }
@@ -93,6 +92,10 @@ public class Human implements Player {
             System.exit(1);
         }
         return thisCard;
+    }
+    Combos bin = new Combos();
+    public Combos comboBin(){
+        return bin;
     }
 
 }

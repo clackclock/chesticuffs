@@ -205,23 +205,17 @@ public class Board {
         }
     }
 
-
-    private ArrayList<ComboBuild> comboBucket = new ArrayList<>();
-    private ArrayList<Card> exchangeBin = new ArrayList<>();
     private ComboBuild currentBuild;
-    private boolean isThereBuild = false;
     public boolean hasBuild(){ return isThereBuild; }
     public void removeBuild(){if(hasBuild()){currentBuild = null; isThereBuild = false;} }
-//    public ArrayList<ComboBuild> checkComboBucket(){ return comboBucket; }
-//    public void addBuild(ComboBuild x){ currentBuild = x; isThereBuild = true; }
-    public ComboBuild getCurrentBuild(){ return currentBuild; }
-    public void addBuild() throws IOException{
+    public void addBuild(ComboBuild x){ currentBuild = x; isThereBuild = true; }
+    private boolean isThereBuild = false;
+    public void loadBuild() throws IOException{
         try(BufferedReader modReader = new BufferedReader(new InputStreamReader(
                 Main.class.getResourceAsStream("CardData/comboItemList.json")))) {
             StringBuilder comboString = new StringBuilder(" ");
             int i;
             while ((i = modReader.read()) != -1) {
-                //System.out.print((char)i);
                 comboString.append((char) i);
             }
 
@@ -232,13 +226,15 @@ public class Board {
 
             for (int l = 0; l < ingList.length(); l++) {
                 JSONObject greed = ingList.getJSONObject(l);
+
                 boolean isCard = greed.getBoolean("getCard");
                 boolean isSpecificCard = greed.getBoolean("cardCheck");
                 boolean isType = greed.getBoolean("typeCheck");
-
                 int itemCount = greed.getInt("numOfItem");
 
+                if(isCard){
 
+                }
             }
         }catch(IOException ex){
             throw new IOException("Something Has Failed");

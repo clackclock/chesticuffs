@@ -2769,3 +2769,9 @@ switch(isCard + "-" + isSpecificCard + "-" + isType){
     case "true-false-true": System.exit(3);
     default: throw new RuntimeException("something strange happening here");
 }
+
+Map<ComboBuild, Map<Card,Integer>> checkCards = new HashMap<>();
+Map<Card, Integer> countNumCards = new HashMap<>();
+Map<String, Integer> typeToNum = new HashMap<>();
+Map<Integer, Integer> IDToNumCards = new HashMap<>();
+//if the combo needs 2 maps just run them twice in whatever order

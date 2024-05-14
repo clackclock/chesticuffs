@@ -43,8 +43,9 @@ public class Main {
         System.out.println("2) Discard from hand");
         System.out.println("3) Remove from board position");
         System.out.println("4) Use an Item");
-        System.out.println("5) Activate Build Stats");
-        System.out.println("6) Evolve Card");
+        System.out.println("5) Add to Bin");
+        System.out.println("6) Check Bin");
+        System.out.println("7) Evolve Card");
     }
 
     public static void actionMenu(Player current, Player other) throws IOException {
@@ -139,10 +140,13 @@ public class Main {
                 }
             }
             case "5" -> {
-                //
+                System.out.println("Which card in your hand? (left to right [0-4])");
+                int numSelectInput = input.nextInt();
+                current.comboBin().addToBin(current.getHand().get(numSelectInput));
+                current.getHand().remove(numSelectInput);
 
             } //if true get which then choose to use
-            case "6" -> {
+            case "7" -> {
                 System.out.println("What is the ID of the card you want to evolve?");
                 int id = input.nextInt();
                 current.getBoard().evolve(current, id);
