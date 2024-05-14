@@ -1,7 +1,7 @@
 body{
         /* https://timelessmoon.getarchive.net/amp/media/wood-desk-wallpaper-backgrounds-textures-bea895 */
         /* https://cdn12.picryl.com/photo/2016/12/31/wood-desk-wallpaper-backgrounds-textures-bea895-1024.jpg */
-        background-image: url("../images/wood-desk-wallpaper-backgrounds-textures-bea895-1024.jpg");
+        background-image: url("images/wood-desk-wallpaper-backgrounds-textures-bea895-1024.jpg");
 
         background-repeat: no-repeat;
         background-size: cover;
@@ -119,7 +119,7 @@ body{
         /* flex-direction: row; */
         /* max-width: 400px; */
 
-        background-image: url('../images/chest_Tray2.png');
+        background-image: url('images/chest_Tray2.png');
         background-size: cover;
         height: 330px;
         width: 480px;
