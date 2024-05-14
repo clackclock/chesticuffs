@@ -34,12 +34,13 @@ $(document).ready(function(){
              $(ui.draggable).prependTo(this);
           }
     });
-//   $("#hand_1 img").on('click', function(){
-//        let re = $(this).attr("src");
-//        $("#mainPlayer .slot img").on('click', function(){
-//            $(this).attr("src", re);
-//        })
-//   })
+  $("#hand_1 img").on('click', function(){
+       let re = $(this).attr("src");
+       $("#mainPlayer .slot img").on('click', function(){
+           $(this).attr("src", re);
+       })
+  })
+
    $("#hand_2 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
     $("#otherPlayer .slot img").droppable({
           accept: "#hand_2 > img",
@@ -53,6 +54,12 @@ $(document).ready(function(){
             $(ui.draggable).appendTo(this);
         }
     });
+    $("#hand_2 img").on('click', function(){
+        let re = $(this).attr("src");
+        $("#otherPlayer .slot img").on('click', function(){
+            $(this).attr("src", re);
+        })
+   })
    getHandP1();
    getHandP2();
 })
@@ -101,7 +108,7 @@ function getHandP2(){
        $("#9").attr("src", data.cardList[randomCardNum()].imageID);
    });
 }
-function replaceCard(){
+function replaceCard(id){
    let cdataURL = 'src/Game/CardData/card_image.json';
    $.ajax({
        url: cdataURL,
@@ -110,13 +117,10 @@ function replaceCard(){
        dataType: "json"
    })
    .done(function(data){
-        $("#hand_1 img").dblclick( function() {
+        $(id +" img").dblclick( function() {
              //"pick up" after moving the card
              $(this).attr("src", data.cardList[randomCardNum()].imageID);
        })
-        $("#hand_2 img").dblclick( function() {
-            $(this).attr("src", data.cardList[randomCardNum()].imageID);
-        })
    });
 }
 function removeCard(){
