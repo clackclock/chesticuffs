@@ -18,7 +18,7 @@ $(document).ready(function(){
 //      console.log(v);
 //      $(this).css("background-color", "green");
    }, function () {
-       $("#zoom").attr("src", "images/0_Back.jpg");
+       $("#zoom").attr("src", "../images/0_Back.jpg");
    });
 
    //playing the game
