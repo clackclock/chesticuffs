@@ -11,14 +11,14 @@ $(document).ready(function(){
    //basic web functions
    $("img").hover(function () {
       let v = $(this).attr("src");
-      if(v == "../images/chest_Tray2.png" || v == "../images/36_Back.jpg" || v == "images/chesticuffs_logo.png" || v == "images/chesticuffs_logoW.png" || v == "" || v == "https://upload.wikimedia.org/wikipedia/commons/3/35/Information_icon.svg"){
-        v = "../images/0_Back.jpg";
+      if(v == "images/chest_Tray2.png" || v == "images/36_Back.jpg" || v == "images/chesticuffs_logo.png" || v == "images/chesticuffs_logoW.png" || v == "" || v == "https://upload.wikimedia.org/wikipedia/commons/3/35/Information_icon.svg"){
+        v = "images/0_Back.jpg";
       }
       $("#zoom").attr("src", v);
 //      console.log(v);
 //      $(this).css("background-color", "green");
    }, function () {
-       $("#zoom").attr("src", "../images/0_Back.jpg");
+       $("#zoom").attr("src", "images/0_Back.jpg");
    });
 
    //playing the game
@@ -70,7 +70,7 @@ function randomCardNum(){
    return ciD;
 }
 function getHandP1(){
-   let cdataURL = '../src/Game/CardData/card_image.json';
+   let cdataURL = 'src/Game/CardData/card_image.json';
    $.ajax({
        url: cdataURL,
        contentType: "application/json",
@@ -87,7 +87,7 @@ function getHandP1(){
    });
 }
 function getHandP2(){
-    let cdataURL = '../src/Game/CardData/card_image.json';
+    let cdataURL = 'src/Game/CardData/card_image.json';
    $.ajax({
        url: cdataURL,
        contentType: "application/json",
@@ -104,7 +104,7 @@ function getHandP2(){
    });
 }
 function replaceCard(){
-   let cdataURL = '../src/Game/CardData/card_image.json';
+   let cdataURL = 'src/Game/CardData/card_image.json';
    $.ajax({
        url: cdataURL,
        contentType: "application/json",
@@ -124,9 +124,9 @@ function replaceCard(){
 function removeCard(){
     $(".slot img").on("click", function(){
         let c = $(this).attr("src");
-        if(c != "../images/chesticuffs_logo.png"){
+        if(c != "images/chesticuffs_logo.png"){
            $(this).on("dblclick", function(){
-               $(this).attr("src", "../images/chesticuffs_logo.png");
+               $(this).attr("src", "images/chesticuffs_logo.png");
            }
         )}
     })
