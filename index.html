@@ -17,7 +17,7 @@
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <!--    me trying not to do work-->
-    <script src = "../home.js" ></script>
+    <script src = "home.js" ></script>
 </head>
 <style></style>
 <body>
@@ -84,11 +84,6 @@
 <!--                    <a><img alt = "board" src = "../images/chest_Tray2.png">Player2</a>-->
                 </div>
 
-                <div class = "consoleHolder">
-                    <button class = "button"> Evolve </button>
-                    <button class = "button"> Activate Combo</button>
-                    <button class = "button"> Use Item </button>
-                </div>
                 <div id = "hand_2">
                     <img onclick="replaceCard()" id = "5"  class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
                     <img onclick="replaceCard()" id = "6"  class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
@@ -122,11 +117,11 @@
                     </div>
 <!--                    <a><img alt = "boardO" src = "../images/chest_Tray2.png"> Player1</a>-->
                 </div>
-                <div class = "consoleHolder">
+                <!-- <div class = "consoleHolder">
                     <button class = "button"> Evolve </button>
                     <button class = "button"> Activate Combo</button>
                     <button class = "button"> Use Item </button>
-                </div>
+                </div> -->
                 <div id = "hand_1">
                     <img onclick="replaceCard()" id = "0" class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
                     <img onclick="replaceCard()" id = "1" class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
@@ -139,10 +134,16 @@
 
         <div id = "exchangeTable">
             <div id = "eLeft">
-                <a> Player 2 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 1792 1792"><path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z" style="&#10; fill: rgb(199, 128, 128);&#10;"/></svg> </a>
+                <button class = primary-button>COMBO</button>
+                <button class = primary-button>EVOLVE</button>
+                <a>Player 2 Drop</a>
+                <!-- <a> Player 2 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 1792 1792"><path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z" style="&#10; fill: rgb(199, 128, 128);&#10;"/></svg> </a> -->
             </div>
             <div id = "eRight">
-                <a> Player 1 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 1792 1792"><path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z" style="&#10; fill: rgb(199, 128, 128);&#10;"/></svg> </a>
+                <button class = primary-button>COMBO</button>
+                <button class = primary-button>EVOLVE</button>
+                <a>Player 1 Drop</a>
+                <!-- <a> Player 1 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 1792 1792"><path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z" style="&#10; fill: rgb(199, 128, 128);&#10;"/></svg> </a> -->
             </div>
         </div>
     </main>

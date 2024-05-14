@@ -30,6 +30,12 @@ $(document).ready(function(){
              $(this).attr("src", ui.draggable.attr("src"));
           }
     });
+    $("#eRight").droppable({
+        accept: "#hand_1 > img",
+          drop: function( event, ui ) {
+             $(ui.draggable).prependTo(this);
+          }
+    });
 //   $("#hand_1 img").on('click', function(){
 //        let re = $(this).attr("src");
 //        $("#mainPlayer .slot img").on('click', function(){
@@ -41,6 +47,12 @@ $(document).ready(function(){
           accept: "#hand_2 > img",
           drop: function( event, ui ) {
              $(this).attr("src", ui.draggable.attr("src"));
+          }
+    });
+    $("#eLeft").droppable({
+        accept: "#hand_2 > img",
+          drop: function( event, ui ) {
+             $(ui.draggable).appendTo(this);
           }
     });
    getHandP1();
