@@ -12,13 +12,13 @@ $(document).ready(function(){
    $("img").hover(function () {
       let v = $(this).attr("src");
       if(v == "images/chest_Tray2.png" || v == "images/36_Back.jpg" || v == "images/chesticuffs_logo.png" || v == "images/chesticuffs_logoW.png" || v == "" || v == "https://upload.wikimedia.org/wikipedia/commons/3/35/Information_icon.svg"){
-        v = "../images/0_Back.jpg";
+        v = "images/0_Back.jpg";
       }
       $("#zoom").attr("src", v);
 //      console.log(v);
 //      $(this).css("background-color", "green");
    }, function () {
-       $("#zoom").attr("src", "../images/0_Back.jpg");
+       $("#zoom").attr("src", "images/0_Back.jpg");
    });
 
    //playing the game
