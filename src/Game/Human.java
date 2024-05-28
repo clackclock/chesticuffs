@@ -93,8 +93,8 @@ public class Human implements Player {
         }
         return thisCard;
     }
-    Combos bin = new Combos();
-    public Combos comboBin(){
+    private Combos bin;
+    public Combos getComboBin(){
         return bin;
     }
 

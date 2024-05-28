@@ -18,6 +18,6 @@ public interface Player {
     void removePlacedCard(String slotName, int slotNum); //from the board
     Card selectOtherPlayerCard(Player other, int row, int col);
     Card checkCard(int row, int col);
-    Combos comboBin();
+    Combos getComboBin();
 
 }

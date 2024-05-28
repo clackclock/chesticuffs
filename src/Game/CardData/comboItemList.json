@@ -5,6 +5,7 @@
 
   "recipe_List":[
     {
+      "ItemForm": "format:Plain_Tree",
       "ingredients":
       [
         {"getCard" : false, "cardCheck": true, "typeCheck": false, "card": "Plank","cardID": 21, "numOfItem": 2 },
@@ -18,6 +19,7 @@
       }
     },
     {
+      "ItemForm": "format:Stairs",
       "ingredients": [
         { "getCard": true, "cardCheck": false, "typeCheck": false, "numOfItem": 3}
       ],
@@ -30,6 +32,7 @@
 
     },
     {
+      "ItemForm": "format:Flower_Bush",
       "ingredients": [
         { "getCard" : true, "cardCheck": false, "typeCheck": true, "type": "FLOWER","numOfItem": 3}
       ],
@@ -42,6 +45,7 @@
 
     },
     {
+      "ItemForm": "format:Item_Frame",
       "ingredients": [
         { "getCard" : false, "cardCheck": false, "typeCheck": true, "type": "WOOD", "numOfItem": 7 },
         { "getCard" : false, "cardCheck": false, "typeCheck": true, "type": "METAL", "numOfItem": 1},
@@ -55,6 +59,7 @@
       }
     },
     {
+      "ItemForm": "format:Apple_Pie",
       "ingredients": [
         { "getCard" : false, "cardCheck": true, "typeCheck": false, "card": "Apple", "cardID": 6, "numOfItem": 3},
         { "getCard" : false, "cardCheck": true, "typeCheck": false, "card": "Wheat", "cardID": 31, "numOfItem": 3}
@@ -68,6 +73,7 @@
 
     },
     {
+      "ItemForm": "format:Monument",
       "ingredients": [
         { "getCard" : false, "cardCheck": true, "typeCheck": false, "card": "Trident", "cardID": 29, "numOfItem": 3},
         { "getCard" : false, "cardCheck": false, "typeCheck": true, "type": "WATER", "numOfItem": 1},

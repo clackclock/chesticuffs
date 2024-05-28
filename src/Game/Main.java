@@ -142,10 +142,16 @@ public class Main {
             case "5" -> {
                 System.out.println("Which card in your hand? (left to right [0-4])");
                 int numSelectInput = input.nextInt();
-                current.comboBin().addToBin(current.getHand().get(numSelectInput));
+                current.getComboBin().addToBin(current.getHand().get(numSelectInput));
                 current.getHand().remove(numSelectInput);
+                System.out.println(current.getComboBin().checkBin());
 
             } //if true get which then choose to use
+            case "6" -> {
+                System.out.println("What Combo do you want?");
+                String cName = input.nextLine();
+                Combos search = new Combos(cName);
+            }
             case "7" -> {
                 System.out.println("What is the ID of the card you want to evolve?");
                 int id = input.nextInt();

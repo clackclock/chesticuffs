@@ -2,6 +2,7 @@ package Game;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,36 +14,46 @@ import java.util.Map;
 public class Combos {
     private ArrayList<ComboBuild> comboBucket = new ArrayList<>();
     private ArrayList<Card> exchangeBin = new ArrayList<>();
-    Map<ComboBuild, Map<Card,Integer>> checkCards = new HashMap<>();
-    Map<Card, Integer> countNumCards = new HashMap<>();
-    Map<String, Integer> typeToNum = new HashMap<>();
-    Map<Integer, Integer> IDToNumCards = new HashMap<>();
+//    Map<ComboBuild, Set<Map<>>> checkCards = new HashMap<>();
+//    Map<Card, Integer> countNumCards = new HashMap<>();
+//    Map<String, Integer> typeToNum = new HashMap<>();
+//    Map<Integer, Integer> IDToNumCards = new HashMap<>();
 //if the combo needs 2 maps just run them twice in whatever order
 
-    public Combos() throws IOException{
+    public Combos(String comboName) throws IOException{
         try(BufferedReader modReader = new BufferedReader(new InputStreamReader(Main.class.getResourceAsStream("CardData/comboItemList.json")))) {
             StringBuilder comboString = new StringBuilder(" ");
             int i;
             while ((i = modReader.read()) != -1) {
                 comboString.append((char) i);
             }
-
             JSONObject getJSONCombo = new JSONObject(comboString.toString());
-            JSONObject recList = getJSONCombo.getJSONObject("recipe_List");
-            JSONArray ingList = (JSONArray) recList.get("ingredients");
-            JSONObject reSalt = (JSONObject) recList.get("result");
+            JSONArray recList = getJSONCombo.getJSONArray("recipe_List");
 
-            for (int l = 0; l < ingList.length(); l++) {
-                JSONObject greed = ingList.getJSONObject(l);
 
-                boolean isCard = greed.getBoolean("getCard");
-                boolean isSpecificCard = greed.getBoolean("cardCheck");
-                boolean isType = greed.getBoolean("typeCheck");
-                int itemCount = greed.getInt("numOfItem");
-
-                if(isCard){
-
+            //check to make sure the combo is there or spelled correctly
+            String cFName;
+            int p;
+            for( p = 0; p < recList.length(); p++){
+                JSONObject fN = (JSONObject) recList.get(p);
+                cFName = fN.getString("ItemForm");
+                if(cFName.equals(comboName)){
+                    break;
+                } else if(p == recList.length()){
+                    System.out.println("Incorrect Spelling or Item");
                 }
+            }
+
+            for (int l = 0; l < recList.length(); l++) {
+                JSONArray ingList = (JSONArray) recList.get(p);
+                JSONObject things = ingList.getJSONObject(l);
+
+
+
+                boolean isCard = things.getBoolean("getCard");
+                boolean isSpecificCard = things.getBoolean("cardCheck");
+                boolean isType = things.getBoolean("typeCheck");
+                int itemCount = things.getInt("numOfItem");
 
             }
         }catch(IOException ex){
