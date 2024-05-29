@@ -2,23 +2,16 @@ package Game;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONStringer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Combos {
-    private ArrayList<ComboBuild> comboBucket = new ArrayList<>();
-    private ArrayList<Card> exchangeBin = new ArrayList<>();
-//    Map<ComboBuild, Set<Map<>>> checkCards = new HashMap<>();
-//    Map<Card, Integer> countNumCards = new HashMap<>();
-//    Map<String, Integer> typeToNum = new HashMap<>();
-//    Map<Integer, Integer> IDToNumCards = new HashMap<>();
-//if the combo needs 2 maps just run them twice in whatever order
+    cardDatabase gg = new cardDatabase();
+    private final ArrayList<ComboBuild> comboBucket = new ArrayList<>();
+    private final ArrayList<Card> exchangeBin = new ArrayList<>();
 
     public Combos(String comboName) throws IOException{
         try(BufferedReader modReader = new BufferedReader(new InputStreamReader(Main.class.getResourceAsStream("CardData/comboItemList.json")))) {
@@ -29,7 +22,6 @@ public class Combos {
             }
             JSONObject getJSONCombo = new JSONObject(comboString.toString());
             JSONArray recList = getJSONCombo.getJSONArray("recipe_List");
-
 
             //check to make sure the combo is there or spelled correctly
             String cFName;
@@ -44,17 +36,76 @@ public class Combos {
                 }
             }
 
-            for (int l = 0; l < recList.length(); l++) {
-                JSONArray ingList = (JSONArray) recList.get(p);
-                JSONObject things = ingList.getJSONObject(l);
+            JSONObject selectedCombo = (JSONObject) recList.get(p);
+            //System.out.println(selectedCombo);
+            JSONArray ing = selectedCombo.getJSONArray("ingredients");
+            JSONObject re = selectedCombo.getJSONObject("result");
+            int getID = re.getInt("formID");
+            System.out.println(ing);
 
+            int ingListTik = 0;
+            for (int l = 0; l < ing.length(); l++) {
+                JSONObject milkSugar = ing.getJSONObject(l);
 
+                boolean isCard = milkSugar.getBoolean("getCard");
+                boolean isSpecificCard = milkSugar.getBoolean("cardCheck");
+                boolean isType = milkSugar.getBoolean("typeCheck");
+                int itemCount = milkSugar.getInt("numOfItem");
 
-                boolean isCard = things.getBoolean("getCard");
-                boolean isSpecificCard = things.getBoolean("cardCheck");
-                boolean isType = things.getBoolean("typeCheck");
-                int itemCount = things.getInt("numOfItem");
+                int tik;
+                if(isCard){ // if we are looking for 3 of or more of a kind of any card
+                    tik = 0;
+                    Card x;
+                    for(int y = 0; y < exchangeBin.size(); y++){
+                        x = exchangeBin.get(y);
+                        for(Card c: exchangeBin){
+                            if(c == x){
+                                tik++;
+                            }
+                        }
+                    }
+                    if(tik == itemCount){
+                        ingListTik++;
+                        break;
+                    }
 
+                }
+                if(isSpecificCard){ // if we are looking for more than one of a specific card
+                    tik = 0;
+                    int ego = milkSugar.getInt("cardID");
+                    for(Card x: exchangeBin){
+                        if(x.getId() == ego){
+                            tik++;
+                        }
+                    }
+                    if(tik == itemCount){
+                        ingListTik++;
+                        break;
+                    }
+                }
+                if(isType){ //if we are looking for more than one of a type of card
+                    tik = 0;
+                    String tip = milkSugar.getString("type");
+                    for(Card x: exchangeBin){
+                        if(x.eitherType(tip)){
+                            tik++;
+                        }
+                    }
+                    if(tik == itemCount){
+                        ingListTik++;
+                        break;
+                    }
+                }
+            }
+            if(ingListTik == ing.length()){
+                for(ComboBuild x: gg.formPack){
+                    if(x.getId() == getID){
+                        comboBucket.add(x);
+                    }
+                }
+
+            }else{
+                System.out.println("Your attack is ready yet");
             }
         }catch(IOException ex){
             throw new IOException("Something Has Failed");
@@ -63,4 +114,9 @@ public class Combos {
     public void addToBin(Card x){ exchangeBin.add(x);}
     public ArrayList<Card> checkBin(){return exchangeBin;}
     public ArrayList<ComboBuild> availableCombo(){return comboBucket;}
+
+    public static void main(String[] args) throws IOException {
+        Combos c = new Combos("format:Stairs");
+
+    }
 }

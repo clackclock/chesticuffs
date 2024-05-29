@@ -210,36 +210,6 @@ public class Board {
     public void removeBuild(){if(hasBuild()){currentBuild = null; isThereBuild = false;} }
     public void addBuild(ComboBuild x){ currentBuild = x; isThereBuild = true; }
     private boolean isThereBuild = false;
-    public void loadBuild() throws IOException{
-        try(BufferedReader modReader = new BufferedReader(new InputStreamReader(
-                Main.class.getResourceAsStream("CardData/comboItemList.json")))) {
-            StringBuilder comboString = new StringBuilder(" ");
-            int i;
-            while ((i = modReader.read()) != -1) {
-                comboString.append((char) i);
-            }
-
-            JSONObject getJSONCombo = new JSONObject(comboString.toString());
-            JSONObject recList = getJSONCombo.getJSONObject("recipe_List");
-            JSONArray ingList = (JSONArray) recList.get("ingredients");
-            JSONObject reSalt = (JSONObject) recList.get("result");
-
-            for (int l = 0; l < ingList.length(); l++) {
-                JSONObject greed = ingList.getJSONObject(l);
-
-                boolean isCard = greed.getBoolean("getCard");
-                boolean isSpecificCard = greed.getBoolean("cardCheck");
-                boolean isType = greed.getBoolean("typeCheck");
-                int itemCount = greed.getInt("numOfItem");
-
-                if(isCard){
-
-                }
-            }
-        }catch(IOException ex){
-            throw new IOException("Something Has Failed");
-        }
-    }
 
 
     public void addToSlots(String name, Card fromHand) {
