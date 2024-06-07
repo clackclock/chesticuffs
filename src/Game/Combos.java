@@ -13,7 +13,7 @@ public class Combos {
     private final ArrayList<ComboBuild> comboBucket = new ArrayList<>();
     private final ArrayList<Card> exchangeBin = new ArrayList<>();
 
-    public Combos(String comboName) throws IOException{
+    public void comboSearch(String comboName) throws IOException{
         try(BufferedReader modReader = new BufferedReader(new InputStreamReader(Main.class.getResourceAsStream("CardData/comboItemList.json")))) {
             StringBuilder comboString = new StringBuilder(" ");
             int i;
@@ -56,14 +56,16 @@ public class Combos {
                 if(isCard){ // if we are looking for 3 of or more of a kind of any card
                     tik = 0;
                     Card x;
-                    for(int y = 0; y < exchangeBin.size(); y++){
-                        x = exchangeBin.get(y);
+                    int index = 0;
+//                    for(int y = 0; y < exchangeBin.size(); y++){
+                        x = exchangeBin.get(index);
                         for(Card c: exchangeBin){
                             if(c == x){
-                                tik++;
+                                tik= tik + 1;
                             }
+                            index++;
                         }
-                    }
+                   // }
                     if(tik == itemCount){
                         ingListTik++;
                         break;
@@ -97,6 +99,7 @@ public class Combos {
                     }
                 }
             }
+            System.out.println(ingListTik);
             if(ingListTik == ing.length()){
                 for(ComboBuild x: gg.formPack){
                     if(x.getId() == getID){
@@ -105,18 +108,27 @@ public class Combos {
                 }
 
             }else{
-                System.out.println("Your attack is ready yet");
+                System.out.println("Your attack isn't ready yet");
             }
         }catch(IOException ex){
             throw new IOException("Something Has Failed");
         }
     }
-    public void addToBin(Card x){ exchangeBin.add(x);}
+    public void addToBin(Card x){exchangeBin.add(x);}
     public ArrayList<Card> checkBin(){return exchangeBin;}
     public ArrayList<ComboBuild> availableCombo(){return comboBucket;}
 
     public static void main(String[] args) throws IOException {
-        Combos c = new Combos("format:Stairs");
+        cardDatabase g = new cardDatabase();
+        //g.cardData();
+        Combos  c = new Combos();
+
+        c.addToBin(g.pack.get(4));
+        c.addToBin(g.pack.get(4));
+        c.addToBin(g.pack.get(4));
+
+        c.comboSearch("format:Stairs");
+        System.out.println(c.availableCombo().get(0));
 
     }
 }

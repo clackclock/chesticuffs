@@ -6,6 +6,11 @@ public class cardDatabase {
     public ArrayList<Card> pack = new ArrayList<>();
     public ArrayList<ComboBuild> formPack = new ArrayList<>();
 
+    public cardDatabase(){
+        cardData();
+        formData();
+    }
+
     public void cardData() {
         pack.add(new Card(-1,"Blank", new int[]{0, 0}, new int[]{0, 0}, new int[]{0, 0}, new int[]{0, 0}, new int[]{0, 0}, "NEUTRAL", "NEUTRAL"));
         pack.add(new Card(0,"Basic_Seeds", new int[]{4, 2}, new int[]{2, 2}, new int[]{2, 3}, new int[]{2, 4}, new int[]{1, 4}, "PLANT", "FARM"));

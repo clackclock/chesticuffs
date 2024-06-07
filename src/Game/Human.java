@@ -21,7 +21,7 @@ public class Human implements Player {
     }
 
     public void makeDeck() {
-        cards.cardData();
+        //cards.cardData();
         int deckSize = 30;
         for (int i = 0; i < deckSize; i++) {
             int shuffle = r.nextInt( cards.pack.size());
@@ -31,7 +31,7 @@ public class Human implements Player {
     public ArrayList<Card> getDeck() { return deck; }
 
     public void makeHand() {
-        cards.cardData();
+        //cards.cardData();
         int handSize = 5;
         for (int i = 0; i < handSize; i++) {
             int shuffle = r.nextInt(deck.size() );

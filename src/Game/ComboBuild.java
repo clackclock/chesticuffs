@@ -1,5 +1,7 @@
 package Game;
 
+import java.util.Arrays;
+
 public class ComboBuild {
     private final String itemName;
     private final int id;
@@ -20,5 +22,7 @@ public class ComboBuild {
     public int getId(){ return id; }
     public void useBuild(){ isBuildUsed = true; }
     public boolean isBuildUsed(){ return isBuildUsed; }
+
+    public String toString() { return id + " " + itemName + " " + Arrays.toString(coreMod) + " " + mainType; }
 
 }

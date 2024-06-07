@@ -44,7 +44,7 @@ public class Main {
         System.out.println("3) Remove from board position");
         System.out.println("4) Use an Item");
         System.out.println("5) Add to Bin");
-        System.out.println("6) Check Bin");
+        System.out.println("6) Get Combo");
         System.out.println("7) Evolve Card");
     }
 
@@ -149,8 +149,10 @@ public class Main {
             } //if true get which then choose to use
             case "6" -> {
                 System.out.println("What Combo do you want?");
+
                 String cName = input.nextLine();
-                Combos search = new Combos(cName);
+                Combos search = new Combos();
+                search.comboSearch(cName);
             }
             case "7" -> {
                 System.out.println("What is the ID of the card you want to evolve?");
