@@ -6,7 +6,11 @@ mapHash.set('Uber3', 'value3');
 
 //map the button to the card's array and pull
 
+var siteWidth = 1280;
+var scale = screen.width /siteWidth;
+
 $(document).ready(function(){
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width='+siteWidth+', initial-scale='+scale+'');
 //   Test();
    //basic web functions
    $("img").hover(function () {
