@@ -10,10 +10,13 @@ import java.util.ArrayList;
 
 public class Combos {
     cardDatabase gg = new cardDatabase();
-    private final ArrayList<ComboBuild> comboBucket = new ArrayList<>();
+//    private final ArrayList<ComboBuild> comboBucket = new ArrayList<>();
     private final ArrayList<Card> exchangeBin = new ArrayList<>();
 
-    public void comboSearch(String comboName) throws IOException{
+    public ComboBuild comboSearch(String comboName) throws IOException{
+        //move bucket here so there is a fresh list everytime it is loaded
+        ArrayList<ComboBuild> comboBucket = new ArrayList<>();
+
         try(BufferedReader modReader = new BufferedReader(new InputStreamReader(Main.class.getResourceAsStream("CardData/comboItemList.json")))) {
             StringBuilder comboString = new StringBuilder(" ");
             int i;
@@ -106,17 +109,18 @@ public class Combos {
                         comboBucket.add(x);
                     }
                 }
-
+                return comboBucket.get(0);
             }else{
                 System.out.println("Your attack isn't ready yet");
             }
         }catch(IOException ex){
             throw new IOException("Something Has Failed");
         }
+        return null;
     }
     public void addToBin(Card x){exchangeBin.add(x);}
     public ArrayList<Card> checkBin(){return exchangeBin;}
-    public ArrayList<ComboBuild> availableCombo(){return comboBucket;}
+//    public ArrayList<ComboBuild> availableCombo(){return comboBucket;}
 
     public static void main(String[] args) throws IOException {
         cardDatabase g = new cardDatabase();
@@ -127,8 +131,13 @@ public class Combos {
         c.addToBin(g.pack.get(4));
         c.addToBin(g.pack.get(4));
 
-        c.comboSearch("format:Stairs");
-        System.out.println(c.availableCombo().get(0));
+        c.addToBin(g.pack.get(11));
+        c.addToBin(g.pack.get(11));
+        c.addToBin(g.pack.get(11));
+
+//        c.comboSearch("format:Stairs");
+//        c.comboSearch("format:Flower_Bush");
+//        System.out.println(c.availableCombo());
 
     }
 }

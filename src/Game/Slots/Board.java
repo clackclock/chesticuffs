@@ -133,6 +133,14 @@ public class Board {
         }
         //add core
         for(int r = 0; r < 2; r++){ //0 is atk && 1 is def, so it sorts itself out
+            //combo core input
+            if(hasBuild()){
+                coreBlock[r] = currentBuild.getCoreMod()[r];
+            }
+            if(enemy.hasBuild()){
+                enemy.getCoreBlock()[r] = enemy.currentBuild.getCoreMod()[r];
+            }
+
             uberRow[r] = uberRow[r] + coreBlock[r]; //atk
             enemy.getUberRow()[r] = enemy.getUberRow()[r] + enemy.getCoreBlock()[r];
             atkRow[r] = atkRow[r] + coreBlock[r];

@@ -152,7 +152,8 @@ public class Main {
 
                 String cName = input.nextLine();
                 Combos search = new Combos();
-                search.comboSearch(cName);
+                current.getBoard().addBuild(search.comboSearch(cName)); // meaning it has been marked to be calculated
+
             }
             case "7" -> {
                 System.out.println("What is the ID of the card you want to evolve?");
