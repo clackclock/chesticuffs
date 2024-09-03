@@ -1,17 +1,17 @@
-console.log("working...")
-var mapHash = new Map();
-mapHash.set('Uber1', 'value1');
-mapHash.set('Uber2', 'value2');
-mapHash.set('Uber3', 'value3');
-
+// console.log("working...")
+// var mapHash = new Map();
+// mapHash.set('Uber1', 'value1');
+// mapHash.set('Uber2', 'value2');
+// mapHash.set('Uber3', 'value3');
 //map the button to the card's array and pull
 
 var siteWidth = 1280;
 var scale = screen.width /siteWidth;
 
+// let hand1 = $("#hand_1").children.length;
+// let hand2 = $("#hand_2").children.length;
 $(document).ready(function(){
-    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width='+siteWidth+', initial-scale='+scale+'');
-//   Test();
+   document.querySelector('meta[name="viewport"]').setAttribute('content', 'width='+siteWidth+', initial-scale='+scale+'');
    //basic web functions
    $("img").hover(function () {
       let v = $(this).attr("src");
@@ -24,6 +24,14 @@ $(document).ready(function(){
        $("#zoom").attr("src", "images/0_Back.jpg");
    });
 
+   let cdataURL = 'src/Game/CardData/card_image.json';
+   $.ajax({
+       url: cdataURL,
+       contentType: "application/json",
+       data: JSON.stringify("{" + cdataURL + "}"),
+       dataType: "json"
+   })
+
    //playing the game
     $("#hand_1 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
     $("#mainPlayer .slot img").droppable({
@@ -31,6 +39,7 @@ $(document).ready(function(){
           drop: function( event, ui ) {
              $(this).attr("src", ui.draggable.attr("src"));
           }
+          
     });
     $("#eRight").droppable({
         accept: "#hand_1 > img",
@@ -43,7 +52,8 @@ $(document).ready(function(){
        $("#mainPlayer .slot img").on('click', function(){
            $(this).attr("src", re);
        })
-  })
+   });
+  
 
    $("#hand_2 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
     $("#otherPlayer .slot img").droppable({
@@ -64,13 +74,19 @@ $(document).ready(function(){
             $(this).attr("src", re);
         })
    })
-   getHandP1();
-   getHandP2();
+
+    getHandP1();
+    getHandP2();
+
+    var hand1 = $("#hand_1 img").length;
+    var hand2 = $("#hand_2 img").length;
+    console.log("Player 1: " + hand1);
+    console.log("Player 2: " + hand2);
 })
 
 function Test(){
-//   document.body.style.color = "red";
-   $("p").css("background-color", "yellow");
+    //   document.body.style.color = "red";
+    $("p").css("background-color", "yellow");
 }
 function randomCardNum(){
    let numArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 22, 23, 24, 27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 39, 40];

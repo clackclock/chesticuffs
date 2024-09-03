@@ -124,12 +124,13 @@ body{
         background-size: cover;
         height: 330px;
         width: 480px;
+        
         /* margin: 3px; */
 
         font-family: "Jacquarda Bastarda 9", serif;
         font-size: 15pt;
     }
-    #board_1 a:hover, #board_2 a:hover{
+    #board_1 .slot:hover, #board_2 .slot:hover{
         background-color: antiquewhite;
     }
 
@@ -149,7 +150,7 @@ body{
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
+        flex-direction: row;
 
         color: black;
         margin: 0px;
@@ -162,8 +163,9 @@ body{
         width: 80px;
     }
     .slot img{
-        height: 50px;
+        height: 40px;
         width: auto;
+        margin:0%;
     }
 
     .sideDock{
@@ -251,7 +253,7 @@ body{
         justify-content: end;
     }
     #exchangeTable img{
-        height: 5px;
+        height: 10px;
         width:auto;
     }
 
