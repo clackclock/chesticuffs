@@ -84,6 +84,15 @@ $(document).ready(function(){
     console.log("Player 2: " + hand2);
 })
 
+function play(){
+    //2 players: player1 + player2; let currentPlayer; oppositePlayer = player!=currentPlayer
+    //OR RUN A CHECK ON BOTH PLAYERS INDIVIDUALLY AND RUN THEM FOR BOTH THEIR COINS
+    //currentPlayer = player1;
+
+    //player places a card and can place an item in one turn
+    //if(currentPlayer.placeItem == true && currentPlayer.placeCard == true){ currentPlayer == oppositePlayer;}
+    //if(currentPlayer.placeCardInBin == true){ currentPlayer == oppositePlayer(currentPlayer);}
+}
 function Test(){
     //   document.body.style.color = "red";
     $("p").css("background-color", "yellow");
