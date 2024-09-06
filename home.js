@@ -8,6 +8,16 @@
 var siteWidth = 1280;
 var scale = screen.width /siteWidth;
 
+(()=>{
+    const console_log = window.console.log;
+    window.console.log = function(...args){
+      console_log(...args);
+      var textarea = document.getElementById('log');
+      if(!textarea) return;
+      args.forEach(arg=>textarea.value += `${JSON.stringify(arg)}\n`);
+    }
+})();
+
 // let hand1 = $("#hand_1").children.length;
 // let hand2 = $("#hand_2").children.length;
 $(document).ready(function(){
@@ -77,12 +87,19 @@ $(document).ready(function(){
 
     getHandP1();
     getHandP2();
+    checkHandAmt();
 
+    //for turns < 4 switch between player1_play function player2_play function
+    //then run calculation where if one player doesn't have any cards left after other player wins
+
+})
+
+function checkHandAmt(){
     var hand1 = $("#hand_1 img").length;
     var hand2 = $("#hand_2 img").length;
     console.log("Player 1: " + hand1);
     console.log("Player 2: " + hand2);
-})
+}
 
 function play(){
     //2 players: player1 + player2; let currentPlayer; oppositePlayer = player!=currentPlayer
@@ -100,7 +117,7 @@ function Test(){
 function randomCardNum(){
    let numArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 22, 23, 24, 27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 39, 40];
    let ciD = numArr[Math.floor(Math.random() * numArr.length)];
-   console.log(ciD);
+//    console.log(ciD);
    return ciD;
 }
 function getHandP1(){
@@ -175,5 +192,3 @@ function removeCard(){
 ////    $("#hand_1").appendTo('<img id=' + $item.attr("id") + 'src='+data.cardList[randomCardNum()].imageID+'/>');
 //  });
 //}
-
-
