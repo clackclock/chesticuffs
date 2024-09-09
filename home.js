@@ -34,62 +34,14 @@ $(document).ready(function(){
        $("#zoom").attr("src", "images/0_Back.jpg");
    });
 
-   let cdataURL = 'src/Game/CardData/card_image.json';
-   $.ajax({
-       url: cdataURL,
-       contentType: "application/json",
-       data: JSON.stringify("{" + cdataURL + "}"),
-       dataType: "json"
-   })
-
    //playing the game
-    $("#hand_1 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
-    $("#mainPlayer .slot img").droppable({
-          accept: "#hand_1 > img",
-          drop: function( event, ui ) {
-             $(this).attr("src", ui.draggable.attr("src"));
-          }
-          
-    });
-    $("#eRight").droppable({
-        accept: "#hand_1 > img",
-          drop: function( event, ui ) {
-             $(ui.draggable).prependTo(this);
-          }
-    });
-  $("#hand_1 img").on('click', function(){
-       let re = $(this).attr("src");
-       $("#mainPlayer .slot img").on('click', function(){
-           $(this).attr("src", re);
-       })
-   });
-  
-
-   $("#hand_2 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
-    $("#otherPlayer .slot img").droppable({
-          accept: "#hand_2 > img",
-          drop: function( event, ui ) {
-             $(this).attr("src", ui.draggable.attr("src"));
-          }
-    });
-    $("#eLeft").droppable({
-        accept: "#hand_2 > img",
-          drop: function( event, ui ) {
-            $(ui.draggable).appendTo(this);
-        }
-    });
-    $("#hand_2 img").on('click', function(){
-        let re = $(this).attr("src");
-        $("#otherPlayer .slot img").on('click', function(){
-            $(this).attr("src", re);
-        })
-   })
-
     getHandP1();
     getHandP2();
     checkHandAmt();
 
     //for turns < 4 switch between player1_play function player2_play function
+    // for(var turns = 3; turns > 0; turns--){
+        play1();  
     //then run calculation where if one player doesn't have any cards left after other player wins
 
 })
@@ -97,11 +49,41 @@ $(document).ready(function(){
 function checkHandAmt(){
     var hand1 = $("#hand_1 img").length;
     var hand2 = $("#hand_2 img").length;
-    console.log("Player 1: " + hand1);
-    console.log("Player 2: " + hand2);
+    console.log("Player 1: " + hand1 + " Cards");
+    console.log("Player 2: " + hand2 + " Cards");
 }
 
-function play(){
+function play1(){
+    $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop('disabled',true);
+    $(function(){
+        $("#otherPlayer .slot").hover(function(){ 
+            $(this).css("background-color","blue");
+        },
+        function(){
+            $(this).css("background-color", "transparent");
+        })    
+    });
+
+    $("#hand_1 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
+    $("#mainPlayer .slot img").droppable({
+        accept: "#hand_1 > img",
+        drop: function( event, ui ) {
+            $(this).attr("src", ui.draggable.attr("src"));
+        }
+          
+    });
+    $("#eRight").droppable({
+        accept: "#hand_1 > img",
+        drop: function( event, ui ) {
+            $(ui.draggable).prependTo(this);
+        }
+    });
+  $("#hand_1 img").on('click', function(){
+       let re = $(this).attr("src");
+       $("#mainPlayer .slot img").on('click', function(){
+           $(this).attr("src", re);
+       })
+   });
     //2 players: player1 + player2; let currentPlayer; oppositePlayer = player!=currentPlayer
     //OR RUN A CHECK ON BOTH PLAYERS INDIVIDUALLY AND RUN THEM FOR BOTH THEIR COINS
     //currentPlayer = player1;
@@ -110,6 +92,39 @@ function play(){
     //if(currentPlayer.placeItem == true && currentPlayer.placeCard == true){ currentPlayer == oppositePlayer;}
     //if(currentPlayer.placeCardInBin == true){ currentPlayer == oppositePlayer(currentPlayer);}
 }
+function play2(){
+    $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled',true);
+    $(function(){
+        $("#mainPlayer .slot").hover(function(){ 
+            $(this).css("background-color","blue");
+        },
+        function(){
+            $(this).css("background-color", "transparent");
+        })    
+    });
+
+   $("#hand_2 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
+   $("#otherPlayer .slot img").droppable({
+       accept: "#hand_2 > img",
+       drop: function( event, ui ) {
+           $(this).attr("src", ui.draggable.attr("src"));
+       }
+   });
+   $("#eLeft").droppable({
+       accept: "#hand_2 > img",
+       drop: function( event, ui ) {
+           $(ui.draggable).appendTo(this);
+       }
+   });
+   $("#hand_2 img").on('click', function(){
+       let re = $(this).attr("src");
+       $("#otherPlayer .slot img").on('click', function(){
+           $(this).attr("src", re);
+       })
+  })
+
+}
+
 function Test(){
     //   document.body.style.color = "red";
     $("p").css("background-color", "yellow");
@@ -192,3 +207,72 @@ function removeCard(){
 ////    $("#hand_1").appendTo('<img id=' + $item.attr("id") + 'src='+data.cardList[randomCardNum()].imageID+'/>');
 //  });
 //}
+    // Card = function(cardArrayID) {
+    //    this.cardArrayID = cardArrayID;
+    // }
+    // $.extend(Card.prototype, {
+    //     // object variables
+    //     cID: 0, 
+
+    //     init: function(cID) {
+    //         // do initialization here
+    //         // this.widget_name = widget_name;
+    //         this.cID = cID;
+            
+    //     },
+    
+    //     doSomething: function() {
+    //         // an example object method
+    //         // alert('my name is '+this.widget_name);
+            
+    //         let cdataURL = 'src/Game/CardData/card_image.json';
+    //         let d;
+    //         $.ajax({
+    //             url: cdataURL,
+    //             contentType: "application/json",
+    //             data: JSON.stringify("{" + cdataURL + "}"),
+    //             dataType: "json"
+    //         })
+    //         .done(function(data){
+    //             d = data.cardList[0].cID;
+    //             return d;
+    //         });
+    //         return d;
+            
+    //     }
+    // });
+// class Card{
+//     //  #cID; #name; #UBER; #ATTACK; #CoreDEFENCE; #CORE; #DEFENCE; #pTYPE; #sTYPE; #imageID;
+//     constructor(cardArrayID) {
+//         this.cID = (function(){
+//             let cdataURL = 'src/Game/CardData/card_image.json';
+//             let d;
+//             $.ajax({
+//                 url: cdataURL,
+//                 contentType: "application/json",
+//                 data: JSON.stringify("{" + cdataURL + "}"),
+//                 dataType: "json"
+//             })
+//             .done(function(data){
+//                 d = data.cardList[cardArrayID].cID;
+//                 return d;
+//             }); 
+//         });
+//         // this.name = n;
+//         // this.UBER = UBER;
+//         // this.ATTACK = ATTACK;
+//         // this.CoreDEFENCE = CoreDEFENCE;
+//         // this.CORE = CORE;
+//         // this.DEFENCE = DEFENCE;
+//         // this.pTYPE = pTYPE;
+//         // this.sTYPE = sTYPE;
+//         // this.imageID = imageID;
+        
+//         this.cardArrayID = cardArrayID;
+//     }
+
+//     getcID(){
+//         return this.cID;
+        
+//     }
+// }
