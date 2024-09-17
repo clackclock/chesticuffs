@@ -44,29 +44,42 @@ $(document).ready(function(){
     //for turns < 4 switch between player1_play function player2_play function
     // for(var turns = 3; turns > 0; turns--){
         //play1(); 
-        if(currentplayer){play1();} else{play2();}
+        switchPlayer(currentplayer);
         $(".switchPlayers button").click(function(){
-            if(currentplayer){ currentplayer = false; console.log(" Player 1 has ended their turn");} 
-            else{ currentplayer = true; console.log(" Player 2 has ended their turn");}
+            if(currentplayer){ currentplayer = false; 
+                $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled', false);
+                $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop("disabled", true);
+                switchPlayer(currentplayer);
+                console.log(" Player 1 has ended their turn");
+            } 
+            else{ currentplayer = true; 
+                $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled', true);
+                $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop("disabled", false);
+                switchPlayer(currentplayer);
+                console.log(" Player 2 has ended their turn");
+            }
             checkHandAmt();
         }); 
     //then run calculation where if one player doesn't have any cards left after other player wins
 
 })
 
+function switchPlayer(whichPlayer){
+    if(!whichPlayer){play2();} else{play1();}
+}
 function checkHandAmt(){
     var hand1 = $("#hand_1 img").length;
     var hand2 = $("#hand_2 img").length;
     console.log("Player 1: " + hand1 + " Cards");
     console.log("Player 2: " + hand2 + " Cards");
-    console.log("Current: " +currentplayer);
+    console.log("Current: " + currentplayer);
 }
 
 function play1(){
-    $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled',false);
-    $("#mainPlayer .slot ").css("cursor","crosshair");
-    $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop('disabled',true);
-    $("#otherPlayer .slot ").css("cursor","not-allowed");
+    // $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled', false);
+    $("#mainPlayer .slot, #hand_1 img ").css("cursor","crosshair");
+    // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop("disabled", true);
+    $("#otherPlayer .slot, #hand_2 img").css("cursor","not-allowed");
 
     $("#hand_1 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
     $("#mainPlayer .slot img").droppable({
@@ -93,10 +106,10 @@ function play1(){
 
 }
 function play2(){
-    $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop('disabled',false);
-    $("#otherPlayer .slot").css("cursor", "crosshair");
-    $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled',true);
-    $("#mainPlayer .slot").css('cursor', "not-allowed");
+    // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop('disabled', false);
+    $("#otherPlayer .slot, #hand_2 img").css("cursor", "crosshair");
+    // $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop("disabled", true);
+    $("#mainPlayer .slot, #hand_1 img").css('cursor', "not-allowed");
 
    $("#hand_2 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
    $("#otherPlayer .slot img").droppable({
