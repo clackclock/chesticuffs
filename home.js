@@ -8,6 +8,8 @@
 var siteWidth = 1280;
 var scale = screen.width /siteWidth;
 
+var currentplayer = true; //true = p1 false = p2
+
 (()=>{
     const console_log = window.console.log;
     window.console.log = function(...args){
@@ -41,7 +43,13 @@ $(document).ready(function(){
 
     //for turns < 4 switch between player1_play function player2_play function
     // for(var turns = 3; turns > 0; turns--){
-        play1();  
+        //play1(); 
+        if(currentplayer){play1();} else{play2();}
+        $(".switchPlayers button").click(function(){
+            if(currentplayer){ currentplayer = false; console.log(" Player 1 has ended their turn");} 
+            else{ currentplayer = true; console.log(" Player 2 has ended their turn");}
+            checkHandAmt();
+        }); 
     //then run calculation where if one player doesn't have any cards left after other player wins
 
 })
@@ -51,24 +59,21 @@ function checkHandAmt(){
     var hand2 = $("#hand_2 img").length;
     console.log("Player 1: " + hand1 + " Cards");
     console.log("Player 2: " + hand2 + " Cards");
+    console.log("Current: " +currentplayer);
 }
 
 function play1(){
+    $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled',false);
+    $("#mainPlayer .slot ").css("cursor","crosshair");
     $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop('disabled',true);
-    $(function(){
-        $("#otherPlayer .slot").hover(function(){ 
-            $(this).css("background-color","blue");
-        },
-        function(){
-            $(this).css("background-color", "transparent");
-        })    
-    });
+    $("#otherPlayer .slot ").css("cursor","not-allowed");
 
     $("#hand_1 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
     $("#mainPlayer .slot img").droppable({
         accept: "#hand_1 > img",
         drop: function( event, ui ) {
             $(this).attr("src", ui.draggable.attr("src"));
+            console.log("Player One placed " + $(this).attr("alt"));
         }
           
     });
@@ -82,32 +87,23 @@ function play1(){
        let re = $(this).attr("src");
        $("#mainPlayer .slot img").on('click', function(){
            $(this).attr("src", re);
+           console.log("Player One placed " + $(this).attr("alt"));
        })
    });
-    //2 players: player1 + player2; let currentPlayer; oppositePlayer = player!=currentPlayer
-    //OR RUN A CHECK ON BOTH PLAYERS INDIVIDUALLY AND RUN THEM FOR BOTH THEIR COINS
-    //currentPlayer = player1;
 
-    //player places a card and can place an item in one turn
-    //if(currentPlayer.placeItem == true && currentPlayer.placeCard == true){ currentPlayer == oppositePlayer;}
-    //if(currentPlayer.placeCardInBin == true){ currentPlayer == oppositePlayer(currentPlayer);}
 }
 function play2(){
+    $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop('disabled',false);
+    $("#otherPlayer .slot").css("cursor", "crosshair");
     $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled',true);
-    $(function(){
-        $("#mainPlayer .slot").hover(function(){ 
-            $(this).css("background-color","blue");
-        },
-        function(){
-            $(this).css("background-color", "transparent");
-        })    
-    });
+    $("#mainPlayer .slot").css('cursor', "not-allowed");
 
    $("#hand_2 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
    $("#otherPlayer .slot img").droppable({
        accept: "#hand_2 > img",
        drop: function( event, ui ) {
            $(this).attr("src", ui.draggable.attr("src"));
+           console.log("Player Two placed " + $(this).attr("alt"));
        }
    });
    $("#eLeft").droppable({
@@ -120,6 +116,7 @@ function play2(){
        let re = $(this).attr("src");
        $("#otherPlayer .slot img").on('click', function(){
            $(this).attr("src", re);
+           console.log("Player Two placed " + $(this).attr("alt"));
        })
   })
 
@@ -145,11 +142,26 @@ function getHandP1(){
    })
    .done(function(data){
        //console.log(data.cardList[0].imageID);
-       $("#0").attr("src", data.cardList[randomCardNum()].imageID);
-       $("#1").attr("src", data.cardList[randomCardNum()].imageID);
-       $("#2").attr("src", data.cardList[randomCardNum()].imageID);
-       $("#3").attr("src", data.cardList[randomCardNum()].imageID);
-       $("#4").attr("src", data.cardList[randomCardNum()].imageID);
+       $(function(){
+            let bet = randomCardNum();
+            $("#0").attr({src: data.cardList[bet].imageID, alt: data.cardList[bet].name });
+       });
+       $(function(){
+            let bet = randomCardNum();
+            $("#1").attr({src: data.cardList[bet].imageID, alt: data.cardList[bet].name });
+       });
+       $(function(){
+            let bet = randomCardNum();
+            $("#2").attr({src: data.cardList[bet].imageID, alt: data.cardList[bet].name });
+       });
+       $(function(){
+            let bet = randomCardNum();
+            $("#3").attr({src: data.cardList[bet].imageID, alt: data.cardList[bet].name });
+        });
+        $(function(){
+            let bet = randomCardNum();
+            $("#4").attr({src: data.cardList[bet].imageID, alt: data.cardList[bet].name });
+       });
    });
 }
 function getHandP2(){
@@ -162,11 +174,26 @@ function getHandP2(){
    })
    .done(function(data){
        //console.log(data.cardList[0].imageID);
-       $("#5").attr("src", data.cardList[randomCardNum()].imageID);
-       $("#6").attr("src", data.cardList[randomCardNum()].imageID);
-       $("#7").attr("src", data.cardList[randomCardNum()].imageID);
-       $("#8").attr("src", data.cardList[randomCardNum()].imageID);
-       $("#9").attr("src", data.cardList[randomCardNum()].imageID);
+       $(function(){
+            let bet = randomCardNum();
+            $("#5").attr({src: data.cardList[bet].imageID, alt: data.cardList[bet].name });
+        });
+        $(function(){
+            let bet = randomCardNum();
+            $("#6").attr({src: data.cardList[bet].imageID, alt: data.cardList[bet].name });
+        });
+        $(function(){
+            let bet = randomCardNum();
+            $("#7").attr({src: data.cardList[bet].imageID, alt: data.cardList[bet].name });
+        });
+        $(function(){
+            let bet = randomCardNum();
+            $("#8").attr({src: data.cardList[bet].imageID, alt: data.cardList[bet].name });
+        });
+        $(function(){
+            let bet = randomCardNum();
+            $("#9").attr({src: data.cardList[bet].imageID, alt: data.cardList[bet].name });
+        });
    });
 }
 function replaceCard(id){
@@ -179,8 +206,9 @@ function replaceCard(id){
    })
    .done(function(data){
         $(id +" img").dblclick( function() {
-             //"pick up" after moving the card
-             $(this).attr("src", data.cardList[randomCardNum()].imageID);
+            //"pick up" after moving the card
+            let newt = randomCardNum();
+            $(this).attr({src: data.cardList[newt].imageID, alt: data.cardList[newt].name});
        })
    });
 }
@@ -188,12 +216,19 @@ function removeCard(){
     $(".slot img").on("click", function(){
         let c = $(this).attr("src");
         if(c != "images/chesticuffs_logo.png"){
-           $(this).on("dblclick", function(){
-               $(this).attr("src", "images/chesticuffs_logo.png");
-           }
-        )}
+            $(this).attr("src", "images/chesticuffs_logo.png");
+            console.log("A card has been removed");
+        }
     })
 }
+
+//2 players: player1 + player2; let currentPlayer; oppositePlayer = player!=currentPlayer
+//OR RUN A CHECK ON BOTH PLAYERS INDIVIDUALLY AND RUN THEM FOR BOTH THEIR COINS
+//currentPlayer = player1;
+
+//player places a card and can place an item in one turn
+//if(currentPlayer.placeItem == true && currentPlayer.placeCard == true){ currentPlayer == oppositePlayer;}
+//if(currentPlayer.placeCardInBin == true){ currentPlayer == oppositePlayer(currentPlayer);}
 
 //function moveCard( $item ) {
 //  var $slot = $(".slot img");
