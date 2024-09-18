@@ -47,14 +47,14 @@ $(document).ready(function(){
         switchPlayer(currentplayer);
         $(".switchPlayers button").click(function(){
             if(currentplayer){ currentplayer = false; 
-                $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled', false);
-                $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop("disabled", true);
+                // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").draggable("enable");
+                // $("#hand_1 img, #mainPlayer .slot img, #eRight button").draggable("disable");
                 switchPlayer(currentplayer);
                 console.log(" Player 1 has ended their turn");
             } 
             else{ currentplayer = true; 
-                $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled', true);
-                $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop("disabled", false);
+                // $("#hand_1 img, #mainPlayer .slot img, #eRight button").draggable("enable");
+                // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").draggable("disable");
                 switchPlayer(currentplayer);
                 console.log(" Player 2 has ended their turn");
             }
@@ -76,16 +76,18 @@ function checkHandAmt(){
 }
 
 function play1(){
-    // $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled', false);
+    // $("#hand_1 img, #mainPlayer .slot img, #eRight button").draggable("enable");
+    // $("#hand_1 img, #mainPlayer .slot img, #eRight button").on("click");
     $("#mainPlayer .slot, #hand_1 img ").css("cursor","crosshair");
-    // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop("disabled", true);
+    // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").off("click");
+    // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").draggable("disable");
     $("#otherPlayer .slot, #hand_2 img").css("cursor","not-allowed");
 
     $("#hand_1 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
     $("#mainPlayer .slot img").droppable({
         accept: "#hand_1 > img",
         drop: function( event, ui ) {
-            $(this).attr("src", ui.draggable.attr("src"));
+            $(this).attr({src: ui.draggable.attr("src"), alt: ui.draggable.attr("alt")});
             console.log("Player One placed " + $(this).attr("alt"));
         }
           
@@ -103,19 +105,20 @@ function play1(){
            console.log("Player One placed " + $(this).attr("alt"));
        })
    });
-
 }
 function play2(){
-    // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop('disabled', false);
+    // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").draggable("enable");
+    // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").on("click");
     $("#otherPlayer .slot, #hand_2 img").css("cursor", "crosshair");
-    // $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop("disabled", true);
+    // $("#hand_1 img, #mainPlayer .slot img, #eRight button").off("click");
+    // $("#hand_1 img, #mainPlayer .slot img, #eRight button").draggable("disable");
     $("#mainPlayer .slot, #hand_1 img").css('cursor', "not-allowed");
 
    $("#hand_2 img").draggable({ opacity: 0.7, helper: "clone", cursor: "move", containment: "document", revert: "invalid" });
    $("#otherPlayer .slot img").droppable({
        accept: "#hand_2 > img",
        drop: function( event, ui ) {
-           $(this).attr("src", ui.draggable.attr("src"));
+           $(this).attr({src: ui.draggable.attr("src"), alt: ui.draggable.attr("alt")});
            console.log("Player Two placed " + $(this).attr("alt"));
        }
    });
@@ -228,12 +231,43 @@ function replaceCard(id){
 function removeCard(){
     $(".slot img").on("click", function(){
         let c = $(this).attr("src");
+        let a = $(this).attr("alt");
         if(c != "images/chesticuffs_logo.png"){
-            $(this).attr("src", "images/chesticuffs_logo.png");
-            console.log("A card has been removed");
+            console.log(a + " has been removed");
+            $(this).attr("src", "images/chesticuffs_logo.png"); 
         }
     })
 }
+function replaceCardP1(){
+    let cdataURL = 'src/Game/CardData/card_image.json';
+    $.ajax({
+        url: cdataURL,
+        contentType: "application/json",
+        data: JSON.stringify("{" + cdataURL + "}"),
+        dataType: "json"
+    })
+    .done(function(data){
+         $("#hand_1 img").on('dragover', false).on("drop", function() {
+            //"pick up" after moving the card
+            let newt = randomCardNum();
+            $(this).attr({src: data.cardList[newt].imageID, alt: data.cardList[newt].name});
+        })
+    });
+ }
+// $('#my-dropzone')
+//     // crucial for the 'drop' event to fire
+//     .on('dragover', false) 
+
+//     .on('drop', function (e) {
+//         // do something
+//         return false;
+//     });
+
+// $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled', false);
+// $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop("disabled", true);
+//
+// $("#hand_1 img, #mainPlayer .slot img, #eRight button").prop('disabled', true);
+// $("#hand_2 img, #otherPlayer .slot img, #eLeft button").prop("disabled", false);
 
 //2 players: player1 + player2; let currentPlayer; oppositePlayer = player!=currentPlayer
 //OR RUN A CHECK ON BOTH PLAYERS INDIVIDUALLY AND RUN THEM FOR BOTH THEIR COINS
