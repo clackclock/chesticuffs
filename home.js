@@ -247,13 +247,13 @@ function replaceCardP1(){
         dataType: "json"
     })
     .done(function(data){
-         $("#hand_1 img").on('dragover', false).on("drop", function() {
+        $("#hand_1 img").on('dragover', false).on("drop", function() {
             //"pick up" after moving the card
             let newt = randomCardNum();
             $(this).attr({src: data.cardList[newt].imageID, alt: data.cardList[newt].name});
         })
     });
- }
+}
 // $('#my-dropzone')
 //     // crucial for the 'drop' event to fire
 //     .on('dragover', false) 
