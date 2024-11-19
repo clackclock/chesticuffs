@@ -45,7 +45,7 @@ $(document).ready(function(){
     // for(var turns = 3; turns > 0; turns--){
         //play1(); 
         switchPlayer(currentplayer);
-        $(".switchPlayers button").click(function(){
+        $("#endTurn").click(function(){
             if(currentplayer){ currentplayer = false; 
                 // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").draggable("enable");
                 // $("#hand_1 img, #mainPlayer .slot img, #eRight button").draggable("disable");

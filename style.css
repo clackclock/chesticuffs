@@ -54,7 +54,7 @@ body{
         display: flex;
         justify-content: start;
         flex-wrap: wrap;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         background-color: rgb(0, 0, 0, 0.5);
         outline-color: #a9a9a9;
@@ -64,7 +64,7 @@ body{
 
         color: white;
         margin: 5px;
-        padding: 3px
+        /* padding: 3px */
     }
     .mainPanel img{
         height: 325px;
@@ -74,7 +74,7 @@ body{
         justify-content: start;
         align-items: center;
         flex-wrap: nowrap;
-        flex-direction: row;
+        flex-direction: column;
         margin: 5px;
     }
     .consoleHolder{
@@ -94,7 +94,7 @@ body{
         width: 450px;
         overflow-x: auto;
 
-        background-color: rgb(125, 255, 255, 0.4);
+        background-color: rgba(199, 255, 125, 0.4);
         outline-color: #a9a9a9;
         outline-style: double;
         outline-width: 5px;
@@ -105,7 +105,6 @@ body{
     }
     #hand_2 img , #hand_1 img{
         padding: 3px;
-
         height: 250px;
     }
     #hand_2 img:hover, #hand_1 img:hover{
@@ -121,9 +120,9 @@ body{
         /* max-width: 400px; */
 
         background-image: url('images/chest_Tray2.png');
-        background-size: cover;
-        height: 330px;
-        width: 480px;
+        background-size:contain;
+        height: 310px;
+        width: 450px;
         
         /* margin: 3px; */
 
@@ -132,6 +131,12 @@ body{
     }
     #board_1 .slot:hover, #board_2 .slot:hover{
         background-color: antiquewhite;
+    }
+    #board_1 {
+        transform: rotate(180deg);
+    }
+    #board_2 .slot{
+        height: 75px;
     }
 
     .row1, .row2, .row3, .row4{
@@ -144,7 +149,7 @@ body{
         /* margin-top: 0px; */
         /* margin-left: 15px; */
         /* margin-right: 20px; */
-        margin: 18px;
+        margin: 13px;
     }
     .slot{
         display: flex;
@@ -156,8 +161,8 @@ body{
         margin: 0px;
         margin-top: 25px;
         margin-bottom: 20px;
-        outline-style: double;
-        outline-color: white;
+        /* outline-style: double;
+        outline-color: white; */
 
         height: 80px;
         width: 80px;
@@ -236,23 +241,24 @@ body{
     #eLeft, #eRight{
         display: flex;
         /* justify-content: center; */
-        align-content: center;
+        /* align-content: center; */
         flex-direction: row;
 
         height: auto;
         max-height:50px;
         margin: 3px;
-        width: 43%;
+        /* width: 43%; */
 
         background-color: black;
         color:antiquewhite;
         border-style: double;
+        font-family: "Jacquarda Bastarda 9", serif;
         /* background-image: url("https://cdn.iconscout.com/icon/free/png-256/free-upload-file-2-470383.png"); */
     }
     #eRight{
-        justify-content: end;
+        justify-content: start;
     }
-    #exchangeTable img{
+    #eLeft img, #eRight img{
         height: 10px;
         width:auto;
     }
