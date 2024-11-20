@@ -46,13 +46,24 @@ $(document).ready(function(){
         //play1(); 
         switchPlayer(currentplayer);
         $("#endTurn").click(function(){
-            if(currentplayer){ currentplayer = false; 
+            if(currentplayer){ 
+                currentplayer = false; 
                 // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").draggable("enable");
                 // $("#hand_1 img, #mainPlayer .slot img, #eRight button").draggable("disable");
                 switchPlayer(currentplayer);
                 console.log(" Player 1 has ended their turn");
             } 
-            else{ currentplayer = true; 
+            // else{ currentplayer = true; 
+            //     // $("#hand_1 img, #mainPlayer .slot img, #eRight button").draggable("enable");
+            //     // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").draggable("disable");
+            //     switchPlayer(currentplayer);
+            //     console.log(" Player 2 has ended their turn");
+            // }
+            checkHandAmt();
+        });
+        $("#endTurn2").click(function(){
+            if(!currentplayer){ 
+                currentplayer = true; 
                 // $("#hand_1 img, #mainPlayer .slot img, #eRight button").draggable("enable");
                 // $("#hand_2 img, #otherPlayer .slot img, #eLeft button").draggable("disable");
                 switchPlayer(currentplayer);
