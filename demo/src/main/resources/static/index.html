@@ -4,7 +4,24 @@
     <title>Chests[Testing...]</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
+  <script>
+    function getName() {
+      let text;
+      let person = prompt("Please enter your name:", "name...");
+      if (person == null || person == "") {
+        text = "Billy";
+      } else {
+        text = "/hello?name=" + person;
+      }
+     document.getElementById("demo").href = text;
+    }
+  </script>
   <body>
-    <p>Get your greeting <a href="/hello?name=A">here</a></p>
+    <div>
+      <button onclick="getName()">Add your Name</button>
+      <button onclick="makeDeck()"><a href="/hello?name=A">Choose Your Deck</a></button>
+    </div>
+
+    <p>Get your greeting <a id = "demo" href="/hello?name=A">here</a></p>
   </body>
 </html>
