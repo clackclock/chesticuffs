@@ -265,6 +265,21 @@ function replaceCardP1(){
         })
     });
 }
+function addCard(){
+    let cdataURL = 'src/Game/CardData/card_image.json';
+    $.ajax({
+        url: cdataURL,
+        contentType: "application/json",
+        data: JSON.stringify("{" + cdataURL + "}"),
+        dataType: "json"
+    })
+    .done(function(data){
+        // var i = document.createElement("IMG");
+        let newt = randomCardNum();
+        $("#hand_1 img").add($('<img>', { src: data.cardList[newt].imageID, alt: data.cardList[newt].name}));
+    
+    });
+}
 // $('#my-dropzone')
 //     // crucial for the 'drop' event to fire
 //     .on('dragover', false) 

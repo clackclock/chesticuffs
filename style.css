@@ -7,7 +7,7 @@ body{
         background-size: cover;
         background-color:  #B43E0E;
         /*         color: #caf0f8; */
-        margin: 10px;
+        /* margin: 10px; */
         cursor: crosshair;
         overflow-x: unset;
         -webkit-overflow-scrolling: touch;
