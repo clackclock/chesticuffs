@@ -93,14 +93,14 @@ public class Main {
                                 System.out.println("Which row (0-3)? col (0-2)?");
                                 int row = input.nextInt();
                                 int col = input.nextInt();
-                                useItem = new ItemSkills(currentCard, current.checkCard(row, col));
+                                useItem = new ItemSkills(currentCard, current.checkCard(row, col), current);
                                 useItem.isUsed();
                             }
                             case "yours" -> {
                                 System.out.println("Which row (0-3)? col (0-2)?");
                                 int row = input.nextInt();
                                 int col = input.nextInt();
-                                useItem = new ItemSkills(currentCard, current.selectOtherPlayerCard(other, row, col));
+                                useItem = new ItemSkills(currentCard, current.selectOtherPlayerCard(other, row, col), current);
                                 useItem.isUsed();
                             }
                         }
@@ -116,7 +116,7 @@ public class Main {
                                 int row = input.nextInt();
                                 int col = input.nextInt();
                                 input.next();
-                                useItem = new ItemSkills(currentCard, current.checkCard(row, col));
+                                useItem = new ItemSkills(currentCard, current.checkCard(row, col), current);
                                 useItem.isUsed();
                                 System.out.println("Where do you want to temp. place it?");
                                 System.out.println("UBER, ATTACK, CoreDEFENCE, CORE, DEFENCE");
@@ -128,7 +128,7 @@ public class Main {
                                 int row = input.nextInt();
                                 int col = input.nextInt();
                                 input.next();
-                                useItem = new ItemSkills(currentCard, current.selectOtherPlayerCard(other, row, col));
+                                useItem = new ItemSkills(currentCard, current.selectOtherPlayerCard(other, row, col), current);
                                 useItem.isUsed();
                                 System.out.println("Where do you want to temp. place it?");
                                 System.out.println("UBER, ATTACK, CoreDEFENCE, CORE, DEFENCE");

@@ -221,7 +221,7 @@ public class Board {
 
 
     public void addToSlots(String name, Card fromHand) {
-        System.out.println("Which slot in this position? (0-2)");
+        System.out.println("Which slot in this position? (0-2) (if CORE, only 0");
         Scanner input = new Scanner(System.in);
         int colChoice = input.nextInt();
         Board_Positions pos = Board_Positions.valueOf(name);

@@ -49,6 +49,7 @@ public class cardDatabase {
         pack.add(new Card(39,"Raw_Steak",new int[]{3,4},new int[]{2,3},new int[]{3,4},new int[]{2,4},new int[]{3,3},"ANIMAL","FARM"));
         pack.add(new Card(40,"Wool",new int[]{2,2},new int[]{1,2},new int[]{3,	3},new int[]{2,4},new int[]{3,4},"FARM","ANIMAL"));
         pack.add(new Card(41,"Newton's_Apple",	new int[]{4,2},new int[]{3,1},new int[]{3,1},new int[]{4,4},new int[]{1,1},"PLANT","LUCKY"));
+        pack.add(new Card(43,"Sandwich_God's_Grip",new int[]{5,0},new int[]{5,0},new int[]{5,0},new int[]{5,0},new int[]{5,0},"ITEM","LUCKY"));
 
     }
     public void formData(){

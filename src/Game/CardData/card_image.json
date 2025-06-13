@@ -44,7 +44,8 @@
     {"cID" : 39,"name":"Raw_Steak","UBER":[3,4],"ATTACK":[2,3],"CoreDEFENCE":[3,4],"CORE":[2,4],"DEFENCE":[3,3],"pTYPE":"ANIMAL","sTYPE":"FARM", "imageID": "images/25_Front.jpg"},
     {"cID" : 40,"name":"Wool","UBER":[2,2],"ATTACK":[1,2],"CoreDEFENCE":[3,	3],"CORE":[2,4],"DEFENCE":[3,4],"pTYPE":"FARM","sTYPE":"ANIMAL", "imageID": "images/26_Front.jpg"},
     {"cID" : 41,"name":"Newton's_Apple","UBER":[4,2],"ATTACK":[3,1],"CoreDEFENCE":[3,1],"CORE":[4,4],"DEFENCE":[1,1],"pTYPE":"PLANT","sTYPE":"LUCKY", "imageID": "images/8_Front.jpg"},
-    {"cID" : 42,"name":"Apple_Pie", "CORE":[5,5],"pTYPE":"NEUTRAL", "imageID": "images/41_Front.jpg"}
+    {"cID" : 42,"name":"Apple_Pie", "CORE":[5,5],"pTYPE":"NEUTRAL", "imageID": "images/41_Front.jpg"},
+    {"cID" : 43,"name":"Sandwich_God's_Grip","UBER":[5,0],"ATTACK":[5,0],"CoreDEFENCE":[5,0],"CORE":[5,0],"DEFENCE":[5,0],"pTYPE":"ITEM","sTYPE":"LUCKY", "imageID": "UNKNOWN"}
 
   ]
 
