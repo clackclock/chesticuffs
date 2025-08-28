@@ -34,9 +34,11 @@ public class ItemSkills {
     public void fishingRod(int checkID){
         if(checkID == 16){
             Random r = new Random();
-            int coinFlip = r.nextInt(2); //head = 0 tails = 1
+            int coinFlip = r.nextInt(0,1); //head = 0 tails = 1
             if(coinFlip == 0){
                 otherCard = null;
+            }else{
+                System.out.println("Didn't reel anything in");
             }
         }
     }
@@ -83,5 +85,14 @@ public class ItemSkills {
             }
         }
     }
+
+    public void waterBucket(int checkID){
+        if(checkID == 22){
+            otherCard.getValue(UBER)[0] = otherCard.getValue(UBER)[0] - 1;
+            otherCard.getValue(UBER)[1] = otherCard.getValue(UBER)[1] - 1;
+            otherCard.getValue(UBER)[2] = otherCard.getValue(UBER)[2] - 1;
+        }
+    }
+    
 }
 
