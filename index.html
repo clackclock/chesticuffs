@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <!-- <meta name="viewport" content="width=1280, initial-scale=1"> -->
+    <title>Chest-i-cuffs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquarda+Bastarda+9&display=swap" rel="stylesheet">
+
+    <link rel ="icon" href = "images/chesticuffs_logoW.png">
+    <link rel="stylesheet" href = "style.css">
+
+<!--    <link rel = "java" href = "../src/Game"> c_opium-->
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <!--    me trying not to do work-->
+    <script src = "home.js" ></script>
+</head>
+<style></style>
+<body>
+    <header>
+        <a href= "https://clackclock.github.io/imagine_looking_for_this/tickTock_clock/index.html">
+            <img alt = "logo" src = "images/chesticuffs_logo.png">
+            <img alt = "logo" src = "images/chesticuffs_logoW.png">
+        </a>
+        <p>CHEST-I-CUFF TESTING...</p>
+        <div class = "menuIcon">
+            <a class = "popper" href = "https://clackclock.github.io/imagine_looking_for_this/scriptWeb/index.html"><img class = "pop" alt = "menuI" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Information_icon.svg"></a>
+<!--            href = "https://github.com/clackclock/chesticuffs/blob/master/HOW_TO_PLAY.md"-->
+<!--            https://upload.wikimedia.org/wikipedia/commons/d/d7/Icon_menu_hover.png-->
+        </div>
+    </header>
+
+    <hr />
+
+    <main>
+        <div class = "sideDock">
+            <div class = "zoomPanel">
+                <div id = "imageView">
+                    <img id = "zoom" alt = "selectedCard" src = "images/0_Back.jpg">
+    <!--                <text id = "cardText"> Lorem ipsum dolor sit amet, sed do ut et magna. Ut ad minim ut ex ea.</text>-->
+                </div>
+                <div id = "buildView">
+                    <img  alt = "buildCard" src = "images/36_Back.jpg">
+                    <img  alt = "buildCard" src = "images/36_Front.jpg">
+                    <img  alt = "buildCard" src = "images/38_Front.jpg">
+                    <img  alt = "buildCard" src = "images/39_Front.jpg">
+                    <img  alt = "buildCard" src = "images/40_Front.jpg">
+                    <img  alt = "buildCard" src = "images/41_Front.jpg">
+    <!--                <text id = "comboText"> Lorem ipsum dolor sit amet, sed do ut et magna. Ut ad minim ut ex ea.</text>-->
+                </div>
+                <img alt = "boardSummary" src="images/42%20-%20Board%20(Front).jpg">
+            </div>
+                <label>
+                    <textarea id = "log"></textarea> 
+                    <!-- Chat Coming Soon...or Game Log  -->
+                </label>
+        </div>
+        <div class = "mainPanel">
+            <div id = "mainPlayer">
+                <div id = "board_1">
+                    <div class = "row1">
+                        <div onclick="removeCard()" class = "slot">
+                            u1 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            u2 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            u3 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                    </div>
+                    <div class = "row2">
+                        <div onclick="removeCard()" class = "slot">
+                            a1 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            cd1 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            a2
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                    </div>
+                    <div class = "row3">
+                        <div onclick="removeCard()" class = "slot">
+                            cd2 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            co 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            cd3 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                    </div>
+                    <div class = "row4">
+                        <div onclick="removeCard()" class = "slot">
+                            d1
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png">
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            d2 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            d3 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png">
+                        </div>
+                    </div>
+                </div>
+                <div id = "hand_1">
+                    <img  ondrag= "replaceCard('#hand_1')" id = "0" class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
+                    <img  onclick="replaceCard('#hand_1')" id = "1" class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
+                    <img  onclick="replaceCard('#hand_1')" id = "2" class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
+                    <img  onclick="replaceCard('#hand_1')" id = "3" class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
+                    <img  onclick="replaceCard('#hand_1')" id = "4" class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
+                </div>
+                <div id = "eRight">
+                    <button class = primary-button>COMBO</button>
+                    <button class = primary-button>EVOLVE</button>
+                    <button onclick="addCard()" id = "endTurn" class = "switchPlayers, primary-button">END TURN</button>
+                    <a>Player 1</a>
+                    <!-- <a> Player 1 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 1792 1792"><path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z" style="&#10; fill: rgb(199, 128, 128);&#10;"/></svg> </a> -->
+                </div>
+            </div>
+            
+            <div id = "otherPlayer">
+                <div id = "board_2">
+                    <div class = "row1">
+                        <div onclick="removeCard()" class = "slot">
+                            u1 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            u2 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            u3 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                    </div>
+                    <div class = "row2">
+                        <div onclick="removeCard()" class = "slot">
+                            a1 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            cd1 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            a2
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                    </div>
+                    <div class = "row3">
+                        <div onclick="removeCard()" class = "slot">
+                            cd2 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            co 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            cd3 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                    </div>
+                    <div class = "row4">
+                        <div onclick="removeCard()" class = "slot">
+                            d1
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png">
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            d2 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png"> 
+                        </div>
+                        <div onclick="removeCard()" class = "slot">
+                            d3 
+                            <img alt = "selectedCard" src = "images/chesticuffs_logo.png">
+                        </div>
+                    </div>
+                </div>
+                <div id = "hand_2">
+                    <img onclick="replaceCard('#hand_2')" id = "5"  class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
+                    <img onclick="replaceCard('#hand_2')" id = "6"  class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
+                    <img onclick="replaceCard('#hand_2')" id = "7"  class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
+                    <img onclick="replaceCard('#hand_2')" id = "8"  class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
+                    <img onclick="replaceCard('#hand_2')" id = "9"  class = "playCard" alt = "selectedCard" src = "images/0_Back.jpg">
+                </div>
+                <div id = "eLeft">
+                    <button class = primary-button>COMBO</button>
+                    <button class = primary-button>EVOLVE</button>
+                    <button id = "endTurn2" class = "primary-button">END TURN</button> 
+                    <a>Player 2</a>
+                    <!-- <a> Player 2 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 1792 1792"><path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z" style="&#10; fill: rgb(199, 128, 128);&#10;"/></svg> </a> -->
+                </div> 
+            </div>
+            
+        </div>
+
+        <!-- <div id = "exchangeTable"> -->
+            <!-- <div id = "eRight">
+                <button class = primary-button>COMBO</button>
+                <button class = primary-button>EVOLVE</button>
+                <a>Player 1 Drop</a>
+                 <a> Player 1 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 1792 1792"><path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z" style="&#10; fill: rgb(199, 128, 128);&#10;"/></svg> </a> 
+            </div> -->
+            <!-- <div class = "switchPlayers"><button id = "endTurn" class = primary-button>END TURN</button></div> -->
+            <!-- <div id = "eLeft">
+                <button class = primary-button>COMBO</button>
+                <button class = primary-button>EVOLVE</button>
+                <a>Player 2 Drop</a>
+                 <a> Player 2 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 1792 1792"><path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z" style="&#10; fill: rgb(199, 128, 128);&#10;"/></svg> </a> 
+            </div>  -->
+        <!-- </div> -->
+    </main>
+
+    <hr />
+</body>
+<footer>
+   <p> ©prof.clockedLuck 2024 </p>
+   <p> SOMEONE SHOULD PUT YOU IN A BOX FLOATING DOWN THE RIVER GRANDMA! </p>
+</footer>
+</html>
