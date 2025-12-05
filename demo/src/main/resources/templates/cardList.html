@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Card List</title>
+</head>
+<body>
+
+<h1>Available Cards</h1>
+<ul>
+    <li th:each="card : ${cards}">
+        <img th:src="@{'/static/' + ${card.imageID}}"
+             th:alt="${card.cardName} + ' image'"
+             style="width: 100px; height: auto;">
+        <br>
+        <span th:text="${card.id}">ID</span>:
+        <strong th:text="${card.cardName}">Card Name Placeholder</strong>
+        (Type: <span th:text="${card.cardTypeONE}">Primary Type</span>)
+
+        <hr>
+    </li>
+</ul>
+
+</body>
+</html>

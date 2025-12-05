@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>ChestCraft testing...</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+
+        /*        background-color: #35654d; */
+        background-color: bisque;
+        background-image: url("/images/chest.png");
+
+        /* background-size: cover;
+           background-attachment: fixed;
+           background-position: center;
+           min-height: 100vh;
+           min-width: 0; */
+
+        background-repeat: repeat;
+        background-size: 10%;
+
+        cursor: crosshair;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    header{
+        font-size: xxx-large;
+        font-family: "Brush Script MT", cursive;
+        background-color: white;
+        /* rgba(255,255, 255, 0.5) */
+        min-width: 100vw;
+    }
+
+    a{
+        margin: 0.08em;
+    }
+
+    .contentBox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        background-color: antiquewhite;
+
+        margin-top: 10%;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        outline-style: ridge;
+        outline-size: 20px;
+
+        padding: 1em;
+    }
+
+    /* Fonts + Buttons */
+    .comic-button {
+      /* Basic Button Styling */
+      display: inline-block;
+      padding: 15px 30px;
+      font-family: 'Comic Sans MS', cursive, sans-serif; /* Comic-style font */
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff; /* Text color */
+      background-color: #ff5733; /* Bright, comic-book color */
+      border: 4px solid #333; /* Thick, dark border */
+      border-radius: 10px; /* Slightly rounded corners */
+      cursor: pointer;
+      text-shadow: 2px 2px #333; /* Shadow for text depth */
+      box-shadow: 6px 6px 0px #333; /* "Pop-out" effect */
+      transition: all 0.2s ease; /* Smooth transitions for hover effects */
+    }
+    .comic-button:hover {
+      /* Hover Effects */
+      transform: translate(-3px, -3px); /* Slight movement on hover */
+      box-shadow: 9px 9px 0px #333; /* Enhanced "pop-out" */
+    }
+    .comic-button:active {
+      /* Active (Click) Effects */
+      transform: translate(3px, 3px); /* "Push in" effect */
+      box-shadow: 3px 3px 0px #333; /* Reduced shadow */
+    }
+</style>
+<body>
+    <header>
+        Chest War
+    </header>
+    <div class = "contentBox">
+<!--        <button class="comic-button">test</button>-->
+        <a href="/greeting?name=Problems"><button class="comic-button">GREETING</button></a>
+        <a href="/cardBox"><button class="comic-button">CARD BOX</button></a>
+        <a href="/cardBox"><button class="comic-button">PLAY NOW</button></a>
+
+        <p th:text="#{}"></p>
+    </div>
+
+</body>
+</html>
