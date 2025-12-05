@@ -13,6 +13,7 @@ body{
         -webkit-overflow-scrolling: touch;
     }
     header{
+        /* i can't with today 12/5/2025 */
         margin: 0%;
         padding: 0%;
         flex-wrap: wrap;
