@@ -58,6 +58,11 @@
         padding: 1em;
     }
 
+    .updateBox p{
+        margin: 1em;
+        font-size:large;
+    }
+
     /* Fonts + Buttons */
     .comic-button {
       /* Basic Button Styling */
@@ -97,6 +102,9 @@
         <a href="/cardBox"><button class="comic-button">PLAY NOW</button></a>
 
         <p th:text="#{}"></p>
+    </div>
+    <div class = "updateBox">
+        <p th:text="${fileContent}" style="white-space: pre-wrap;"></p>
     </div>
 
 </body>
