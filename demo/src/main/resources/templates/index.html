@@ -27,7 +27,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: start;
     }
     header{
         font-size: xxx-large;
@@ -35,6 +35,30 @@
         background-color: white;
         /* rgba(255,255, 255, 0.5) */
         min-width: 100vw;
+    }
+    #titleLogo{
+        display: flex;
+        flex-direction: column;
+
+        outline-width: 20px;
+        outline-style: ridge;
+        outline-color: black;
+
+        font-size: xxx-large;
+        font-family: "Brush Script MT", cursive;
+        text-align: center;
+
+        background-color: ghostwhite;
+        min-width: 80px;
+        padding: 0.2em;
+        padding-top: 0%;
+        margin-left: 10%;
+
+        position: absolute;
+    }
+    #titleLogo img{
+       margin-left: 1em;
+       margin-right: 1em;
     }
 
     a{
@@ -92,18 +116,17 @@
     }
 </style>
 <body>
-    <header>
-        Chest War
-    </header>
+    <div id = "titleLogo">
+        <img src="/images/chest.png" width="180px" height="auto">
+        CHEST WAR
+    </div>
     <div class = "contentBox">
 <!--        <button class="comic-button">test</button>-->
         <a href="/greeting?name=Problems"><button class="comic-button">GREETING</button></a>
         <a href="/cardBox"><button class="comic-button">CARD BOX</button></a>
         <a href="/cardBox"><button class="comic-button">PLAY NOW</button></a>
-
-        <p th:text="#{}"></p>
     </div>
-    <div class = "updateBox">
+    <div class="updateBox">
         <p th:text="${fileContent}" style="white-space: pre-wrap;"></p>
     </div>
 
