@@ -11,80 +11,74 @@
 
         /*        background-color: #35654d; */
         background-color: bisque;
-        background-image: url("/images/chest.png");
-
-        /* background-size: cover;
-           background-attachment: fixed;
-           background-position: center;
-           min-height: 100vh;
-           min-width: 0; */
-
+        /*background-image: url("/images/chest.png");
         background-repeat: repeat;
-        background-size: 10%;
+        background-size: 10%; */
+        width: 100vw;
+        height: 100vh;
+
+        color: #623313;
 
         cursor: crosshair;
+        overflow:hidden;
+        position: relative;
 
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: start;
     }
-    header{
-        font-size: xxx-large;
-        font-family: "Brush Script MT", cursive;
-        background-color: white;
-        /* rgba(255,255, 255, 0.5) */
-        min-width: 100vw;
+    #dvd-logo {
+        position: absolute;
+        width: 150px; /* Adjust size as needed */
+        height: auto;
+        /* Initial position will be set by JavaScript */
+    }
+
+    main{
+        display:flex;
+    }
+
+    #menuPanel{
+        display:flex;
+        flex-direction:column;
+        background-color:#F2BDC2;
+        border: 3px solid #F2BDC2;
+        border-radius:5px;
+        border-bottom-right-radius: 0%;
+        border-top-right-radius:0%;
+        padding: 0.8em;
+        padding-bottom: 1.3em;
+        padding-top:0%;
+        margin:1.12em;
+        margin-right:0%;
+        text-align:center;
+        max-width:250px;
     }
     #titleLogo{
-        display: flex;
-        flex-direction: column;
-
-        outline-width: 20px;
-        outline-style: ridge;
-        outline-color: black;
-
+        font-family: "Brush Script MT", "Lucida Handwriting", cursive;
         font-size: xxx-large;
-        font-family: "Brush Script MT", cursive;
-        text-align: center;
-
-        background-color: ghostwhite;
-        min-width: 80px;
-        padding: 0.2em;
-        padding-top: 0%;
-        margin-left: 10%;
-
-        position: absolute;
+        color: #FFFaf3;
+        text-shadow: 2px 3px #623313;
     }
-    #titleLogo img{
-       margin-left: 1em;
-       margin-right: 1em;
+    .contentBox{
+        display:flex;
+        flex-direction:column;
     }
 
     a{
         margin: 0.08em;
     }
 
-    .contentBox{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        background-color: antiquewhite;
-
-        margin-top: 10%;
-        border-radius: 20px;
-        border: 1px solid #ccc;
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-        outline-style: ridge;
-        outline-size: 20px;
-
-        padding: 1em;
-    }
-
-    .updateBox p{
+    .updateBox{
         margin: 1em;
+        margin-left:0%;
+        padding-left:0.4em;
+        padding-right:0.4em;
+        font-family: 'Comic Sans MS', cursive, sans-serif; /* Comic-style font */
         font-size:large;
+        background-color:#FFFaf3;
+        border:2px solid #F2BDC2;
     }
 
     /* Fonts + Buttons */
@@ -95,13 +89,13 @@
       font-family: 'Comic Sans MS', cursive, sans-serif; /* Comic-style font */
       font-size: 24px;
       font-weight: bold;
-      color: #fff; /* Text color */
-      background-color: #ff5733; /* Bright, comic-book color */
-      border: 4px solid #333; /* Thick, dark border */
-      border-radius: 10px; /* Slightly rounded corners */
+      color: #FFFaf3;
+      background-color: #DEc6aa;
+      border: 4px solid #623313;
+      border-radius: 10px;
       cursor: pointer;
-      text-shadow: 2px 2px #333; /* Shadow for text depth */
-      box-shadow: 6px 6px 0px #333; /* "Pop-out" effect */
+      text-shadow: 2px 2px #623313;
+      box-shadow: 6px 6px 0px #623313;
       transition: all 0.2s ease; /* Smooth transitions for hover effects */
     }
     .comic-button:hover {
@@ -116,19 +110,61 @@
     }
 </style>
 <body>
-    <div id = "titleLogo">
-        <img src="/images/chest.png" width="180px" height="auto">
-        CHEST WAR
-    </div>
-    <div class = "contentBox">
-<!--        <button class="comic-button">test</button>-->
-        <a href="/greeting?name=Problems"><button class="comic-button">GREETING</button></a>
-        <a href="/cardBox"><button class="comic-button">CARD BOX</button></a>
-        <a href="/cardBox"><button class="comic-button">PLAY NOW</button></a>
-    </div>
-    <div class="updateBox">
-        <p th:text="${fileContent}" style="white-space: pre-wrap;"></p>
-    </div>
+    <img id="dvd-logo" src="/images/chest.png" alt="chestLogo" width="50px" height="auto">
+    <main>
+        <div id="menuPanel">
+            <div id="titleLogo">
+                CHEST WAR
+            </div>
+            <div class="contentBox">
+                <!--        <button class="comic-button">test</button>-->
+                <a href="/greeting?name=Problems"><button class="comic-button">GREETING</button></a>
+                <a href="/cardBox"><button class="comic-button">CARD BOX</button></a>
+                <a href="/cardBox"><button class="comic-button">PLAY NOW</button></a>
+            </div>
+        </div>
 
+        <div class="updateBox">
+            <p th:text="${fileContent}" style="white-space: pre-wrap;"></p>
+        </div>
+    </main>
+
+
+    <script>
+        const logo = document.getElementById('dvd-logo');
+        let x = 0;
+        let y = 0;
+        let velocityX = 2; // Speed and direction (adjust as needed)
+        let velocityY = 2;
+        const speed = 2;
+
+        function updatePosition() {
+            const bodyWidth = document.body.clientWidth;
+            const bodyHeight = document.body.clientHeight;
+            const logoWidth = logo.clientWidth;
+            const logoHeight = logo.clientHeight;
+
+            // Update position
+            x += velocityX;
+            y += velocityY;
+
+            // Bounce off walls
+            if (x + logoWidth >= bodyWidth || x <= 0) {
+                velocityX = -velocityX;
+                // Optional: change color on bounce
+            }
+            if (y + logoHeight >= bodyHeight || y <= 0) {
+                velocityY = -velocityY;
+                // Optional: change color on bounce
+            }
+
+            // Apply new position
+            logo.style.left = x + 'px';
+            logo.style.top = y + 'px';
+        }
+
+        // Run animation at ~60 FPS
+        setInterval(updatePosition, 1000 / 60);
+    </script>
 </body>
 </html>
