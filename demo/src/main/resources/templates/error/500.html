@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Oops! Spartan Error</title>
+    <style>
+        .comic-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #ff5733;
+            border: 4px solid #333;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            text-shadow: 2px 2px #333;
+            box-shadow: 6px 6px 0px #333;
+            transition: all 0.2s ease;
+        }
+
+        .comic-button:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px #333;
+        }
+    </style>
+</head>
+<body style="background-color: bisque; text-align: center; font-family: sans-serif;">
+<h1>Something went wrong!</h1>
+
+<div class="error-details">
+    <p><strong>Status:</strong> <span th:text="${status}">500</span></p>
+    <p><strong>Error:</strong> <span th:text="${error}">Internal Server Error</span></p>
+    <p><strong>Message:</strong> <span th:text="${message}">Error details here</span></p>
+</div>
+
+<a href="/" class="comic-button">Back to Home</a>
+</body>
+</html>

@@ -5,21 +5,120 @@
     <title>Card List</title>
 </head>
 <body>
+<div class="contentBox">
+    <h2 style="font-family: 'Brush Script MT', 'Lucida Handwriting', cursive; font-size: xxx-large; color: #FFFaf3; text-shadow: 2px 3px #623313;">Card Collection</h2>
 
-<h1>Available Cards</h1>
-<ul>
-    <li th:each="card : ${cards}">
-        <img th:src="@{'/static/' + ${card.imageID}}"
-             th:alt="${card.cardName} + ' image'"
-             style="width: 100px; height: auto;">
-        <br>
-        <span th:text="${card.id}">ID</span>:
-        <strong th:text="${card.cardName}">Card Name Placeholder</strong>
-        (Type: <span th:text="${card.cardTypeONE}">Primary Type</span>)
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
 
-        <hr>
-    </li>
-</ul>
+        <div th:each="card : ${cards}" class="game-card">
+            <div class="card-header">
+                <span th:text="'#' + ${card.id}">ID</span>
+                <strong th:text="${card.cardName}">Name</strong>
+            </div>
+
+            <div class="card-img-container">
+                <img th:if="${card.imageID != 'UNKNOWN'}"
+                     th:src="@{'/' + ${card.imageID}}"
+                     alt="Card Art">
+                <div th:if="${card.imageID == 'UNKNOWN'}" class="placeholder">
+                    ?
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <span class="type-badge" th:text="${card.cardTypeONE}">TYPE 1</span>
+                <span class="type-badge secondary" th:text="${card.cardTypeTWO}">TYPE 2</span>
+            </div>
+        </div>
+
+    </div>
+
+    <a th:href="@{/}" class="comic-button">BACK TO BATTLE</a>
+</div>
+
+<style>
+    body{
+        background-color:bisque;
+    }
+    .game-card {
+        width: 180px;
+        background: white;
+        border: 4px solid #623313;
+        border-radius: 12px;
+        box-shadow: 5px 5px 0px #623313;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    .card-header {
+        background: #F2BDC2;
+        color: white;
+        padding: 5px;
+        font-size: 0.9em;
+        display: flex;
+        justify-content: space-between;
+    }
+    .card-img-container {
+        height: 200px;
+        background: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .card-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .placeholder {
+        font-size: 4em;
+        color: #ccc;
+    }
+    .card-footer {
+        padding: 10px;
+        background: antiquewhite;
+        text-align: center;
+    }
+    .type-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        background: #ff5733;
+        color: white;
+        border-radius: 5px;
+        font-size: 0.7em;
+        font-weight: bold;
+    }
+    .type-badge.secondary {
+        background: #555;
+    }
+
+    .comic-button {
+      /* Basic Button Styling */
+      display: inline-block;
+      padding: 15px 30px;
+      font-family: 'Comic Sans MS', cursive, sans-serif; /* Comic-style font */
+      font-size: 24px;
+      font-weight: bold;
+      color: #FFFaf3;
+      background-color: #ff5733;
+      border: 4px solid #623313;
+      border-radius: 10px;
+      cursor: pointer;
+      text-shadow: 2px 2px #623313;
+      box-shadow: 6px 6px 0px #623313;
+      transition: all 0.2s ease; /* Smooth transitions for hover effects */
+    }
+    .comic-button:hover {
+      /* Hover Effects */
+      transform: translate(-3px, -3px); /* Slight movement on hover */
+      box-shadow: 9px 9px 0px #333; /* Enhanced "pop-out" */
+    }
+    .comic-button:active {
+      /* Active (Click) Effects */
+      transform: translate(3px, 3px); /* "Push in" effect */
+      box-shadow: 3px 3px 0px #333; /* Reduced shadow */
+    }
+</style>
 
 </body>
 </html>

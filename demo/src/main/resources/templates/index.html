@@ -9,7 +9,6 @@
         margin: 0;
         padding: 0;
 
-        /*        background-color: #35654d; */
         background-color: bisque;
         /*background-image: url("/images/chest.png");
         background-repeat: repeat;
@@ -118,9 +117,9 @@
             </div>
             <div class="contentBox">
                 <!--        <button class="comic-button">test</button>-->
-                <a href="/greeting?name=Problems"><button class="comic-button">GREETING</button></a>
-                <a href="/cardBox"><button class="comic-button">CARD BOX</button></a>
-                <a href="/cardBox"><button class="comic-button">PLAY NOW</button></a>
+                <a th:href="@{/greeting(name='Problems')}"><button class="comic-button">GREETING</button></a>
+                <a th:href="@{/cardBox}"><button class="comic-button">CARD BOX</button></a>
+                <a th:href="@{/play}"><button class="comic-button">PLAY NOW</button></a>
             </div>
         </div>
 
@@ -128,7 +127,6 @@
             <p th:text="${fileContent}" style="white-space: pre-wrap;"></p>
         </div>
     </main>
-
 
     <script>
         const logo = document.getElementById('dvd-logo');

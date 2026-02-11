@@ -5,7 +5,7 @@ public enum Board_Positions { //implements boardPosition_Action
     private final int validIndex;
 
     //3,2,3,1,3
-//        chesticuffSpring.demo.Board_Positions(int openSlots){}
+
     Board_Positions(int index) {
         validIndex = index;
     }

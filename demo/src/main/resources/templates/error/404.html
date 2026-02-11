@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>404 - Lost in the Chests</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: bisque;
+            background-image: url("/images/chest.png");
+            background-repeat: repeat;
+            background-size: 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        .error-container {
+            background-color: white;
+            padding: 2em;
+            border-radius: 20px;
+            border: 4px solid #333;
+            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 { font-size: 80px; margin: 0; color: #ff5733; text-shadow: 3px 3px #333; }
+        p { font-size: 20px; margin-bottom: 2em; }
+
+        .comic-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #ff5733;
+            border: 4px solid #333;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            text-shadow: 2px 2px #333;
+            box-shadow: 6px 6px 0px #333;
+            transition: all 0.2s ease;
+        }
+
+        .comic-button:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="error-container">
+    <h1>404</h1>
+    <p>This chest is empty! The page you're looking for doesn't exist.</p>
+
+    <a href="/" class="comic-button">RETURN TO BATTLE</a>
+</div>
+
+</body>
+</html>
