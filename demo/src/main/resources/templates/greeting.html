@@ -1,17 +1,139 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Greeting</title>
+    <title>About</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <style>
         body{
             background-color: bisque;
-            color:white;
+            font-family: "Brush Script MT", "Lucida Handwriting", sans-serif;
+        }
+        h1, h2{
+            font-family: "Brush Script MT", "Lucida Handwriting", cursive;
+            color: #FFFaf3;
+            text-shadow: 2px 3px #623313;
+        }
+        p{
+            color: #623313;
+            font-size:x-large;
+        }
+
+        /* Fonts + Buttons */
+        .comic-button {
+          /* Basic Button Styling */
+          display: inline-block;
+          padding: 15px 30px;
+          font-family: 'Comic Sans MS', cursive, sans-serif; /* Comic-style font */
+          font-size: 24px;
+          font-weight: bold;
+          color: #FFFaf3;
+          background-color: #DEc6aa;
+          border: 4px solid #623313;
+          border-radius: 10px;
+          cursor: pointer;
+          text-shadow: 2px 2px #623313;
+          box-shadow: 6px 6px 0px #623313;
+          transition: all 0.2s ease; /* Smooth transitions for hover effects */
+        }
+        .comic-button:hover {
+          /* Hover Effects */
+          transform: translate(-3px, -3px); /* Slight movement on hover */
+          box-shadow: 9px 9px 0px #333; /* Enhanced "pop-out" */
+        }
+        .comic-button:active {
+          /* Active (Click) Effects */
+          transform: translate(3px, 3px); /* "Push in" effect */
+          box-shadow: 3px 3px 0px #333; /* Reduced shadow */
+        }
+
+        dl, ol{
+            font-size: larger;
+        }
+        ul{
+            list-style: none; /* Remove defaults */
+            padding-left: 20px;
+            font-size: larger;
+        }
+        ul li{
+            position: relative;
+            padding-left: 30px; /* Space for the custom icon */
+            line-height: 1.5;
+        }
+        ul li::before{
+            content: "✒"; /* Custom icon/character */
+            position: absolute;
+            left: 0;
+            color:#F2BDC2;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 <h1 th:text="|Hello, ${name}!|" />
+<h1>WELCOME TO CHEST-I-CUFFS</h1>
+
+<p class="fleuron"><span style="color:#F2BDC2; font-size:x-large;">𝄆𝄞&#8536; ♫♩♩♭♩𝄀♩♩𝄾𝅘𝅥𝆫♩♩</span></p>
+
+<h1>How-To Play</h1>
+<p>The goal is to build the best items and clear the other player's board. EVERYTHING is a weapon so use it to your advantage.</p>
+<p>Each player starts with 5 cards and a deck with a minimum of 40 cards. On their turn a player will pick up 1 card and before the end of their turn they have the following options;</p>
+<ul>
+    <li>place a card</li>
+    <li>discard a card from their hand or remove one from the board</li>
+    <li>or use an item card’s special abilities- whether that be on another card or something that changes the board by doing something like removing an enemy’s card- which forfeits its attacking and defending abilities outside its item skills. </li>
+</ul>
+<p>Each card has an attack and defense stat associated with every position on the board. After 3-5 rounds of placing, picking up and setting down items, each player will calculate each row’s attack and defense and all the cards will have the Core value added to it, if there is one, and then compare it to their opponents’. This is called the calculation round- which can either make the game very short or very long depending on the player's strategy.</p>
+<h2>Types</h2>
+<p>There are 5 main types:</p>
+<ul>
+    <li>Plant</li>
+    <li>Water</li>
+    <li>Tools</li>
+    <li>Flower</li>
+    <li>Farm</li>
+</ul>
+<p>represented by grass, a splash of water, a pickaxe, an abstract flower and wheat respectively. These types can be paired with each other or with a secondary type. In the first case, the main type for the card is determined by the type in the primary position in the top left corner.</p>
+<p>Secondary types include:</p>
+<ol type="I">
+    <li>Neutral</li>
+    <li>Upgrades:
+        <ol>
+            <li>Metal</li>
+            <li>Ore</li>
+            <li>Practical Use</li>
+        </ol>
+    </li>
+    <li>Wood</li>
+    <li>Lucky</li>
+    <li>Builds/ Combos</li>
+</ol>
+<p>Neutral will be represented by an interdiction. Upgrades, which includes temporary items like Metal and Ore and practical use items, will be represented by an ingot, crystal ore and/or a click icon respectively.</p>
+<h2>Positions</h2>
+<p>There are 5 types of positions on the board:</p>
+<dl>
+    <dt>Uber Attack (3 slots):</dt>
+    <dd>The first position to be calculated. Often the hardest hitter. Think "Heavy Blow" for attack and "Parry" for defence.</dd>
+    <dt>Attack (2 slots):</dt>
+    <dd>The secondary attack  and the second to be calculated. Think "Light Attack" and "Deflect"</dd>
+    <dt>Core-Defense (3 slots):</dt>
+    <dd>The set of positions surrounding the Core. Honestly just there to for Combos</dd>
+    <dt>Core (1 slot):</dt>
+    <dd>The center of your structure, your main modifier. These stats are added to each card on your board. Think "Willpower"</dd>
+    <dt>Defense (3 slots):</dt>
+    <dd>The last line standing between you and defeat.</dd>
+</dl>
+<h2>Attack and Defense</h2>
+<p>A player's total attack across a section needs to be greater than the opponent's defense in that same section to successfully hit, and the defense needs to be greater than or equal to the attack to defend. If the attack is equal nothing happens, it just means the defense wins that round.</p>
+<h2>Card Actions and Items</h2>
+<p>Removing a card from the board takes a placing turn, but you can still use items in the same round you remove and place a card. The same goes for removing the Core, it will take one placing turn but you can’t use items after the fact. Items cannot be used as both an offensive tool and an item with special moves at the same time.</p>
+<h2>Combos</h2>
+<p>A Combo is the only type of card that can only be a core or a support item. A Combo's core stat is added to all the cards in the Combo and whatever the description says it affects. To get a Combo card you have to trade specific cards from your hand away to get it. The card will have a list of “ingredients” which need to be discarded overtime to be exchanged for the combo wanted.  If you don’t have all the cards at once you can slowly discard them to the side until you reach the amount necessary to trade. Then you can add the combo to your hand to be placed in the core position later. Example: To make an Apple Pie combo you need to discard 3 Apple cards and 3 Wheat cards from your hand. Once you’ve traded those away you can get the combo card and add it to your hand to be placed in the core position when it suits you.</p>
+
+<a th:href="@{/}" class="comic-button">BACK</a>
 </body>
+<footer>
+    <p>Find me on <a href="https://github.com/clackclock/chesticuffs">GitHub</a></p>
+</footer>
+
 </html>

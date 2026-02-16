@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Now Playing Chest-i-cuffs...</title>
+</head>
+<style>
+    body{
+        margin:0;
+        padding:0;
+
+        background-color: bisque;
+        background-image:url("/images/dark-wood.jpg"); /* CC0 1.0 Universal (https://freerangestock.com/photos/137252/close-up-of-horizontal-rough-dark-wood-board-texture.html) */
+        background-size:100vw 100vh;
+        background-repeat:no-repeat;
+
+        cursor: crosshair;
+        overflow:hidden;
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .returnButton{
+        margin:0;
+        padding:0;
+        width:100vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: start;
+    }
+
+    #whoseTurn{
+        width:80vw;
+        height:8vh;
+        margin-top:1em;
+        align-content:center;
+        color:#F6AA1C;
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        font-size:large;
+        border:3px solid #F6AA1C;
+        border-bottom-style: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        background-color: #BC3908;
+    }
+
+    .gameArea{
+        display: flex;
+        flex-direction: row;
+        flex-wrap:nowrap;
+        background-color:#941B0C;
+        border:3px solid #F6AA1C;
+        border-top-style: none;
+        width:80vw;
+        max-width:80vw;
+        height:auto;
+    }
+    .player{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width:50vw;
+        height:60vh;
+        border:3px solid #BC3908;
+        background-color:#621708;
+    }
+    .board{
+        display: flex;
+        flex-direction: column;
+        background-size: 50vw 30vh;
+        background-image:url("/images/chest_Tray2.png");
+        background-repeat:no-repeat;
+    }
+    .hand{
+        display: flex;
+        flex-direction: row;
+        height:50%;
+        width:auto;
+        background-color: #941B0C;
+    }
+
+    .buttonMenu{
+        display: flex;
+        flex-direction: row;
+        background-color:#F6AA1C;
+        border:3px solid #F6AA1C;
+        padding-bottom:0.45em;
+        width:80vw;
+        height:6vh;
+    }
+    .buttonMenu a{
+        margin-right:0.4em;
+    }
+    .logArea{
+        width:81vw;
+    }
+    textarea{
+        background-color: darkred;
+        color: gold;
+        border-block-color: goldenrod;
+    }
+    #playLog{
+        width:inherit;
+    }
+
+    /* Fonts + Buttons */
+    .comic-button {
+      /* Basic Button Styling */
+      display: inline-block;
+      padding: 1px 20px;
+      font-family: 'Comic Sans MS', cursive, sans-serif; /* Comic-style font */
+      font-size: 24px;
+      font-weight: bold;
+      color: #F6AA1C;
+      background-color: #941B0C;
+      border: 4px solid #220901;
+      border-radius: 10px;
+      cursor: pointer;
+      text-shadow: 2px 2px #220901;
+      box-shadow: 6px 6px 0px #220901;
+      transition: all 0.2s ease; /* Smooth transitions for hover effects */
+    }
+    .comic-button:hover {
+      /* Hover Effects */
+      transform: translate(-3px, -3px); /* Slight movement on hover */
+      box-shadow: 9px 9px 0px #220901; /* Enhanced "pop-out" */
+    }
+    .comic-button:active {
+      /* Active (Click) Effects */
+      transform: translate(3px, 3px); /* "Push in" effect */
+      box-shadow: 3px 3px 0px #220901; /* Reduced shadow */
+    }
+</style>
+<body>
+    <div class="returnButton"><a th:href="@{/}" class="comic-button">BACK</a></div>
+    <div id="whoseTurn">PLAYER</div>
+    <div class="gameArea">
+        <div id="player1" class="player">
+            <div id="board1" class="board"></div>
+            <div id="hand1" class="hand"></div>
+        </div>
+        <div id="player2" class="player">
+            <div id="board2" class="board"></div>
+            <div id="hand2" class="hand"></div>
+        </div>
+    </div>
+    <div class="buttonMenu">
+        <a class="comic-button">END</a>
+        <a class="comic-button">COMBO</a>
+        <a class="comic-button">EVOLVE</a>
+        <a class="comic-button">REMOVE</a>
+    </div>
+    <div class="logArea">
+        <label for="playLog"></label>
+        <textarea id="playLog" rows="5">Keep Track of the Game:</textarea>
+    </div>
+</body>
+</html>
