@@ -4,15 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/game")
 public class GameController {
     private final GameService gameService;
     private final CardService cardService = new CardService();
-    private Player player = new Player();
-    private Player enemyPlayer = new Player();
+    private final Player player = new Player();
+    private final Player enemyPlayer = new Player();
 
     public GameController(GameService gameService) {
         this.gameService = gameService;
@@ -38,14 +36,9 @@ public class GameController {
     @PostMapping("/build")
     public String handleBuild(@RequestParam int recipeID) {
         // Find the recipe the user clicked on
-        Recipe choice = cardService.getRecipes().stream()
+        cardService.getRecipes().stream()
                 .filter(r -> r.getTargetCardId() == recipeID)
-                .findFirst()
-                .orElse(null);
-
-        if (choice != null) {
-            gameService.processBuild(player, choice);
-        }
+                .findFirst().ifPresent(choice -> gameService.processBuild(player, choice));
 
         return "redirect:/game";
     }
