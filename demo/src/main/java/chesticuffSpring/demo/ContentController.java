@@ -44,12 +44,19 @@ public class ContentController {
     public String displayCards(Model model) {
         // ask service for data
         model.addAttribute("cards", cardService.getCards());
-        return "cardlist";
+        return "cardList";
     }
 
     @GetMapping("/greeting")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
         model.addAttribute("name", name);
         return "greeting";
+    }
+
+    @GetMapping("/play")
+    public String gamePage(Model model){
+        Player user = new Player();
+        model.addAttribute("player", user);
+        return "play";
     }
 }

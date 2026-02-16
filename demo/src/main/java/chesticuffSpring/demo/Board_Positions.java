@@ -1,15 +1,17 @@
 package chesticuffSpring.demo;
 
-public enum Board_Positions { //implements boardPosition_Action
-    UBER(0), ATTACK(1), CoreDEFENCE(-1), CORE(2), DEFENCE(3);
+public enum Board_Positions {
+    UBER(0),        // Row 0
+    ATTACK(1),      // Row 1
+    CoreDEFENCE(2), // Row 2 (Used to be -1, changed to 2)
+    CORE(4),        // Special case or Row 4
+    DEFENCE(3);     // Row 3
+    //3 slots, 2 slots, 3 slots, 1 slot, 3 slots
+
     private final int validIndex;
-
-    //3,2,3,1,3
-
     Board_Positions(int index) {
         validIndex = index;
     }
-
     public int index() {
         return validIndex;
     }

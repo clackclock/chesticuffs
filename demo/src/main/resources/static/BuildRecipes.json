@@ -1,0 +1,61 @@
+{
+  "title": "Recipe_Cook Book",
+  "version": 2.0,
+
+  "list": [
+    {
+      "needs": "specificCard_specificType",
+      "givesModTo": "all",
+      "ingredients": [
+        {"name": "Plank", "id": 21, "amt": 2},
+        {"type": "PLANT", "amt": 5}
+      ],
+      "makes": {"name": "Plain_Tree", "id": 17}
+    },
+    {
+      "needs": "threeOfKind",
+      "givesModTo": "ATTACK",
+      "ingredients": [
+        {"checkCardsSame": true, "amt": 3}
+      ],
+      "makes": {"name": "Stairs", "id": 27}
+    },
+    {
+      "needs":"specificType",
+      "givesModTo": "all",
+      "ingredients":[
+        {"type": "FLOWER", "amt": 3}
+      ],
+      "makes": {"name": "Flower_Bush", "id": 18}
+    },
+    {
+      "needs": "specificType",
+      "givesModTo": "TOOL",
+      "ingredients": [
+        {"type": "WOOD", "amt": 7},
+        {"type": "METAL", "amt": 1},
+        {"type": "TOOL", "amt": 1}
+      ],
+      "makes": {"name": "Item_Frame", "id": 26}
+    },
+    {
+      "needs": "specificCard",
+      "givesModTo": "all",
+      "ingredients": [
+        {"name": "Apple", "id": 6, "amt": 3},
+        {"name": "Wheat", "id": 31, "amt": 3}
+      ],
+      "makes": {"name": "Apple_Pie", "id": 42}
+    },
+    {
+      "needs": "specificCard_specificType",
+      "givesModTo": "WATER",
+      "ingredients": [
+        {"name": "Trident", "id": 29, "amt": 3},
+        {"type": "WATER", "amt": 1},
+        {"name": "Aquamarine", "id": 35, "amt": 3}
+      ],
+      "makes": {"name": "Monument", "id": 34}
+    }
+  ]
+}

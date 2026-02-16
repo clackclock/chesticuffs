@@ -58,6 +58,9 @@ public class Card {
     }
     public void useAsItem(){ item = true; } // if item is true use item mods in calculation
     public boolean isItem(){ return item; }
+    public boolean isPotentialBuild() {
+        return this.positionMap.containsKey(Board_Positions.CORE);
+    }
     public int getId(){ return id; }
     public String getImageID() { return imageID; }
     public String getCardName() { return cardName; }

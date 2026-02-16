@@ -72,11 +72,14 @@
     }
     .board{
         display: flex;
-        flex-direction: column;
-        background-size: 50vw 30vh;
+        flex-direction: row;
+        max-width:50vw;
+        max-height:30vh;
+        background-size: contain;
         background-image:url("/images/chest_Tray2.png");
         background-repeat:no-repeat;
     }
+
     .hand{
         display: flex;
         flex-direction: row;
@@ -139,10 +142,20 @@
 </style>
 <body>
     <div class="returnButton"><a th:href="@{/}" class="comic-button">BACK</a></div>
-    <div id="whoseTurn">PLAYER</div>
+    <div id="whoseTurn"><span style="margin-left:0.5em;">PLAYER</span></div>
     <div class="gameArea">
         <div id="player1" class="player">
-            <div id="board1" class="board"></div>
+            <div id="board1" class="board">
+                <form th:action="@{/game/play}" method="post">
+                    <input type="hidden" name="handIndex" th:value="${index}" />
+                    <select name="pos">
+                        <option value="ATTACK">Attack Row</option>
+                        <option value="DEFENCE">Defence Row</option>
+                    </select>
+                    <input type="number" name="col" min="0" max="2" />
+                    <button type="submit">Place Card</button>
+                </form>
+            </div>
             <div id="hand1" class="hand"></div>
         </div>
         <div id="player2" class="player">
